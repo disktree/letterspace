@@ -1,0 +1,9 @@
+-js bin/app.js
+-main letterspace.App
+-lib om.core
+-lib om.rtc
+-lib om.tween
+-lib heaps
+-cp src
+-dce full
+-debug
