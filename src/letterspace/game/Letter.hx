@@ -1,70 +1,50 @@
-package letterspace;
+package letterspace.game;
 
-import hxd.Res;
+import h2d.Bitmap;
 import h2d.Object;
 import h2d.Tile;
+import h2d.col.Bounds;
+import h2d.col.Point;
 import om.Tween;
 import om.ease.*;
 
-class Letter extends h2d.Object {
-
-	public dynamic function onDragStart( l : Letter ) {}
+//class Letter extends Object {
+class Letter extends Bitmap {
 
 	public var index(default,null) : Int;
 	public var char(default,null) : String;
+	//public var bounds(default,null) : Bounds;
+	public var size(default,null) : Bounds;
+	public var dragged(default,null) = false;
+	//public var width(default,null) : Int;
+	//public var height(default,null) : Int;
 
-	public var width(default,null) : Int;
-	public var height(default,null) : Int;
+	var dragOffset : Point;
+	//var dragOffsetX : Float;
+	//var dragOffsetY : Float;
+	//var moveTween : Tween;
 
-	public var dragged(default,null)  = false;
+	public function new( index : Int, char : String, tile : Tile ) {
 
-	var dragOffsetX : Float;
-	var dragOffsetY : Float;
-
-	var moveTween : Tween;
-
-	public function new( index : Int, char : String, parent : Object ) {
-
-		super( parent );
+		super( tile );
 		this.index = index;
 		this.char = char;
 
-		var tile : Tile = Res.load('letter/$char.png').toTile();
-		var bmp = new h2d.Bitmap( tile, this );
+		size = getSize();
 
-		alpha = 0.8;
+		//this.filter = new h2d.filter.Bloom(2,1,10);
+		//this.filter = new h2d.filter.Glow();
 
-		var bounds = getBounds();
-		width = Std.int( bounds.xMax );
-		height = Std.int( bounds.yMax );
-
-		var interaction = new h2d.Interactive( width, height, this );
-		interaction.onOver = function(e:hxd.Event) {
-			alpha = 1;
-		}
-		interaction.onOut = function(e:hxd.Event) {
-		    alpha = 0.7;
-		}
-		//interaction.onClick = function(e:hxd.Event) {
-		interaction.onPush  = function(e:hxd.Event) {
-			dragOffsetX = e.relX;
-			dragOffsetY = e.relY;
-			dragged = true;
-			onDragStart( this );
-		}
 		/*
-		interaction.onRelease = function(e:hxd.Event) {
-			dragged = false;
-		}
-		*/
-
 		moveTween = new Tween( this )
 			.onUpdate( function(){
 				posChanged = true;
 			});
+			*/
 	}
 
 	public function update() {
+		/*
 		//if( dragged ) {
 		var tx = Game.mouseX - dragOffsetX;
 		if( tx < 0 ) tx = 0;
@@ -74,10 +54,32 @@ class Letter extends h2d.Object {
 		else if( ty > Game.H - height ) ty = Game.H - height;
 		x = tx;
 		y = ty;
+		*/
 	}
 
+	public function startDrag( p : Point ) {
+		//trace(parent.getSize());
+		this.adjustColor( {} );
+		dragOffset = p.sub( new Point( x, y ) );
+		this.filter = new h2d.filter.Glow();
+	}
+
+	public function doDrag( p : Point ) {
+		var pos = p.sub( dragOffset );
+		setPosition( pos.x, pos.y );
+	}
+
+	public function stopDrag( p : Point ) {
+		//dragged = false;
+		var pos = p.sub( dragOffset );
+		setPosition( pos.x, pos.y );
+		dragOffset = null;
+		this.filter = null ;
+	}
+
+	/*
 	public function stopDrag() {
-		dragged = false;
+		//dragged = false;
 	}
 
 	public function movePositions( positions : Array<Array<Int>> ) {
@@ -110,5 +112,6 @@ class Letter extends h2d.Object {
         var b = this.y - y;
         return Math.sqrt( a*a + b*b );
     }
+	*/
 
 }

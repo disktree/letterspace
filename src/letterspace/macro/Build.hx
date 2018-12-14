@@ -1,4 +1,4 @@
-package letterspace;
+package letterspace.macro;
 
 #if macro
 import sys.FileSystem;

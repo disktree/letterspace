@@ -24,6 +24,9 @@ class App extends hxd.App {
 
 		hxd.Res.initEmbed();
 
+		//var game = new letterspace.Game();
+
+
 		var ip = '192.168.0.10';
 		var port = 1377;
 
@@ -61,7 +64,5 @@ class App extends hxd.App {
 		}).catchError( function(e){
 			trace( e );
 		});
-
-
 	}
 }
