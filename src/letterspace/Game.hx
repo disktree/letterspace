@@ -2,7 +2,6 @@ package letterspace;
 
 import letterspace.game.Space;
 import letterspace.net.Mesh;
-import om.Json;
 import om.Timer;
 import om.Tween;
 
@@ -28,7 +27,7 @@ class Game extends hxd.App {
 			trace( 'node disconnected: '+node );
         }
 		mesh.onNodeMessage = function(node,msg){
-			//trace( 'node message: '+node+' '+msg.type );
+			trace( "onNodeMessage", msg.type+' '+node );
 			switch msg.type {
 			case 'join':
 				node.sendMessage( { type: 'status', data: space.getLetterPositions() } );
@@ -49,7 +48,8 @@ class Game extends hxd.App {
 			}
 		}
 
-		space = new Space( s2d, 600, 600 );
+		space = new Space( s2d, 800, 600 );
+		//space.setScale(2);
 		space.onDragStart = function( l ) {
 			//trace("onDragStart "+l.char);
 			broadcast( 'dragstart', { i : l.index, p : [Std.int(l.x),Std.int(l.y)] } );

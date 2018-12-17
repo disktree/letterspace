@@ -17,7 +17,7 @@ class Space extends Object {
 	public var width(default,null) : Int;
     public var height(default,null) : Int;
 
-	var background : Graphics;
+	var background : Background;
 	var letterContainer : Object;
 	var interaction : Interactive;
 	var tiles : Map<String,Tile>;
@@ -31,14 +31,11 @@ class Space extends Object {
 		this.width = width;
         this.height = height;
 
-		background = new Graphics( this );
-		background.beginFill( 0x3f3f3f );
-		background.drawRect( 0, 0, width, height );
-		background.endFill();
+		background = new Background( this, width, height, 0x3f3f3f, { color: 0x303030, size: 10 } );
 
 		letterContainer = new Object( this );
 		//letterContainer.filter = new h2d.filter.Bloom(2,1,10);
-		//letterContainer.filter = new h2d.filter.Glow();
+		//letterContainer.filter = new h2d.filter.DropShadow();
 
 		tiles = new Map<String,Tile>();
 		var chars = letterspace.macro.Build.getLetters();

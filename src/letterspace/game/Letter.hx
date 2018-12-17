@@ -34,6 +34,8 @@ class Letter extends Bitmap {
 
 		//this.filter = new h2d.filter.Bloom(2,1,10);
 		//this.filter = new h2d.filter.Glow();
+		//this.filter = new h2d.filter.Outline(2);
+		this.filter = new h2d.filter.DropShadow( 2, 0.785, 0, 0.4, 10, 2, 1, true );
 
 		/*
 		moveTween = new Tween( this )
@@ -61,7 +63,8 @@ class Letter extends Bitmap {
 		//trace(parent.getSize());
 		this.adjustColor( {} );
 		dragOffset = p.sub( new Point( x, y ) );
-		this.filter = new h2d.filter.Glow();
+		//this.filter = new h2d.filter.Glow();
+		this.setScale( 1.05 );
 	}
 
 	public function doDrag( p : Point ) {
@@ -74,7 +77,8 @@ class Letter extends Bitmap {
 		var pos = p.sub( dragOffset );
 		setPosition( pos.x, pos.y );
 		dragOffset = null;
-		this.filter = null ;
+		//this.filter = null ;
+		this.setScale( 1.0 );
 	}
 
 	/*

@@ -24,10 +24,8 @@ class App extends hxd.App {
 
 		hxd.Res.initEmbed();
 
-		//var game = new letterspace.Game();
-
-
 		var ip = '192.168.0.10';
+		//var ip = '195.201.41.121';
 		var port = 1377;
 
 		server = new om.rtc.mesh.Server( ip, port );
