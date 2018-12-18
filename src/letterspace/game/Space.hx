@@ -8,6 +8,11 @@ import h2d.col.Point;
 import hxd.Event;
 import hxd.Res;
 
+typedef Theme = {
+	var background : Background.Style;
+	//var letter
+}
+
 class Space extends Object {
 
 	public dynamic function onDragStart( l : Letter ) {}
@@ -22,25 +27,27 @@ class Space extends Object {
 	var interaction : Interactive;
 	var tiles : Map<String,Tile>;
 	var letters : Array<Letter>;
-
 	var draggedLetter : Letter;
 
-	public function new( parent, width : Int, height : Int ) {
+	public function new( parent, width : Int, height : Int, theme : Theme ) {
 
 		super( parent );
 		this.width = width;
         this.height = height;
 
-		background = new Background( this, width, height, 0x3f3f3f, { color: 0x303030, size: 10 } );
+		background = new Background( this, width, height, theme.background );
 
 		letterContainer = new Object( this );
 		//letterContainer.filter = new h2d.filter.Bloom(2,1,10);
 		//letterContainer.filter = new h2d.filter.DropShadow();
+		//letterContainer.filter = new h2d.filter.DropShadow( 2, 0.785, 0, 0.3, 10, 2, 1, true );
 
 		tiles = new Map<String,Tile>();
 		var chars = letterspace.macro.Build.getLetters();
 		for( c in chars ) {
-			tiles.set( c, Res.load('letter/$c.png').toTile() );
+			var t = Res.load('letter/$c.png').toTile();
+			//t = t.center();
+			tiles.set( c, t );
 		}
 
 		letters = [];
@@ -111,7 +118,13 @@ class Space extends Object {
 
 	function onMouseMove( e : Event ) {
 		if( draggedLetter != null ) {
-			var p = new Point( e.relX, e.relY );
+			var tx = e.relX;
+			var ty = e.relY;
+			//trace(tx);
+			//if( tx < 0 ) tx = 0;
+			//var minX = draggedLetter.size.width/2;
+			//if( tx < minX ) tx = minX;
+			var p = new Point( tx, ty );
 			draggedLetter.doDrag( p );
 			onDrag( draggedLetter );
 		}

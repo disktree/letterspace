@@ -13,11 +13,8 @@ class Letter extends Bitmap {
 
 	public var index(default,null) : Int;
 	public var char(default,null) : String;
-	//public var bounds(default,null) : Bounds;
 	public var size(default,null) : Bounds;
 	public var dragged(default,null) = false;
-	//public var width(default,null) : Int;
-	//public var height(default,null) : Int;
 
 	var dragOffset : Point;
 	//var dragOffsetX : Float;
@@ -25,17 +22,14 @@ class Letter extends Bitmap {
 	//var moveTween : Tween;
 
 	public function new( index : Int, char : String, tile : Tile ) {
-
 		super( tile );
 		this.index = index;
 		this.char = char;
-
 		size = getSize();
-
 		//this.filter = new h2d.filter.Bloom(2,1,10);
 		//this.filter = new h2d.filter.Glow();
 		//this.filter = new h2d.filter.Outline(2);
-		this.filter = new h2d.filter.DropShadow( 2, 0.785, 0, 0.4, 10, 2, 1, true );
+		this.filter = new h2d.filter.DropShadow( 2, 0.785, 0, 0.3, 10, 2, 1, true );
 
 		/*
 		moveTween = new Tween( this )
@@ -60,25 +54,28 @@ class Letter extends Bitmap {
 	}
 
 	public function startDrag( p : Point ) {
-		//trace(parent.getSize());
-		this.adjustColor( {} );
+		//this.adjustColor( {} );
 		dragOffset = p.sub( new Point( x, y ) );
+		//this.setScale( 1.05 );
 		//this.filter = new h2d.filter.Glow();
-		this.setScale( 1.05 );
+		//this.filter = new h2d.filter.DropShadow( 4, 0.785, 0, 0.3, 48, 2, 1, true );
 	}
 
 	public function doDrag( p : Point ) {
 		var pos = p.sub( dragOffset );
 		setPosition( pos.x, pos.y );
+		//setPosition( p.x, p.y );
 	}
 
 	public function stopDrag( p : Point ) {
 		//dragged = false;
 		var pos = p.sub( dragOffset );
 		setPosition( pos.x, pos.y );
+	//	setPosition( p.x, p.y );
 		dragOffset = null;
 		//this.filter = null ;
-		this.setScale( 1.0 );
+	//	this.setScale( 1.0 );
+		//this.filter = new h2d.filter.DropShadow( 2, 0.785, 0, 0.3, 10, 2, 1, true );
 	}
 
 	/*

@@ -1,5 +1,6 @@
 package letterspace;
 
+import letterspace.game.Level;
 import letterspace.game.Space;
 import letterspace.net.Mesh;
 import om.Timer;
@@ -9,11 +10,24 @@ class Game extends hxd.App {
 
 	var time : Float;
 	var mesh : Mesh;
+	var level : Level;
 	var space : Space;
 
 	public function new( mesh : Mesh ) {
 		super();
 		this.mesh = mesh;
+		this.level = {
+			width: 1920, height: 1080,
+			theme: {
+				background: {
+					color: 0x303030,
+					grid: {
+						color: 0x202020,
+						size: 10
+					}
+				}
+			}
+		};
 	}
 
 	override function init() {
@@ -48,7 +62,7 @@ class Game extends hxd.App {
 			}
 		}
 
-		space = new Space( s2d, 800, 600 );
+		space = new Space( s2d, level.width, level.height, level.theme );
 		//space.setScale(2);
 		space.onDragStart = function( l ) {
 			//trace("onDragStart "+l.char);
