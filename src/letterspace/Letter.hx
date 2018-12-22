@@ -14,12 +14,16 @@ class Letter extends Bitmap {
 	public var index(default,null) : Int;
 	public var char(default,null) : String;
 	public var size(default,null) : Bounds;
+	public var width(default,null) : Int;
+	public var height(default,null) : Int;
 
 	public function new( index : Int, char : String, tile : Tile ) {
 		super( tile );
 		this.index = index;
 		this.char = char;
 		size = getSize();
+		width = Std.int( size.width );
+		height = Std.int( size.height );
 		//this.cursor;
 		//this.filter = new h2d.filter.DropShadow( 2, 0.785, 0, 0.3, 10, 2, 1, true );
 		//filter = new h2d.filter.DropShadow( 2, 0.785, 0x000000, 0.3, 4, 2, 1, true );
@@ -32,7 +36,7 @@ class Letter extends Bitmap {
 		return this;
 	}
 
-	public function startDrag() {
+	public function startDrag() : Letter {
 		bringToFront();
 		this.setScale( 1.05 );
 		//this.filter = new h2d.filter.Outline( 2, 0x000000, 0.4, true );
@@ -41,12 +45,14 @@ class Letter extends Bitmap {
 		//filter = new h2d.filter.Glow( 0xFFFFFF, 100, 5 );
 		//filter = new h2d.filter.Bloom(6,1,12);
 		//this.filter = new h2d.filter.Glow();
+		return this;
 	}
 
-	public function stopDrag() {
+	public function stopDrag() : Letter {
 		this.setScale( 1 );
 		this.filter = null;
 		this.adjustColor( {hue:0} );
+		return this;
 	}
 
 }

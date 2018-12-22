@@ -9,7 +9,7 @@ class Build {
 
 	macro public static function getLetterChars( dir : String ) : ExprOf<Array<String>> {
 		var a = new Array<String>();
-		for( f in FileSystem.readDirectory( 'res/letter' ) ) {
+		for( f in FileSystem.readDirectory( 'res/$dir' ) ) {
 			if( f.extension() == 'png' )
 				a.push( f.withoutExtension() );
 		}
