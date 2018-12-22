@@ -1,66 +1,35 @@
 package letterspace;
 
-class App extends hxd.App {
+class App  {
 
-	public static var server(default,null) : om.rtc.mesh.Server;
+	//static var HOST = '192.168.0.10';
+	static var HOST = '192.168.0.80';
+	static var PORT = 1377;
 
-	static var status : Element;
+	public static var server(default,null) : owl.Server;
 
-	static function setStatusText( str = "" ) {
-		status.style.display = if( str == null || str.length == 0 ) 'none' else 'block';
-		status.textContent = str;
+	public static function saveState() {
+		window.fetch( 'http://$HOST:$PORT/letterspace' );
 	}
 
 	static function main() {
 
-		status = document.getElementById( 'status' );
+		trace(navigator);
 
 		if( !navigator.onLine ) {
-			setStatusText( 'NOT ONLINE' );
+			console.warn( 'NOT ONLINE' );
 			return;
 		}
 
-		setStatusText();
-
 		hxd.Res.initEmbed();
 
-		//var ip = '195.201.41.121';
-		var ip = '192.168.0.10';
-		var port = 1377;
-
-		server = new om.rtc.mesh.Server( ip, port );
-		server.connect().then( function(srv){
-
-			console.log('Server connected ');
-
-			var mesh = new letterspace.net.Mesh( 'letterspace' );
-			mesh.onSignal = server.sendSignal;
-			server.onSignal = function(msg){
-				//trace("ON SERVER SIGNAL "+msg);
-				mesh.handleSignal(msg);
-			}
-			server.onDisconnect = function(?e){
-				console.warn(e.toString());
-				setStatusText(e.toString());
-			}
-			mesh.onJoin = function(){
-	            console.log( 'Joined '+mesh.id+' ('+mesh.numNodes+'/'+mesh.getConnectedNodes().length+')' );
-				if( mesh.numNodes == 0 ) {
-					new Game( mesh );
-				} else {
-					mesh.onNodeConnect = function(node){
-						console.log( '['+mesh.numNodes+'/'+mesh.getConnectedNodes().length+']' );
-						var numConnectedNodes = mesh.getConnectedNodes().length;
-	                    if( numConnectedNodes == mesh.numNodes ) {
-	                        new Game( mesh );
-	                    }
-					}
-				}
-			}
-			mesh.join();
-
-		}).catchError( function(e){
-			trace( e );
+		server = new owl.Server( HOST, PORT );
+		server.connect().then( function(s){
+			console.info( 'SERVER CONNECTED '+server.id );
+			server.join( 'letterspace' ).then( function(mesh){
+				trace('MESH JOINED '+mesh.numNodes );
+				var space = new letterspace.Space( mesh, 10000, 8000 );
+			});
 		});
 	}
 }
