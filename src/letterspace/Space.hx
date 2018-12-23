@@ -1,6 +1,5 @@
 package letterspace;
 
-import haxe.io.Bytes;
 import h2d.Bitmap;
 import h2d.Graphics;
 import h2d.Interactive;
@@ -10,33 +9,26 @@ import hxd.Event;
 import hxd.Key;
 import hxd.Res;
 import h2d.col.Point;
-import js.html.ArrayBuffer;
-import js.html.DataView;
-import js.html.DivElement;
-import js.html.Uint8Array;
-import js.html.Uint16Array;
 import om.Timer;
 import om.Tween;
 import om.ease.*;
 import owl.Mesh;
 
-@:enum abstract SyncType(Int) from Int to Int {
-	var status_req = 0;
-	var status_res = 1;
-	var start = 2;
-	var drag = 3;
-	var stop = 4;
-}
-
 class Space extends hxd.App {
+
+	public dynamic function onReady() {}
+
+	public dynamic function onDragStart( l : Letter ) {}
+	public dynamic function onDrag( l : Letter ) {}
+	public dynamic function onDragStop( l : Letter ) {}
 
 	public var width(default,null) : Int;
     public var height(default,null) : Int;
 
+	public var letters(default,null) : Array<Letter>;
+
 	var time : Float;
-	var mesh : Mesh;
 	var tiles : Map<String,Tile>;
-	var letters : Array<Letter>;
 	var container : Object;
 	var background : Background;
 	var letterContainer : Object;
@@ -65,17 +57,20 @@ class Space extends hxd.App {
 	//var minZoom : Float;
 	var maxZoom = 4;
 
-	var menu : Menu;
-
-	public function new( mesh : Mesh, width : Int, height : Int ) {
+	public function new( width : Int, height : Int ) {
 		super();
-		this.mesh = mesh;
 		this.width = width;
         this.height = height;
 		//minZoom = Math.max( window.innerWidth / width, window.innerHeight / height );
 	}
 
+	public inline function iterator() {
+		return letters.iterator();
+	}
+
 	override function init() {
+
+		trace("init");
 
 		time = 0;
 
@@ -96,7 +91,7 @@ class Space extends hxd.App {
 		letterContainer.filter = new h2d.filter.DropShadow( 2, 0.785, 0x000000, 0.3, 4, 2, 1, true );
 		//container.filter = new h2d.filter.DropShadow( 2, 0.785, 0x000000, 0.3, 4, 2, 1, true );
 
-		letterContainer.visible = false;
+		//letterContainer.visible = false;
 		var i = 0;
 		for( n in 0...100 ) {
 			for( c in tiles.keys() ) {
@@ -124,64 +119,6 @@ class Space extends hxd.App {
 			}
 		}
 
-		mesh.onNodeJoin = function(n){
-			trace('NODE JOINED '+n.id);
-		}
-		mesh.onNodeLeave = function(n){
-			trace('NODE LEFT '+n.id);
-		}
-		mesh.onNodeData = function(n,buf:ArrayBuffer){
-			trace('NODE DATA '+n.id);
-			var v = new DataView( buf );
-			var t : SyncType = v.getUint8(0);
-			switch t {
-			case status_req:
-				var res = new DataView( new ArrayBuffer( 1 + letters.length * 4 ) );
-				res.setUint8( 0, status_res );
-				var i = 1;
-				for( l in letters ) {
-					res.setUint16( i, Std.int( l.x ) );
-					res.setUint16( i+2, Std.int( l.y ) );
-					i += 4;
-				}
-				mesh.send( res );
-			case status_res:
-				var i = 1;
-				for( l in letters ) {
-					l.setPosition( v.getUint16( i ), v.getUint16( i+2 ) );
-					i += 4;
-				}
-				letterContainer.visible = true;
-			case _:
-				var l = letters[v.getUint16(1)];
-				var x = v.getUint16(3);
-				var y = v.getUint16(5);
-				switch t {
-				case start: l.startDrag();
-				case stop: l.stopDrag();
-				case _:
-				}
-				l.setPosition( x, y );
-			}
-		}
-
-		//trace(mesh.age);
-		if( mesh.numNodes == 0 ) {
-			for( l in letters ) {
-				l.setPosition(
-					Math.random() * (width-l.size.xMax),
-					Math.random() * (height-l.size.yMax)
-				);
-			}
-			letterContainer.visible = true;
-		} else {
-			///request status from a node
-			///var n = mesh.first();
-			var u = new Uint8Array( 1 );
-			u[0] = status_req;
-			mesh.first().send( u );
-		}
-
 		//engine.backgroundColor = 0xFF3D00;
 		//s2d.setFixedSize( window.innerWidth, window.innerHeight );
 		//engine.autoResize = false;
@@ -195,7 +132,7 @@ class Space extends hxd.App {
 
 		//centerOffset();
 
-		menu = new Menu();
+		onReady();
 	}
 
 	override function dispose() {
@@ -242,11 +179,11 @@ class Space extends hxd.App {
 			ty += Math.abs(container.y)/zoom;
 
 			if( tx < 0 ) tx = 0 else {
-				var m = width - draggedLetter.size.width;
+				var m = width - draggedLetter.width;
 				if( tx > m ) tx = m;
 			}
 			if( ty < 0 ) ty = 0 else {
-				var m = height - draggedLetter.size.height;
+				var m = height - draggedLetter.height;
 				if( ty > m ) ty = m;
 			}
 
@@ -291,7 +228,8 @@ class Space extends hxd.App {
 
 			draggedLetter.setPosition( tx, ty );
 
-			sendLetterUpdate( drag, draggedLetter );
+			//sendLetterUpdate( drag, draggedLetter );
+			onDrag( draggedLetter );
 		}
 	}
 
@@ -341,7 +279,7 @@ class Space extends hxd.App {
 			draggedLetterOffsetX = e.relX/zoom - l.x + Math.abs(container.x/zoom) ;
 			draggedLetterOffsetY = e.relY/zoom - l.y + Math.abs(container.y/zoom) ;
 			draggedLetter = l.startDrag();
-			sendLetterUpdate( start, draggedLetter );
+			onDragStart( draggedLetter );
 		}
 	}
 
@@ -365,7 +303,7 @@ class Space extends hxd.App {
 			*/
 		} else if( draggedLetter != null ) {
 			draggedLetter.stopDrag();
-			sendLetterUpdate( stop, draggedLetter );
+			onDragStop( draggedLetter );
 			draggedLetter = null;
 		}
 	}
@@ -402,18 +340,6 @@ class Space extends hxd.App {
 			container.scaleX = container.scaleY = zoom;
 		}
 		//container.scaleX = container.scaleY = zoom;
-	}
-
-	function sendLetterUpdate( t : SyncType, l : Letter ) {
-		//trace(mesh.numNodes);
-		//if( mesh.numNodes > 0 ) {
-			var v = new DataView( new ArrayBuffer( 7 ) );
-			v.setUint8( 0, t );
-			v.setUint16( 1, l.index );
-			v.setUint16( 3, Std.int( l.x ) );
-			v.setUint16( 5, Std.int( l.y ) );
-			mesh.send( v );
-		//}
 	}
 
 }
@@ -457,6 +383,7 @@ private class Background extends Graphics {
 		drawRect( 0, 0, width, height );
 		endFill();
 
+		/*
 		var nx = Std.int( width/gridSize );
 		var ny = Std.int( height/gridSize );
 		var px = 0;
@@ -474,19 +401,6 @@ private class Background extends Graphics {
 			lineTo( px, height );
 			px += gridSize;
 		}
-	}
-}
-
-private class Menu {
-
-	public function new() {
-
-		var element = document.createDivElement();
-		element.id = 'menu';
-		document.body.appendChild( element );
-
-		var numNodes = document.createDivElement();
-		numNodes.textContent = '666';
-		element.appendChild( numNodes );
+		*/
 	}
 }
