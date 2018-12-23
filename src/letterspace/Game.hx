@@ -3,7 +3,8 @@ package letterspace;
 import js.html.ArrayBuffer;
 import js.html.DataView;
 import js.html.Uint8Array;
-import owl.Mesh;
+import letterspace.net.Mesh;
+import letterspace.net.Node;
 
 @:enum abstract SyncType(Int) from Int to Int {
 	var status_req = 0;
@@ -55,13 +56,13 @@ class Game {
 			sendLetterUpdate( stop, l );
 		}
 
-		mesh.onNodeJoin = function(n:letterspace.Node){
+		mesh.onNodeJoin = function(n:Node){
 			trace('NODE JOINED '+n.user);
 		}
-		mesh.onNodeLeave = function(n:letterspace.Node){
+		mesh.onNodeLeave = function(n:Node){
 			trace('NODE LEFT '+n.id);
 		}
-		mesh.onNodeData = function(n:letterspace.Node,buf:ArrayBuffer){
+		mesh.onNodeData = function(n:Node,buf:ArrayBuffer){
 			trace('NODE DATA '+n.user);
 			var v = new DataView( buf );
 			var t : SyncType = v.getUint8(0);
