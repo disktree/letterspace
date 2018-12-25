@@ -1,15 +1,16 @@
 
+import om.Browser;
 import om.Json;
+import om.Promise;
 import om.Storage;
+import om.StringTools;
 import om.Time;
 
 #if js
-import js.Browser;
-import js.Browser.console;
-import js.Browser.document;
-import js.Browser.navigator;
-import js.Browser.window;
-import js.Promise;
+import om.Browser.console;
+import om.Browser.document;
+import om.Browser.navigator;
+import om.Browser.window;
 import js.html.Element;
 import js.html.InputElement;
 import js.html.FormElement;

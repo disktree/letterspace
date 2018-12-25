@@ -1,4 +1,4 @@
-package letterspace;
+package letterspace.game;
 
 import h2d.Bitmap;
 import h2d.Graphics;
