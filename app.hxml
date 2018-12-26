@@ -1,0 +1,13 @@
+-js app/app.js
+-main letterspace.App
+-cp src
+-lib heaps
+-lib om.core
+-lib om.tween
+-lib om.loop
+-lib owl
+-D owl_client
+-dce full
+-debug
+# TODO
+#--macro letterspace.macro.Build.exportTilesets('src/tiles','res/tiles')

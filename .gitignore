@@ -1,2 +1,6 @@
 _*
+app/*.css
+app/*.js*
 bin/*.js*
+res/.tmp
+res/letter/*

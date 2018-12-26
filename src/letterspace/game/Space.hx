@@ -26,6 +26,8 @@ class Space implements h3d.IDrawable {
 	public var width(default,null) : Int;
 	public var height(default,null) : Int;
 
+	public var letters(default,null) = new Array<Letter>();
+
 	var engine : Engine;
 	var scene : Scene;
 	var events : hxd.SceneEvents;
@@ -35,7 +37,7 @@ class Space implements h3d.IDrawable {
 
 	var container : Object;
 	var background : Graphics;
-	var letters : Object;
+	var letterContainer : Object;
 
 	//var scrollbarX : Graphics;
 	//var scrollbarY : Graphics;
@@ -132,8 +134,8 @@ class Space implements h3d.IDrawable {
 			}
 		}
 
-		letters = new Object( container );
-		letters.filter = new DropShadow( 2, 0.785, 0x000000, 0.3, 4, 2, 1, true );
+		letterContainer = new Object( container );
+		letterContainer.filter = new DropShadow( 2, 0.785, 0x000000, 0.3, 4, 2, 1, true );
 
 		/*
 		scrollbarH = new Graphics( scene );
@@ -216,10 +218,12 @@ class Space implements h3d.IDrawable {
 	}
 
 	public function addLetter( c : String ) : Letter {
-		var l = new Letter( letters.numChildren, c, tiles.get( c ) );
-		letters.addChild( l );
-		l.x = Math.random() * (width - l.width);
-		l.y = Math.random() * (height - l.height);
+		//var l = new Letter( letters.numChildren, c, tiles.get( c ) );
+		var l = new Letter( letters.length, c, tiles.get( c ) );
+		letters.push( l );
+		letterContainer.addChild( l );
+		//l.x = Math.random() * (width - l.width);
+		//l.y = Math.random() * (height - l.height);
 		return l;
 	}
 
@@ -306,6 +310,8 @@ class Space implements h3d.IDrawable {
 			}
 
 			draggedLetter.setPosition( tx, ty );
+
+			onDrag( draggedLetter );
 
 		} else {
 			interactive.cursor = Default;
@@ -394,6 +400,7 @@ class Space implements h3d.IDrawable {
 					e.relX/zoom - l.x + Math.abs(container.x/zoom),
 					e.relY/zoom - l.y + Math.abs(container.y/zoom) );
 				draggedLetter = bringToFront( l.startDrag() );
+				onDragStart( draggedLetter );
 			}
 		}
 	}
@@ -408,6 +415,7 @@ class Space implements h3d.IDrawable {
 			dragged = false;
 		} else if( draggedLetter != null ) {
 			draggedLetter.stopDrag();
+			onDragStop( draggedLetter );
 			draggedLetter = null;
 		}
 	}

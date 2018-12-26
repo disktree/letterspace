@@ -1,0 +1,14 @@
+-js bin/letterserver.js
+-main letterspace.Server
+-cp src
+-lib hxargs
+-lib hxnodejs
+-lib hxnodejs-ws
+-lib om.core
+-lib om.term
+-lib owl
+-dce full
+-D owl_server
+-D letterspace_server
+-D hxnodejs_no_version_warning
+-debug

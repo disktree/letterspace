@@ -1,4 +1,2 @@
 
 # LETTERSPACE
-
-Letterspace client.
