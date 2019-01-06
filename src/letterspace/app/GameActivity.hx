@@ -32,12 +32,10 @@ class GameActivity extends Activity {
 
 	override function onStart() {
 
-		hxd.Res.initEmbed( { compressSounds: true } );
-
 		var charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split("");
 		//var chars = charset.join('');
 		var chars = new Array<String>();
-		for( i in 0...1 ) chars = chars.concat( charset );
+		for( i in 0...10 ) chars = chars.concat( charset );
 		var level = new Level( 6000, 4000, 0xff2196F3, "helvetica2", chars.join('') );
 		var user = new User();
 
@@ -125,6 +123,11 @@ class GameActivity extends Activity {
 				mesh.first().send( u );
 			}
 		});
+
+		window.onbeforeunload = function(e) {
+			return null;
+			//return 'Exit?';
+		}
 	}
 
 	function sendLetterUpdate( t : SyncType, l : Letter  ) {

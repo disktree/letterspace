@@ -22,6 +22,13 @@ class Node extends owl.Node {
 */
 
 class Server extends owl.Server {
+
+	/*TODO load json
+	public static var HOSTS(default,null) = [
+		{ host:'' }
+	];
+	*/
+
 	/*
 	override function createMesh( id : String ) : Mesh {
 		trace("createMesh");

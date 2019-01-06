@@ -23,6 +23,8 @@ class App  {
 		storage = new Storage( 'letterspace_' );
 		server = new Server( host, port );
 
+		hxd.Res.initEmbed( { compressSounds: true } );
+
 		Activity.boot( new letterspace.app.BootActivity() );
 
 		/*
