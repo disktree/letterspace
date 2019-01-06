@@ -1,0 +1,83 @@
+
+.activity {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	.fade_in(0.2s);
+}
+
+#boot.activity {
+	.status {
+		.fixed-center();
+		text-transform: uppercase;
+		user-select: none;
+	}
+}
+
+#error.activity {
+	background: var(--b-error);
+	color: var(--f-error);
+	.info {
+		.fixed-center();
+		text-transform: uppercase;
+		user-select: none;
+	}
+}
+
+#lobby.activity {
+	input[name="username"] {
+		.fixed-center();
+		//animation: flipInX 1s;
+		&::-webkit-input-placeholder  {
+		}
+		&.error {
+			color: white;
+			background: red;
+		}
+	}
+}
+
+#game.activity {
+	background: var(--background);
+	canvas#webgl {
+		/*
+		position: fixed;
+		top: 0;
+		right: 0;
+		left: 0;
+		bottom: 0;
+		*/
+		/*
+		position: fixed;
+		top: 0;
+		right: 0;
+		left: 0;
+		bottom: 0;
+		background: #00ff00;
+		//background:transparent;
+		min-width: 100%;
+		min-height: 100%;
+		*/
+		width: 100%;
+		height: 100%;
+		//width: 3000px;
+		//height: 3000px;
+		//transform: scaleX(2);
+	}
+}
+/*
+#menu {
+	position: fixed;
+	top: 0;
+	left: 0px;
+	padding: 1px 2px 1px 3px;
+	font-family: 'FrucadeSmall';
+	font-size: 8px;
+	background: #000;
+	color: #fff;
+	user-select: none;
+	pointer-events: none;
+}
+*/

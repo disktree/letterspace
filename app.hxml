@@ -2,7 +2,9 @@
 -main letterspace.App
 -cp src
 -lib heaps
+-lib heaps-tools
 -lib om.core
+-lib om.color
 -lib om.tween
 -lib om.loop
 -lib owl
@@ -11,3 +13,4 @@
 -debug
 # TODO
 #--macro letterspace.macro.Build.exportTilesets('src/tiles','res/tiles')
+--macro letterspace.macro.Build.exportLetterTiles('helvetica2')

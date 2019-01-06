@@ -1,26 +1,20 @@
 package letterspace.game;
 
-typedef Level = {
+import h2d.Tile;
 
-    var width : Int;
-    var height : Int;
+class Level {
 
-    //var abc : Array<String>;
-    //var theme : Space.Theme;
-    //var font : Font;
+	public final width : Int;
+	public final height : Int;
+	public final background : Int;
+	public final font : String;
+	public final chars : Array<String>;
 
-    //var word : String;
-
-    /*
-    var word : String;
-    var duration : Int;
-
-    var width : Int;
-    var height : Int;
-
-    var abc : Array<String>;
-
-    var background_color : Int;
-    var letter_color : Int;
-    */
+	public function new( width : Int, height : Int, background : Int, font : String, chars : String ) {
+		this.width = width;
+		this.height = height;
+		this.background = background;
+		this.font = font;
+		this.chars = chars.split('');
+	}
 }

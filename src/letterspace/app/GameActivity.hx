@@ -1,9 +1,9 @@
-package letterspace.game;
+package letterspace.app;
 
-import js.html.ArrayBuffer;
-import js.html.DataView;
-import js.html.Uint8Array;
-import letterspace.Server;
+import letterspace.game.Letter;
+import letterspace.game.Level;
+import letterspace.game.Space;
+import letterspace.game.User;
 import owl.Mesh;
 import owl.Node;
 
@@ -15,67 +15,37 @@ enum abstract SyncType(Int) from Int to Int {
 	var stop = 4;
 }
 
-class Game {
+class GameActivity extends Activity {
 
 	var mesh : Mesh;
-	var space : Space;
-	//var menu : Menu;
-
-	//var user : String;
+	var level : Level;
 	var user : User;
-	//var users : Array<>;
+	var space : Space;
 
-	public function new( mesh : Mesh, level : Level, user : User ) {
-
+	public function new( mesh : Mesh ) {
+		super();
 		this.mesh = mesh;
-		this.user = user;
+		var canvas = document.createCanvasElement();
+		canvas.id = 'webgl';
+		element.appendChild( canvas );
+	}
 
-		//this.user = new User( user, User.COLORS[0] );
+	override function onStart() {
 
-		//menu = new Menu();
-		//menu.addUser( user );
+		hxd.Res.initEmbed( { compressSounds: true } );
 
-		/*
-		window.onkeydown = function(e){
-			//trace(e);
-			//e.preventDefault();
-			//e.stopPropagation();
-			switch e.keyCode {
-			case 27:
-				//TODO toggle sidebar
-			}
-		}
-		*/
+		var charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split("");
+		//var chars = charset.join('');
+		var chars = new Array<String>();
+		for( i in 0...1 ) chars = chars.concat( charset );
+		var level = new Level( 6000, 4000, 0xff2196F3, "helvetica2", chars.join('') );
+		var user = new User();
 
 		Space.create( function(space){
 
 			this.space = space;
 
-			/*
-			//var chars = letterspace.macro.Build.getTilesetCharacters( 'helvetica' );
-			var chars = letterspace.macro.Build.getTilesetCharacters( 'helvetica' );
-			trace(chars);
-			var tiles = new Map<String,h2d.Tile>();
-			for( c in chars ) {
-				var t = hxd.Res.load('letter/helvetica/$c.png').toTile();
-				//t = t.center();
-				tiles.set( c, t );
-			}
-			*/
-
 			space.init( level, user );
-
-			/*
-			var i = 0;
-			for( n in 0...10 ) {
-				for( c in tiles.keys() ) {
-					space.addLetter( c );
-					//var l = space.addLetter( c );
-					//l.x = Math.random() * space.width;
-					//l.y = Math.random() * space.height;
-				}
-			}
-			*/
 
 			space.onDragStart = function(l) {
 				sendLetterUpdate( start, l );
@@ -115,7 +85,6 @@ class Game {
 
 				case status_res:
 					trace("GOT STATUS DATA ...");
-
 					var i = 1;
 					for( l in space.letters ) {
 						l.setPosition( v.getUint16( i ), v.getUint16( i+2 ) );
@@ -124,12 +93,12 @@ class Game {
 					//letterContainer.visible = true;
 
 				case _:
-
 					var l = space.letters[v.getUint16(1)];
 					var x = v.getUint16(3);
 					var y = v.getUint16(5);
 					switch t {
-					case start: l.startDrag( n.info.user );
+					case start:
+						l.startDrag( n.info.user );
 					case stop: l.stopDrag();
 					case _:
 					}
@@ -169,36 +138,5 @@ class Game {
 			mesh.send( v );
 		//}
 	}
-}
 
-private class Menu {
-
-	var element : Element;
-	var users : Element;
-
-	public function new() {
-
-		var element = document.createDivElement();
-		element.id = 'menu';
-		document.body.appendChild( element );
-
-		users = document.createDivElement();
-		element.appendChild( users );
-
-		//var numNodes = document.createDivElement();
-		//numNodes.textContent = '666';
-		//element.appendChild( numNodes );
-	}
-
-	public function addUser( name : String ) {
-		var e = document.createDivElement();
-		e.setAttribute( 'data-name', name );
-		e.textContent = name;
-		users.appendChild( e );
-	}
-
-	public function removeUser( name : String ) {
-		var e = users.querySelector( '[data-name="$name"]' );
-		e.remove();
-	}
 }
