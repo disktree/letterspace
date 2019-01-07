@@ -5,10 +5,13 @@
 -lib hxnodejs
 -lib hxnodejs-ws
 -lib om.core
+-lib om.net
 -lib om.term
 -lib owl
 -dce full
 -D owl_server
 -D letterspace_server
 -D hxnodejs_no_version_warning
+-D source-header=
+--macro includeFile('shebang_header')
 -debug

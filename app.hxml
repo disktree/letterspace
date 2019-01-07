@@ -9,6 +9,7 @@
 -lib om.loop
 -lib owl
 -D owl_client
+-D dev
 -dce full
 -debug
 # TODO
