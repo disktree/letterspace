@@ -5,33 +5,20 @@ import h2d.Object;
 import h2d.Tile;
 import hxd.BitmapData;
 
-typedef Grid = {
-	var dx : Int;
-	var dy : Int;
-	var color : Int;
-}
-
-/*
-typedef Params = {
-	var background : Int;
-	var grid : Grid;
-}
-*/
-
 class Background extends Graphics {
 
-	public function new( parent : Object, width : Int, height : Int, color : Int, grid : Grid ) {
+	public function new( parent : Object, width : Int, height : Int, theme : letterspace.game.Level.BackgroundTheme ) {
 
 		super( parent );
 
-		var bmp = new BitmapData( grid.dx, grid.dy );
-		bmp.fill( 0, 0, grid.dx, grid.dy, color );
-		bmp.line( 0, 0, grid.dx, 0, grid.color );
-		bmp.line( 0, 0, 0, grid.dy, grid.color );
+		var bmp = new BitmapData( theme.grid.size, theme.grid.size );
+		bmp.fill( 0, 0, theme.grid.size, theme.grid.size, theme.color );
+		bmp.line( 0, 0, theme.grid.size, 0, theme.grid.color );
+		bmp.line( 0, 0, 0, theme.grid.size, theme.grid.color );
 
 		var tile = Tile.fromBitmap( bmp );
-		var nx = Std.int( width/grid.dx );
-		var ny = Std.int( height/grid.dy );
+		var nx = Std.int( width / theme.grid.size );
+		var ny = Std.int( height / theme.grid.size );
 		for( ix in 0...nx ) {
 			for( iy in 0...ny ) {
 				beginTileFill( ix*tile.width, iy*tile.height, 1, 1, tile );

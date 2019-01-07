@@ -33,7 +33,7 @@ class Letter extends Object {
 
 	var bmp : Bitmap;
 
-	public function new( index : Int, char : String, tile : Tile, color = 0xffffffff ) {
+	public function new( index : Int, char : String, tile : Tile, color : Int ) {
 
 		super();
 		this.index = index;

@@ -1,6 +1,9 @@
 _*
-app/*.css
-app/*.js*
-bin/*.js*
+app/app.css
+app/app.js
+app/app.js.map
+bin/letterserver.js
+bin/letterserver.js.map
+bin/package-lock.json
 res/.tmp
 res/letter/*

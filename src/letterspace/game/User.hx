@@ -16,7 +16,7 @@ class User {
 	public final name : String;
 	public final color : Int;
 
-	public function new( name = 'anon', color = 0x000000 ) {
+	public function new( name : String, color = 0x000000 ) {
 		this.name = name;
 		this.color = color;
 	}

@@ -3,6 +3,7 @@ package letterspace.app;
 import letterspace.game.Letter;
 import letterspace.game.Level;
 import letterspace.game.Space;
+import letterspace.game.Menu;
 import letterspace.game.User;
 import owl.Mesh;
 import owl.Node;
@@ -21,13 +22,20 @@ class GameActivity extends Activity {
 	var level : Level;
 	var user : User;
 	var space : Space;
+	var menu : Menu;
 
-	public function new( mesh : Mesh ) {
+	public function new( mesh : Mesh, user : User ) {
+
 		super();
 		this.mesh = mesh;
+		this.user = user;
+
 		var canvas = document.createCanvasElement();
 		canvas.id = 'webgl';
 		element.appendChild( canvas );
+
+		//menu = new Menu();
+		//element.appendChild( menu.element );
 	}
 
 	override function onStart() {
@@ -35,9 +43,13 @@ class GameActivity extends Activity {
 		var charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split("");
 		//var chars = charset.join('');
 		var chars = new Array<String>();
-		for( i in 0...10 ) chars = chars.concat( charset );
-		var level = new Level( 6000, 4000, 0xff2196F3, "helvetica2", chars.join('') );
-		var user = new User();
+		for( i in 0...4 ) chars = chars.concat( charset );
+		var level = new Level( 4000, 3000, "helvetica2", chars, Level.THEME.get('apollo') );
+		//var user = new User();
+
+		menu = new Menu( user.name );
+		element.appendChild( menu.element );
+		//menu.addUser( user.name );
 
 		Space.create( function(space){
 
@@ -57,11 +69,11 @@ class GameActivity extends Activity {
 
 			mesh.onNodeJoin = function(n:Node){
 				trace('NODE JOINED '+n.info.user);
-				//menu.addUser( n.info.user );
+				menu.addUser( n.info.user );
 			}
 			mesh.onNodeLeave = function(n:Node){
 				trace('NODE LEFT '+n.info.user);
-				//menu.removeUser( n.info.user );
+				menu.removeUser( n.info.user );
 			}
 			mesh.onNodeData = function(n:Node,buf:ArrayBuffer){
 				trace('NODE DATA '+n.info.user);
@@ -115,7 +127,7 @@ class GameActivity extends Activity {
 			} else {
 				for( n in mesh ) {
 					//menu.addUser( cast(n,letterspace.Node).user );
-					//menu.addUser( n.info.user );
+					menu.addUser( n.info.user );
 				}
 				///request status from a node
 				var u = new Uint8Array( 1 );
@@ -125,8 +137,11 @@ class GameActivity extends Activity {
 		});
 
 		window.onbeforeunload = function(e) {
+			#if dev
 			return null;
-			//return 'Exit?';
+			#else
+			return 'Exit?';
+			#end
 		}
 	}
 

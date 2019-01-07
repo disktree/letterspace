@@ -1,7 +1,6 @@
 
 import Om.console;
 import om.Json;
-import om.StringTools;
 import om.Time;
 
 //using om.ArrayTools;
@@ -15,6 +14,7 @@ import om.Browser;
 import om.Browser.document;
 import om.Browser.navigator;
 import om.Browser.window;
+import om.FetchTools.*;
 import om.Storage;
 import om.Tween;
 import js.html.ArrayBuffer;

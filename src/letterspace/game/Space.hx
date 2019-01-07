@@ -24,11 +24,8 @@ class Space implements h3d.IDrawable {
 
 	public var width(default,null) : Int;
 	public var height(default,null) : Int;
-
 	public var letters(default,null) = new Array<Letter>();
-
 	public var time(default,null) : Float;
-
 	public var zoomAble = true;
 
 	final engine : Engine;
@@ -66,7 +63,7 @@ class Space implements h3d.IDrawable {
 	var draggedLetter : Letter;
 	var draggedLetterOffset = new Point();
 
-	var dragBorderSize = 50;
+	var dragBorderSize = 30;
 	var dragBorderFactor = 0.1;
 
 	public static function create( onReady : Space->Void ) {
@@ -87,14 +84,15 @@ class Space implements h3d.IDrawable {
 		this.height = level.height;
 		this.user = user;
 
-		//var canvas = document.getElementById( 'webgl' );
+		var canvas : CanvasElement = cast document.getElementById( 'webgl' );
 		//canvas.style.filter = 'grayscale(100%)';
 
 		scene = new Scene();
 
 		container = new Object( scene );
 
-		background = new Background( container, width, height, level.background, { dx : 20, dy : 20, color: 0xff1070E0 } );
+		//background = new Background( container, width, height, level.theme.background, { dx : 20, dy : 20, color: 0xff1070E0 } );
+		background = new Background( container, width, height, level.theme.background );
 
 		letterContainer = new Object( container );
 		letterContainer.filter = new DropShadow( 2, 0.785, 0x000000, 0.3, 6, 2, 1, true );
@@ -109,23 +107,23 @@ class Space implements h3d.IDrawable {
 		}
 		var i = 0;
 		for( c in level.chars ) {
-			var l = new Letter( i, c, tiles.get(c) );
+			var l = new Letter( i, c, tiles.get(c), level.theme.letter.color );
 			letters.push( l );
 			letterContainer.addChild( l );
 			i++;
 		}
 
 		scrollbarH = new Graphics( scene );
-		scrollbarH.beginFill( 0xffffff, 0.8 );
+		scrollbarH.beginFill( level.theme.background.grid.color, 1.0 );
 		//scrollbarH.drawRect( 0, 0, window.innerWidth*(window.innerWidth/width), 10 );
 		scrollbarH.drawRect( 0, 0, 100, 4 );
 		scrollbarH.endFill();
 
 		scrollbarV = new Graphics( scene );
-		scrollbarV.beginFill( 0xffffff, 0.8 );
+		scrollbarV.beginFill( level.theme.background.grid.color, 1.0 );
 		scrollbarV.drawRect( 0, 0, 4, 100 );
 		scrollbarV.endFill();
-		
+
 		/*
 		var centerDings = new Graphics( container );
 		centerDings.beginFill( 0x0000ff, 0.6 );
@@ -139,37 +137,29 @@ class Space implements h3d.IDrawable {
 		events = new hxd.SceneEvents();
 		events.addScene( scene );
 
-		/*
 		window.onresize = function(){
+			scene.checkResize();
+			@:privateAccess hxd.Window.getInstance().checkResize(); //HACK
+			/*
+			//updateViewportOffset();
+			//var tx = pointer.x - dragOffset.x;
+			//var ty = pointer.y - dragOffset.y;
+			var tx = container.x;
+			var ty = container.y;
+			var vx = ((tx /  (width*zoom/2 - scene.width/2)) + 1) * -1;
+			var vy = ((ty /  (height*zoom/2 - scene.height/2)) + 1) * -1;
+			//trace(vx,vy);
+			//setViewportPos( vx, vy );
+			setViewportX( vx );
+			setViewportY( vy );
+			*/
+
+			/*
 			zoomMin = Math.max( window.innerWidth / width, window.innerHeight / height );
 			if( zoom < zoomMin ) zoom = zoomMin;
 			container.scaleX = container.scaleY = zoom;
-	//		setOffset( container.x, container.y );
-			//scene.setFixedSize( window.innerWidth, window.innerHeight );
-			//zoom = Math.max( window.innerWidth / width, window.innerHeight / height );
-			//container.scaleX = container.scaleY = zoom;
-			//scene.checkResize();
-			//scene.width = 23;
-			//engine.resize( window.innerWidth, window.innerHeight );
+			*/
 		}
-		*/
-		/*
-		//engine.autoResize = false;
-		//scene.setFixedSize( window.innerWidth, window.innerHeight );
-		engine.onResized = function() {
-			engine.resize( 23, 234 );
-			//scene.setFixedSize( window.innerWidth, window.innerHeight );
-			scene.checkResize();
-			//zoom = Math.max( window.innerWidth / width, window.innerHeight / height );
-			//container.scaleX = container.scaleY = zoom;
-		}
-		*/
-		/*
-		var win = hxd.Window.getInstance();
-		win.addResizeEvent( function(){
-			trace( "resii "+win.width,win.height );
-		} );
-		*/
 
 		dragThrowTween = new Tween( container ).easing( Exponential.Out )
 			.onUpdate( () -> @:privateAccess container.posChanged = true );
@@ -212,15 +202,6 @@ class Space implements h3d.IDrawable {
 			}
 		).start();
 
-
-		window.onresize = onWindowResize;
-		onWindowResize();
-
-		//scene.setFixedSize( this.width, this.height );
-		//var canvas : CanvasElement = cast document.getElementById( 'webgl' );
-		//canvas.width = this.width;
-		//canvas.height = this.height;
-
 		setViewportPos();
 	}
 
@@ -236,6 +217,7 @@ class Space implements h3d.IDrawable {
 		viewportX = Math.min( Math.max( v, -1 ), 1 );
 		container.x = (1+viewportX) * ((-width*zoom/2 + scene.width/2));
 		scrollbarH.x = (viewportX/2 + 0.5) * ((scene.width-100));
+		//scrollbarH.x = (viewportX/2 + 0.5) * ((scene.width-(window.innerWidth*(window.innerWidth/width))));
 	}
 
 	public function setViewportY( v = 0.0 ) {
@@ -349,9 +331,8 @@ class Space implements h3d.IDrawable {
 		pointer.set( scene.mouseX, scene.mouseY );
 
 		if( dragged ) {
-
 			interactive.cursor = Move;
-
+			//updateViewportOffset();
 			var tx = pointer.x - dragOffset.x;
 			var ty = pointer.y - dragOffset.y;
 			var vx = ((tx /  (width*zoom/2 - scene.width/2)) + 1) * -1;
@@ -429,17 +410,24 @@ class Space implements h3d.IDrawable {
 		}
 	}
 
+	/*
+	function updateViewportOffset() {
+		var tx = pointer.x - dragOffset.x;
+		var ty = pointer.y - dragOffset.y;
+		var vx = ((tx /  (width*zoom/2 - scene.width/2)) + 1) * -1;
+		var vy = ((ty /  (height*zoom/2 - scene.height/2)) + 1) * -1;
+		//trace(vx,vy);
+		//setViewportPos( vx, vy );
+		setViewportX( vx );
+		setViewportY( vy );
+	}
+	*/
+
 	inline function getScreenX( v : Float ) : Float
 		return v - Math.abs( container.x / zoom );
 
 	inline function getScreenY( v : Float ) : Float
 		return v - Math.abs( container.y / zoom );
-
-	function onWindowResize() {
-		//zoomMin = Math.max( scene.width / width, scene.height / height );
-		//zoomMin = Math.max( window.innerWidth / width, window.innerHeight / height );
-		//setZoom( zoom );
-	}
 
 	function onMousePush( e : Event ) {
 		//pointerMove.set(0,0);
@@ -495,11 +483,11 @@ class Space implements h3d.IDrawable {
 		if( Key.isDown( Key.CTRL ) ) {
 			(e.wheelDelta < 0) ? zoomIn( 0.01 ) : zoomOut( 0.01 );
 		} else if( Key.isDown( Key.SHIFT ) ) {
-			var v = 0.05;
+			var v = 0.0125;
 			if( e.wheelDelta < 0 ) v = -v;
 			moveViewportX(  v );
 		} else {
-			var v = 0.05;
+			var v = 0.025;
 			if( e.wheelDelta < 0 ) v = -v;
 			moveViewportY(  v );
 		}

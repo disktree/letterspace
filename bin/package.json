@@ -1,0 +1,17 @@
+{
+    "name": "letterserver",
+    "version": "0.0.0",
+    "description": "Letterspace server",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/disktree/letterspace"
+    },
+    "homepage": "https://github.com/disktree/letterspace#readme",
+    "license": "GPL",
+    "bugs": {
+        "url": "https://github.com/disktree/letterspace/issues"
+    },
+    "dependencies": {
+        "ws": "^6.1.2"
+    }
+}
