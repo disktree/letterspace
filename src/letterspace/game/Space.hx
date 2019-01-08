@@ -98,19 +98,19 @@ class Space implements h3d.IDrawable {
 		letterContainer.filter = new DropShadow( 2, 0.785, 0x000000, 0.3, 6, 2, 1, true );
 
 		tiles = new Map();
+
 		for( c in level.chars ) {
 			if( !tiles.exists( c ) ) {
-				var t = Res.load( 'letter/'+level.font+'/$c.png' ).toTile();
+				var k = Tileset.CHARACTERS.get( c );
+				var t = Res.load( 'letter/${level.font}/$k.png' ).toTile();
 				//t.scaleToSize( Std.int( t.width/4 ), Std.int( t.height/4 ) ); //TODO scale param
 				tiles.set( c, t );
 			}
 		}
-		var i = 0;
 		for( c in level.chars ) {
-			var l = new Letter( i, c, tiles.get(c), level.theme.letter.color );
+			var l = new Letter( letters.length, c, tiles.get(c), level.theme.letter.color );
 			letters.push( l );
 			letterContainer.addChild( l );
-			i++;
 		}
 
 		scrollbarH = new Graphics( scene );
@@ -202,7 +202,7 @@ class Space implements h3d.IDrawable {
 			}
 		).start();
 
-		setViewportPos();
+		setViewportPos(-1,-1);
 	}
 
 	public inline function iterator()

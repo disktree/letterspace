@@ -4,7 +4,7 @@ package letterspace.macro;
 
 import haxe.macro.Context;
 import haxe.macro.Expr;
-import om.color.GimpPalette;
+//import om.color.GimpPalette;
 import sys.FileSystem;
 import sys.io.File;
 
@@ -38,28 +38,6 @@ class Build {
 	}
 
 	#if macro
-	/*
-
-	static function tiles() : Array<Field> {
-		var fields = Context.getBuildFields();
-		return fields;
-	}
-
-	*/
-
-	/*
-	static function exportTilesets( srcDir : String, dstDir : String ) {
-		var path = 'src/tiles';
-		for( f in FileSystem.readDirectory( path ) ) {
-			if( f.extension() == 'svg' ) {
-
-				 //inkscape --without-gui letters.svg --export-png A.png --export-id=A
-				 //inkscape src/tiles/fff.svg --without-gui --export-id=NOPE --export-png=NOPE.png
-				//trace(f);
-			}
-		}
-	}
-	*/
 
 	/*
 	static function colorPalette( name : String ) {
@@ -74,15 +52,97 @@ class Build {
 	}
 	*/
 
-	static function exportLetterTiles( name : String, dpi = 96 ) {
+	static function tiles() : Array<Field> {
+
+		var fields = Context.getBuildFields();
+
+		var mapExpr = new Array<Expr>();
+		for( k=>v in tilesetMap ) {
+			mapExpr.push( macro $v{k} => $v{v} );
+		}
+
+		fields.push({
+			name : 'MAP',
+			access: [APublic,AStatic],
+			kind: FVar( macro:Map<String,Array<String>>, macro $a{mapExpr} ),
+			pos: Context.currentPos()
+		});
+
+		return fields;
+	}
+
+	static var tilesetMap : Map<String,Array<String>> = [];
+
+	static function exportLetterTiles( dpi = 144, force = false ) {
+
+		var tilesets = FileSystem.readDirectory( 'src/tiles' ).filter( f -> {
+			return if( f.startsWith('_') || !f.hasExtension('svg') ) false else true;
+		}).map( f -> return f.withoutExtension() );
+
+		for( name in tilesets ) {
+
+			var srcFile = 'src/tiles/$name.svg';
+			var dstDir = 'res/letter/$name';
+			var srcModTime = FileSystem.stat( srcFile ).mtime;
+			var characters = new Array<String>();
+			tilesetMap.set( name, characters );
+
+			if( !FileSystem.exists( dstDir ) ) FileSystem.createDirectory( dstDir );
+
+			for( k=>v in letterspace.game.Tileset.CHARACTERS ) {
+				var dstFile = '$dstDir/$v.png';
+				if( !force && FileSystem.exists( dstFile ) && srcModTime.getTime() < FileSystem.stat( dstFile ).mtime.getTime() ) {
+					//trace("NOT CHANGED "+k);
+					characters.push(k);
+					continue;
+				}
+				var args = ['--without-gui',srcFile,'--export-png',dstFile,'--export-id=$v','--export-dpi=$dpi'];
+				var export = new sys.io.Process( 'inkscape', args );
+				var code = export.exitCode();
+				switch code {
+				case 0:
+					characters.push(k);
+				default:
+					Sys.println( export.stderr.readAll().toString().trim() );
+				}
+				export.close();
+			}
+		}
+	}
+
+	/*
+	static var tilesets = new Array<String>();
+
+	static function exportLetterTiles( name : String, dpi = 96, force = false ) {
+
+		trace("EEEEEEEEEEEEEE");
+
+		tilesets.push(name);
 
 		var srcFile = 'src/tiles/$name.svg';
 		var srcModTime = FileSystem.stat( srcFile ).mtime;
 		var dstDir = 'res/letter/$name';
-		var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+		//var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
 		if( !FileSystem.exists( dstDir ) ) FileSystem.createDirectory( dstDir );
 
+		for( k=>v in letterspace.game.Tileset.CHARACTERS ) {
+			var dstFile = '$dstDir/$v.png';
+			if( !force && FileSystem.exists( dstFile ) && srcModTime.getTime() < FileSystem.stat( dstFile ).mtime.getTime() ) {
+				//trace("NOT CHHANGED "+k);
+				continue;
+			}
+			var args = ['--without-gui',srcFile,'--export-png',dstFile,'--export-id=$v','--export-dpi=$dpi'];
+			var export = new sys.io.Process( 'inkscape', args );
+			var code = export.exitCode();
+			switch code {
+			case 0: //trace( export.stdout.readAll() );
+			default: Sys.println( export.stderr.readAll().toString().trim() );
+			}
+			export.close();
+		}
+
+		/*
 		for( c in chars.split('') ) {
 			var dstFile = '$dstDir/$c.png';
 			if( FileSystem.exists( dstFile ) && srcModTime.getTime() < FileSystem.stat( dstFile ).mtime.getTime() ) {
@@ -98,7 +158,9 @@ class Build {
 				export.close();
 			}
 		}
+		* /
 	}
+	*/
 
 	#end
 

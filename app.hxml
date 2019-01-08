@@ -12,6 +12,4 @@
 -D dev
 -dce full
 -debug
-# TODO
-#--macro letterspace.macro.Build.exportTilesets('src/tiles','res/tiles')
---macro letterspace.macro.Build.exportLetterTiles('helvetica2')
+--macro letterspace.macro.Build.exportLetterTiles()

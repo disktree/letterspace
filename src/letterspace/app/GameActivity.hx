@@ -4,6 +4,7 @@ import letterspace.game.Letter;
 import letterspace.game.Level;
 import letterspace.game.Space;
 import letterspace.game.Menu;
+import letterspace.game.Tileset;
 import letterspace.game.User;
 import owl.Mesh;
 import owl.Node;
@@ -33,23 +34,34 @@ class GameActivity extends Activity {
 		var canvas = document.createCanvasElement();
 		canvas.id = 'webgl';
 		element.appendChild( canvas );
-
-		//menu = new Menu();
-		//element.appendChild( menu.element );
 	}
 
 	override function onStart() {
 
-		var charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split("");
+		/*
+		for( c in hxd.Res.load( 'letter/helvetica2' ) ) {
+			trace( c+'' );
+		}
+		*/
+
+		var chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!§$%&/()=?<>+*~,;.:-_#'".split("");
+		chars.push('"');
+		//var chars = Lambda.array( Tileset.CHARACTERS );
+		var theme = Level.THEME.get('apollo');
+		var level = new Level( 4000, 3000, "helvetica_rounded", chars, theme );
+
+		/*
+		//var charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split("");
+		var charset = "A=?".split("");
+		trace( charset );
 		//var chars = charset.join('');
 		var chars = new Array<String>();
 		for( i in 0...4 ) chars = chars.concat( charset );
 		var level = new Level( 4000, 3000, "helvetica2", chars, Level.THEME.get('apollo') );
-		//var user = new User();
+		*/
 
 		menu = new Menu( user.name );
 		element.appendChild( menu.element );
-		//menu.addUser( user.name );
 
 		Space.create( function(space){
 
