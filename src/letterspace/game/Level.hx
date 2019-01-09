@@ -57,6 +57,31 @@ class Level {
 				}
 			}
 		},
+		"antireal" => {
+			letter : {
+				scale : 1,
+				color: 0xffA7AFB2,
+				shadow : {
+					distance : 2,
+					angle : 0.785,
+					color : 0x000000,
+					alpha : 0.3,
+					radius : 6.0,
+					gain : 2.0
+				}
+			},
+			background: {
+				color : 0xff13181E,
+				gradient : {
+					color : 0x77000000
+				},
+				grid : {
+					color : 0xff252126,
+					//color : 0x555f5353,
+					size : 10
+				}
+			}
+		},
 		/*
 		"battlestation" => {
 			letter : { color: 0xffaffec7 },

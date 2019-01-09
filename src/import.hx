@@ -10,8 +10,11 @@ import om.Time;
 import haxe.Timer.delay;
 import om.Promise;
 #if owl_server
+import js.Node.process;
+import js.node.Fs;
 import Sys.print;
 import Sys.println;
+using om.Path;
 #elseif owl_client
 import om.Browser;
 import om.Browser.document;

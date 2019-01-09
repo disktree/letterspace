@@ -1,5 +1,6 @@
 package letterspace.net;
 
+
 class Mesh extends owl.Mesh {
 
 	#if owl_server
@@ -16,9 +17,38 @@ class Mesh extends owl.Mesh {
 		0x01579B,
 	];
 
-	public override function addNode( node : owl.Node, ?info : Dynamic ) : owl.Node {
+	public override function addNode( node : owl.Node, ?info : Dynamic ) {
+		var numNodes = Lambda.count( nodes );
+		info.color = USERCOLOR[numNodes];
+		if( numNodes == 0 ) {
+			var path = process.argv[1].directory()+'/status.json';
+			if( sys.FileSystem.exists( path ) ) {
+				var str = sys.io.File.getContent( path );
+				info.status = Json.parse( str );
+			}
+		}
+		for( n in nodes ) {
+			var _info = infos.get( n.id );
+			if( _info.name == info.name ) {
+				var i = 0;
+				while( true ) {
+					var nname = info.name + i;
+					if( _info.name != nname ) {
+						info.name = nname;
+						break;
+					}
+					i++;
+				}
+			}
+		}
+		super.addNode( node, info );
+	}
+
+	/*
+	public override function addNode( node : owl.Node, ?info : Dynamic ) : Bool {
 		//trace("ADD NODE "+Lambda.count(nodes));
-		info.color = USERCOLOR[Lambda.count( nodes )];
+		var numNodes = Lambda.count( nodes );
+		info.color = USERCOLOR[numNodes];
 		for( n in nodes ) {
 			var _info = infos.get( n.id );
 			if( _info.name == info.name ) {
@@ -35,6 +65,7 @@ class Mesh extends owl.Mesh {
 		}
 		return super.addNode( node, info );
 	}
+	*/
 
 	#end
 }

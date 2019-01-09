@@ -12,6 +12,7 @@
 -D owl_server
 -D letterspace_server
 -D hxnodejs_no_version_warning
+-D dev
 -D source-header=
 --macro includeFile('shebang_header')
 -debug

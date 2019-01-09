@@ -27,14 +27,16 @@ class GameActivity extends Activity {
 	var space : Space;
 	var menu : Menu;
 
-	public function new( mesh : Mesh, level : Level, user : User ) {
+	var status : Array<Array<Int>>;
+
+	public function new( mesh : Mesh, level : Level, user : User, ?status : Array<Array<Int>> ) {
 
 		super();
 		this.mesh = mesh;
 		this.level = level;
 		this.user = user;
 
-		users = [];
+		this.status = status;
 
 		canvas = document.createCanvasElement();
 		canvas.id = 'webgl';
@@ -46,11 +48,14 @@ class GameActivity extends Activity {
 
 	override function onStart() {
 
+		users = [];
+
 		Space.create( function(space){
 
 			this.space = space;
 
 			space.init( level, user );
+			space.setViewportPos();
 
 			space.onDragStart = function(l) {
 				sendLetterUpdate( start, l );
@@ -119,19 +124,49 @@ class GameActivity extends Activity {
 
 			if( mesh.numNodes == 0 ) {
 				//trace(" I AM LONLEY ");
-				for( l in space.letters ) {
-					l.setPosition(
-						Std.int( Math.random() * (space.width-l.width) ),
-						Std.int( Math.random() * (space.height-l.height) )
-					);
+				//trace(status);
+				if( status != null ) {
+					var i = 0;
+					for( pos in status ) {
+						space.letters[i].setPosition( pos[0], pos[1] );
+						i++;
+					}
+				} else {
+					for( l in space.letters ) {
+						l.setPosition(
+							Std.int( Math.random() * (space.width-l.width) ),
+							Std.int( Math.random() * (space.height-l.height) )
+						);
+					}
 				}
+			
+				/*
+				App.server.getStatus().then( function(r){
+					//trace(r.length,space.letters.length);
+					//trace(r);
+					if( r.length > 0 && r.length == space.letters.length ) {
+						var i = 0;
+						for( pos in r ) {
+							space.letters[i].setPosition( pos[0], pos[1] );
+							i++;
+						}
+					} else {
+						for( l in space.letters ) {
+							l.setPosition(
+								Std.int( Math.random() * (space.width-l.width) ),
+								Std.int( Math.random() * (space.height-l.height) )
+							);
+						}
+					}
+				});
+				*/
 			} else {
 				for( n in mesh ) {
 					var user = new User( n.info.name, n.info.color );
 					users.set( n.id, user );
 					menu.addUser( user );
 				}
-				///request status from a node
+				///TODO request status from a node
 				var u = new Uint8Array( 1 );
 				u[0] = status_req;
 				mesh.first().send( u );
@@ -139,26 +174,45 @@ class GameActivity extends Activity {
 
 			updateWindowTitle();
 
-			window.onbeforeunload = function(e) {
-				mesh.leave();
-				space.dispose();
-				return null;
-				/*
-				#if dev
-				return null;
-				#else
-				return 'Exit?';
-				#end
-				*/
-			}
+			canvas.style.display = 'block';
 
 			App.server.onDisconnect = function(?reason){
 				//mesh.leave();
 				Activity.set( new ErrorActivity('DISCONNECTED: $reason') );
 			}
 
-			canvas.style.display = 'block';
+			window.addEventListener( 'beforeunload', handleBeforeUnload, false );
 		});
+	}
+
+	override function onStop() {
+		window.removeEventListener( 'beforeunload', handleBeforeUnload );
+	}
+
+	function handleBeforeUnload(e) {
+		e.preventDefault();
+		if( mesh.numNodes == 0 ) {
+			//TODO send status to server for storage
+			var status = new Array<Array<Int>>();
+			for( l in space ) {
+				status.push( [Std.int(l.x),Std.int(l.y)] );
+			}
+			App.server.setStatus( status ).then( function(_){
+				mesh.leave();
+				space.dispose();
+			}).catchError( function(e){
+				console.error(e);
+				mesh.leave();
+				space.dispose();
+			});
+			e.returnValue = '';
+			//return 'EXIT?';
+		} else {
+			mesh.leave();
+			space.dispose();
+			//e.returnValue = '';
+			//return null;
+		}
 	}
 
 	function updateWindowTitle() {

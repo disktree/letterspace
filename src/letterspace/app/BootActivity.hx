@@ -28,8 +28,8 @@ class BootActivity extends Activity {
 			trace( servers);
 		});
 		*/
-		var host = '192.168.0.10';
-		//var host = '195.201.41.121';
+		//var host = '192.168.0.10';
+		var host = '195.201.41.121';
 		var port = 1377;
 		//var port = 8080;
 		connectServer( host, port );

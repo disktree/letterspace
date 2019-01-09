@@ -2,57 +2,112 @@ package letterspace;
 
 import letterspace.net.Mesh;
 import letterspace.net.Node;
-
-/*
-#if owl_client
-
-class Mesh extends owl.Mesh {
-	override function createNode( id : String, ?configuration : js.html.rtc.Configuration, ?info : Dynamic ) : Node {
-		trace("createNode "+info);
-		return new Node( id, configuration, info.user );
-	}
-}
-
-class Node extends owl.Node {
-
-	public var user(default,null) : String;
-
-	public function new( id : String, ?configuration : js.html.rtc.Configuration, user : String ) {
-		super( id, configuration );
-		this.user = user;
-	}
-}
-*/
+import om.URL;
 
 class Server extends owl.Server {
 
 	#if owl_client
-	/*
-	override function createMesh( id : String ) : Mesh {
-		trace("createMesh");
-		return new letterspace.Mesh( this, id );
-	}
-	*/
-	#end
 
-	#if owl_server
+	public inline function lobby() : Promise<Dynamic> {
+		return request( 'lobby' );
+	}
+
+	public inline function getStatus() : Promise<Array<Array<Int>>> {
+		return request( 'status/get' );
+	}
+
+	public inline function setStatus( data : Dynamic ) {
+		return request( 'status/set', data );
+	}
+
+	#elseif owl_server
+
+	static var ALLOWED_ORIGINS(default,null) = [
+		"http://disktree.net",
+		"https://disktree.net",
+		"http://letterspace.disktree.net",
+		#if dev
+		"http://localhost",
+		"http://127.0.0.1",
+		"http://192.168.0.10",
+		#end
+	];
 
 	public static var isSystemService(default,null) = false;
-	public static var server(default,null) : Server;
 
-	/*
-	override public function addMesh<T:owl.Mesh>( mesh : T ) : Bool {
-		trace("addMesh "+mesh);
-		return super.addMesh( mesh );
+	static var mesh : Mesh;
+
+	override function createMesh( id : String ) {
+		return throw "forbidden";
+		//return new letterspace.net.Mesh( id );
 	}
 
-	override function createMesh( id : String ) : Mesh {
-		trace("CREATER MESH "+id);
-		return new Mesh( id );
-	}
-	*/
+	override function handleRequest( req : js.node.http.IncomingMessage, res : js.node.http.ServerResponse ) {
 
-	static function exit( ?msg : Dynamic, code = 0 ) {
+		var origin = req.headers["origin"];
+		if( ALLOWED_ORIGINS.indexOf( origin ) != -1 ) {
+			res.setHeader( 'Access-Control-Allow-Origin', origin );
+			res.setHeader( 'Access-Control-Allow-Methods', 'GET,POST' );
+		} else {
+			res.statusCode = 403;
+			res.end();
+			return;
+		}
+
+		var url = URL.parse( req.url, true );
+		var path = url.path.substr(1);
+		var parts = path.split( '/' );
+		//trace(path,parts);
+		switch parts[0] {
+		case 'lobby':
+			/*
+			var data = [for(m in meshes) {
+				id : m.id,
+				nodes : [for(n in m) m.infos.get( n.id )],
+				//max : m.maxNodes
+			} ];
+			*/
+			var data = [for(n in mesh) mesh.infos.get( n.id )];
+			res.end( Json.stringify( data ) );
+
+		case 'status':
+			switch parts[1] {
+			case 'get':
+				//trace("GET ...");
+				res.setHeader( 'Content-Type', 'text/json' );
+				var path = process.argv[1].directory()+'/status.json';
+				//Fs.exists( path, function );
+				var str = sys.FileSystem.exists( path ) ? sys.io.File.getContent( path ) : '[]';
+				res.end( str );
+				/*
+				var data =
+				if( sys.FileSystem.exists( file ) ) {
+					res.end( sys.io.File.getContent( file ) );
+				} else {
+					res.end();
+				}
+				*/
+			case 'set':
+				//trace("SET ... ");
+				var str = '';
+				req.on( 'data', c -> str += c );
+				req.on( 'end', () -> {
+					//var data = Json.parse( str );
+					//trace(data);
+					var dir = process.argv[1].directory();
+					sys.io.File.saveContent( '$dir/status.json', str );
+					res.end();
+				});
+			}
+		}
+	}
+
+	public static function log( msg : Dynamic ) {
+		if( !isSystemService ) print( DateTools.format( Date.now(), "%H:%M:%S" )+' ' );
+		println( msg );
+	}
+
+	public static function exit( ?msg : Dynamic, code = 0 ) {
 		if( msg != null ) println( msg );
 		Sys.exit( code );
 	}
@@ -83,11 +138,12 @@ class Server extends owl.Server {
 		default:
 		}
 
-		println( 'START $host:$port' );
+		log( 'START $host:$port' );
 
-		server = new Server( host, port, 1000 );
+		var server = new Server( host, port, 1000 );
 		server.start().then( function(_) {
-			server.addMesh( new Mesh( 'letterspace', 100, true ) );
+			mesh = new Mesh( 'letterspace', 100, true );
+			server.addMesh( mesh );
 			//server.addMesh( server.createMesh('letterspace') );
         }).catchError( function(e){
 			exit( e );

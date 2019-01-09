@@ -57,7 +57,8 @@ class Space implements h3d.IDrawable {
 
 	var dragged = false;
 	var dragOffset = new Point();
-	var dragThrowFactor = 1.0;
+	var dragThrowFactor = 0.3;
+	var dragThrowDuration = 0.5;
 	var dragThrowTween : Tween;
 
 	var draggedLetter : Letter;
@@ -84,26 +85,20 @@ class Space implements h3d.IDrawable {
 		this.height = level.height;
 		this.user = user;
 
-		var canvas : CanvasElement = cast document.getElementById( 'webgl' );
+		//var canvas : CanvasElement = cast document.getElementById( 'webgl' );
 		//canvas.style.filter = 'grayscale(100%)';
 
 		scene = new Scene();
-
 		container = new Object( scene );
-
-		//background = new Background( container, width, height, level.theme.background, { dx : 20, dy : 20, color: 0xff1070E0 } );
 		background = new Background( container, width, height, level.theme.background );
-
 		letterContainer = new Object( container );
 		if( level.theme.letter.shadow != null ) {
 			var sh = level.theme.letter.shadow;
 			var f = new DropShadow( sh.distance, sh.angle, sh.color, sh.alpha, sh.radius, sh.gain, 1, true );
-			f.knockout = true;
 			letterContainer.filter = f;
 		}
 
 		tiles = new Map();
-
 		for( c in level.chars ) {
 			if( !tiles.exists( c ) ) {
 				var k = Tileset.CHARACTERS.get( c );
@@ -130,6 +125,9 @@ class Space implements h3d.IDrawable {
 		scrollbarV.drawRect( 0, 0, 4, 100 );
 		scrollbarV.endFill();
 
+		//TODO
+		//userPositionBars
+
 		/*
 		var centerDings = new Graphics( container );
 		centerDings.beginFill( 0x0000ff, 0.6 );
@@ -139,9 +137,6 @@ class Space implements h3d.IDrawable {
 		centerDings.drawRect( 0, height/2-1, width, 2 );
 		centerDings.endFill();
 		*/
-
-		events = new hxd.SceneEvents();
-		events.addScene( scene );
 
 		window.onresize = function(){
 			scene.checkResize();
@@ -159,7 +154,6 @@ class Space implements h3d.IDrawable {
 			setViewportX( vx );
 			setViewportY( vy );
 			*/
-
 			/*
 			zoomMin = Math.max( window.innerWidth / width, window.innerHeight / height );
 			if( zoom < zoomMin ) zoom = zoomMin;
@@ -191,12 +185,16 @@ class Space implements h3d.IDrawable {
 			}
 		}
 
+		events = new hxd.SceneEvents();
+		events.addScene( scene );
+
 		Key.initialize();
 
 		time = 0;
 		loop = new Loop( 60,
 			function(dt) {
 				if( !App.hidden ) events.checkEvents();
+				//Tween.step( dt );
 				update( dt );
 				scene.setElapsedTime(dt);
 			},
@@ -206,38 +204,40 @@ class Space implements h3d.IDrawable {
 				//time = Time.now();
 				//trace(time,_delta);
 				Timer.step( time*1000 );
-				Tween.step( _delta );
+				//Tween.step( _delta );
+				Tween.step( dt );
 				if( !App.hidden ) render( engine );
 			}
 		).start();
 
 		//setViewportPos(-1,-1);
-		setViewportPos();
+		//setViewportPos();
 	}
 
 	public inline function iterator()
 		return letters.iterator();
 
-	public function render( e : Engine ) {
+	public inline function render( e : Engine ) {
 		scene.render( e );
-		//monitor.end();
 	}
 
-	public inline function dispose() {
+	public function dispose() {
+		loop.stop();
 		scene.dispose();
+		events.dispose();
 	}
 
 	public function setViewportX( v = 0.0 ) {
 		viewportX = Math.min( Math.max( v, -1 ), 1 );
-		container.x = (1+viewportX) * ((-width*zoom/2 + scene.width/2));
-		scrollbarH.x = (viewportX/2 + 0.5) * ((scene.width-100));
+		container.x = Std.int( (1+viewportX) * ((-width*zoom/2 + scene.width/2)) );
+		scrollbarH.x = Std.int( (viewportX/2 + 0.5) * ((scene.width-100)) );
 		//scrollbarH.x = (viewportX/2 + 0.5) * ((scene.width-(window.innerWidth*(window.innerWidth/width))));
 	}
 
 	public function setViewportY( v = 0.0 ) {
 		viewportY = Math.min( Math.max( v, -1 ), 1 );
-		container.y = (1+viewportY) * (-height*zoom/2 + scene.height/2);
-		scrollbarV.y = (viewportY/2 + 0.5) * (scene.height-100);
+		container.y = Std.int( (1+viewportY) * (-height*zoom/2 + scene.height/2) );
+		scrollbarV.y = Std.int( (viewportY/2 + 0.5) * (scene.height-100) );
 	}
 
 	public inline function setViewportPos( vx = 0.0, vy = 0.0 ) {
@@ -380,7 +380,6 @@ class Space implements h3d.IDrawable {
 
 			var sx = getScreenX( tx );
 			var sy = getScreenY( ty );
-
 			if( sx < dragBorderSize ) {
 				if( container.x < 0 ) {
 					var d = dragBorderSize - sx;
@@ -399,7 +398,6 @@ class Space implements h3d.IDrawable {
 					}
 				}
 			}
-
 			if( sy < dragBorderSize ) {
 				if( container.y < 0 ) {
 					var d = dragBorderSize - sy;
@@ -418,7 +416,6 @@ class Space implements h3d.IDrawable {
 					}
 				}
 			}
-
 		} else {
 			interactive.cursor = Default;
 		}
@@ -447,8 +444,9 @@ class Space implements h3d.IDrawable {
 		//pointerMove.set(0,0);
 		//pointer.set( e.relX, e.relY );
 		function startViewportDrag() {
+			dragThrowTween.stop();
 			//dragOffset = new Point( e.relX - container.x, e.relY - container.y );
-			dragOffset.set( e.relX - container.x, e.relY - container.y );
+			dragOffset.set( Std.int( e.relX - container.x ), Std.int( e.relY - container.y ) );
 			dragged = true;
 		}
 		if( Key.isDown( Key.SPACE ) ) startViewportDrag() else {
@@ -482,14 +480,14 @@ class Space implements h3d.IDrawable {
 		if( dragged ) {
 			dragged = false;
 			dragOffset.set( 0, 0 );
-			/*
+
 			var tx = Std.int( Math.max( Math.min( container.x + pointerMove.x * dragThrowFactor * 10, 0 ), scene.width- width ) );
 			var ty = Std.int( Math.max( Math.min( container.y + pointerMove.y * dragThrowFactor * 10, 0 ), scene.height - height ) );
 			var ax = Math.abs( pointerMove.x );
 			var ay = Math.abs( pointerMove.y );
-			var duration = ((ax > ay) ? ax : ay) * dragThrowFactor * 100;
+			var duration = ((ax > ay) ? ax : ay) * dragThrowFactor * dragThrowDuration;// * 100;
 			dragThrowTween.stop().to( { x : tx, y : ty  }, duration ).start();
-			*/
+
 		} else if( draggedLetter != null ) {
 			draggedLetter.stopDrag();
 			onDragStop( draggedLetter );
@@ -505,7 +503,7 @@ class Space implements h3d.IDrawable {
 		if( dragged )
 			return;
 		if( Key.isDown( Key.CTRL ) ) {
-			(e.wheelDelta < 0) ? zoomIn( 0.01 ) : zoomOut( 0.01 );
+			if( zoomAble ) (e.wheelDelta < 0) ? zoomIn( 0.01 ) : zoomOut( 0.01 );
 		} else if( Key.isDown( Key.SHIFT ) ) {
 			var v = 0.0125;
 			if( e.wheelDelta < 0 ) v = -v;

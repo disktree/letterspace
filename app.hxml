@@ -2,7 +2,6 @@
 -main letterspace.App
 -cp src
 -lib heaps
--lib heaps-tools
 -lib om.core
 -lib om.color
 -lib om.tween

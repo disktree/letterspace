@@ -1,0 +1,87 @@
+
+@icon-font-path: "fnt";
+@icon-font-family: "icon";
+
+@font-face {
+	font-family: '@{icon-font-family}';
+	font-weight: normal;
+	font-style: normal;
+	src:
+		url('@{icon-font-path}/@{icon-font-family}.woff') format('woff'),
+		url('@{icon-font-path}/@{icon-font-family}.ttf') format('truetype'),
+		url('@{icon-font-path}/@{icon-font-family}.svg#@{icon-font-family}') format('svg');
+}
+
+[class^="ic-"], [class*=" ic-"] {
+	font-family: '@{icon-font-family}' !important;
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+@ic-question: "\f128";
+@ic-cog: "\f013";
+@ic-gear: "\f013";
+@ic-trophy: "\f091";
+@ic-twitter: "\f099";
+@ic-github: "\f113";
+@ic-fork: "\f126";
+@ic-share: "\f1e0";
+@ic-diamond: "\f219";
+@ic-user-plus: "\f234";
+
+.ic-question {
+  &:before {
+    content: @ic-question;
+  }
+}
+.ic-cog {
+  &:before {
+    content: @ic-cog;
+  }
+}
+.ic-gear {
+  &:before {
+    content: @ic-gear;
+  }
+}
+.ic-trophy {
+  &:before {
+    content: @ic-trophy;
+  }
+}
+.ic-twitter {
+  &:before {
+    content: @ic-twitter;
+  }
+}
+.ic-github {
+  &:before {
+    content: @ic-github;
+  }
+}
+.ic-fork {
+  &:before {
+    content: @ic-fork;
+  }
+}
+.ic-share {
+  &:before {
+    content: @ic-share;
+  }
+}
+.ic-diamond {
+  &:before {
+    content: @ic-diamond;
+  }
+}
+.ic-user-plus {
+  &:before {
+    content: @ic-user-plus;
+  }
+}

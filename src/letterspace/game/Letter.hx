@@ -59,6 +59,11 @@ class Letter extends Object {
 		//var group = new h2d.filter.Group([outline,shadow]);
 		//group.enable = false;
 		//bmp.filter = group;
+
+		//var interactive = new h2d.Interactive( this.width, this.height, this );
+		//interactive.onPush = function(e) trace(e);
+		//interactive.onOver = function(e) trace(e);
+		//interactive.onClick = function(e) trace(e);
 	}
 
 	inline function get_color() return bmp.color.toColor();
