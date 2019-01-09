@@ -5,5 +5,7 @@ app/app.js.map
 bin/letterserver.js
 bin/letterserver.js.map
 bin/package-lock.json
+bin/status.json
 res/.tmp
 res/letter/*
+*.zip
