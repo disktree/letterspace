@@ -54,12 +54,16 @@ class Build {
 
 	static function tiles() : Array<Field> {
 
+		//trace(tilesetMap);
+
 		var fields = Context.getBuildFields();
 
 		var mapExpr = new Array<Expr>();
 		for( k=>v in tilesetMap ) {
 			mapExpr.push( macro $v{k} => $v{v} );
 		}
+
+		//trace(mapExpr);
 
 		fields.push({
 			name : 'MAP',
@@ -84,6 +88,7 @@ class Build {
 			var srcFile = 'src/tiles/$name.svg';
 			var dstDir = 'res/letter/$name';
 			var srcModTime = FileSystem.stat( srcFile ).mtime;
+
 			var characters = new Array<String>();
 			tilesetMap.set( name, characters );
 
@@ -94,18 +99,18 @@ class Build {
 				if( !force && FileSystem.exists( dstFile ) && srcModTime.getTime() < FileSystem.stat( dstFile ).mtime.getTime() ) {
 					//trace("NOT CHANGED "+k);
 					characters.push(k);
-					continue;
+				} else {
+					var args = ['--without-gui',srcFile,'--export-png',dstFile,'--export-id=$v','--export-dpi=$dpi'];
+					var export = new sys.io.Process( 'inkscape', args );
+					var code = export.exitCode();
+					switch code {
+					case 0:
+						characters.push(k);
+					default:
+						Sys.println( export.stderr.readAll().toString().trim() );
+					}
+					export.close();
 				}
-				var args = ['--without-gui',srcFile,'--export-png',dstFile,'--export-id=$v','--export-dpi=$dpi'];
-				var export = new sys.io.Process( 'inkscape', args );
-				var code = export.exitCode();
-				switch code {
-				case 0:
-					characters.push(k);
-				default:
-					Sys.println( export.stderr.readAll().toString().trim() );
-				}
-				export.close();
 			}
 		}
 	}

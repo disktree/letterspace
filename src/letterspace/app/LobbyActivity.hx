@@ -7,7 +7,14 @@ class LobbyActivity extends Activity {
 	var input : InputElement;
 
 	public function new() {
+
 		super();
+
+		var version = document.createDivElement();
+		version.classList.add( 'version' );
+		version.textContent = 'V'+App.VERSION;
+		element.appendChild( version );
+
 		input = document.createInputElement();
 		input.type = 'text';
 		input.name = 'username';
@@ -29,11 +36,12 @@ class LobbyActivity extends Activity {
 	function handleKeyDown(e) {
 		switch e.keyCode {
 		case 13:
-			var user : String = input.value;
-			if( user.length > 0 ) {
+			var username : String = input.value;
+			if( username.length >= 3 ) {
+				trace( username );
 				input.disabled = true;
-				App.storage.set( 'user', user );
-				Activity.set( new LoginActivity( user ) );
+				App.storage.set( 'user', username );
+				Activity.set( new JoinActivity( 'letterspace', username ) );
 			}
 		}
 	}

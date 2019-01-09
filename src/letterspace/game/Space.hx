@@ -26,7 +26,7 @@ class Space implements h3d.IDrawable {
 	public var height(default,null) : Int;
 	public var letters(default,null) = new Array<Letter>();
 	public var time(default,null) : Float;
-	public var zoomAble = true;
+	public var zoomAble = false; //TODO
 
 	final engine : Engine;
 
@@ -95,7 +95,12 @@ class Space implements h3d.IDrawable {
 		background = new Background( container, width, height, level.theme.background );
 
 		letterContainer = new Object( container );
-		letterContainer.filter = new DropShadow( 2, 0.785, 0x000000, 0.3, 6, 2, 1, true );
+		if( level.theme.letter.shadow != null ) {
+			var sh = level.theme.letter.shadow;
+			var f = new DropShadow( sh.distance, sh.angle, sh.color, sh.alpha, sh.radius, sh.gain, 1, true );
+			f.knockout = true;
+			letterContainer.filter = f;
+		}
 
 		tiles = new Map();
 
@@ -104,6 +109,7 @@ class Space implements h3d.IDrawable {
 				var k = Tileset.CHARACTERS.get( c );
 				var t = Res.load( 'letter/${level.font}/$k.png' ).toTile();
 				//t.scaleToSize( Std.int( t.width/4 ), Std.int( t.height/4 ) ); //TODO scale param
+				t.scaleToSize( Std.int( t.width*level.theme.letter.scale ), Std.int( t.height*level.theme.letter.scale ) ); //TODO scale param
 				tiles.set( c, t );
 			}
 		}
@@ -170,13 +176,16 @@ class Space implements h3d.IDrawable {
 		interactive.onMove = onMouseMove;
 		interactive.onRelease = onMouseRelease;
 		interactive.onOut = onMouseOut;
+		//interactive.onOver = e -> trace(e);
+		//interactive.onFocusLost = e -> trace(e);
+		//interactive.onReleaseOutside = e -> trace(e);
 		interactive.onWheel = onMouseWheel;
 		interactive.onKeyDown = function(e){
 			switch e.keyCode {
-			case Key.LEFT: moveViewportX(0.01);
-			case Key.RIGHT: moveViewportX(-0.01);
-			case Key.UP: moveViewportY(0.01);
-			case Key.DOWN: moveViewportY(-0.01);
+			case Key.LEFT: moveViewportX(-width/(width*1000)*10);
+			case Key.RIGHT: moveViewportX(width/(width*1000)*10);
+			case Key.UP: moveViewportY(-height/(height*1000)*10);
+			case Key.DOWN: moveViewportY(height/(height*1000)*10);
 			case Key.C: if( draggedLetter == null ) setViewportPos();
 			case Key.Z: setZoom(1);
 			}
@@ -187,7 +196,7 @@ class Space implements h3d.IDrawable {
 		time = 0;
 		loop = new Loop( 60,
 			function(dt) {
-				events.checkEvents();
+				if( !App.hidden ) events.checkEvents();
 				update( dt );
 				scene.setElapsedTime(dt);
 			},
@@ -198,11 +207,12 @@ class Space implements h3d.IDrawable {
 				//trace(time,_delta);
 				Timer.step( time*1000 );
 				Tween.step( _delta );
-				render( engine );
+				if( !App.hidden ) render( engine );
 			}
 		).start();
 
-		setViewportPos(-1,-1);
+		//setViewportPos(-1,-1);
+		setViewportPos();
 	}
 
 	public inline function iterator()
@@ -211,6 +221,10 @@ class Space implements h3d.IDrawable {
 	public function render( e : Engine ) {
 		scene.render( e );
 		//monitor.end();
+	}
+
+	public inline function dispose() {
+		scene.dispose();
 	}
 
 	public function setViewportX( v = 0.0 ) {
@@ -432,14 +446,14 @@ class Space implements h3d.IDrawable {
 	function onMousePush( e : Event ) {
 		//pointerMove.set(0,0);
 		//pointer.set( e.relX, e.relY );
-		function startDrag() {
+		function startViewportDrag() {
 			//dragOffset = new Point( e.relX - container.x, e.relY - container.y );
 			dragOffset.set( e.relX - container.x, e.relY - container.y );
 			dragged = true;
 		}
-		if( Key.isDown( Key.SPACE ) ) startDrag() else {
+		if( Key.isDown( Key.SPACE ) ) startViewportDrag() else {
 			var l = getLetterAtPointer();
-			if( l == null ) startDrag() else {
+			if( l == null ) startViewportDrag() else {
 				if( l.user == null ) {
 					draggedLetterOffset.set(
 						e.relX/zoom - l.x + Math.abs(container.x/zoom),
@@ -452,6 +466,14 @@ class Space implements h3d.IDrawable {
 	}
 
 	function onMouseMove( e : Event ) {
+		/*
+		if( !dragged && draggedLetter == null ) {
+			var l = getLetterAtPointer();
+			if( l == null ) {
+
+			}
+		}
+		*/
 		//pointerMove.set( e.relX - pointer.x, e.relY - pointer.y );
 		//pointer.set( e.relX, e.relY );
 	}
@@ -480,6 +502,8 @@ class Space implements h3d.IDrawable {
 	}
 
 	function onMouseWheel( e : Event ) {
+		if( dragged )
+			return;
 		if( Key.isDown( Key.CTRL ) ) {
 			(e.wheelDelta < 0) ? zoomIn( 0.01 ) : zoomOut( 0.01 );
 		} else if( Key.isDown( Key.SHIFT ) ) {

@@ -87,7 +87,7 @@ class Server extends owl.Server {
 
 		server = new Server( host, port, 1000 );
 		server.start().then( function(_) {
-			server.addMesh( new Mesh('letterspace') );
+			server.addMesh( new Mesh( 'letterspace', 100, true ) );
 			//server.addMesh( server.createMesh('letterspace') );
         }).catchError( function(e){
 			exit( e );

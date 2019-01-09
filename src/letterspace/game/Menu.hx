@@ -2,33 +2,25 @@ package letterspace.game;
 
 class Menu {
 
-	public var element(default,null) : Element;
-
 	var user : Element;
 	var users : Element;
 
-	public function new( userName : String ) {
+	public function new( parent : Element, user : User ) {
 
-		element = document.createDivElement();
+		var element = document.createDivElement();
 		element.classList.add( 'menu' );
-		document.body.appendChild( element );
+		parent.appendChild( element );
 
-		user = document.createDivElement();
-		user.classList.add( 'user' );
-		user.textContent = userName;
-		element.appendChild( user );
+		this.user = createUserElement( user );
+		element.appendChild( this.user );
 
-		users = document.createDivElement();
-		users.classList.add( 'users' );
-		element.appendChild( users );
+		this.users = document.createDivElement();
+		this.users.classList.add( 'users' );
+		element.appendChild( this.users );
 	}
 
-	public function addUser( user : String ) {
-		var e = document.createDivElement();
-		e.classList.add( 'user' );
-		e.setAttribute( 'data-name', user );
-		e.textContent = user;
-		//e.style.color = '#'+StringTools.hex( color );
+	public function addUser( user : User ) {
+		var e = createUserElement( user );
 		users.appendChild( e );
 	}
 
@@ -39,5 +31,14 @@ class Menu {
 		} else {
 			e.remove();
 		}
+	}
+
+	function createUserElement( user : User ) : Element {
+		var e = document.createDivElement();
+		e.classList.add( 'user' );
+		e.setAttribute( 'data-name', user.name );
+		e.textContent = user.name;
+		e.style.backgroundColor = '#'+StringTools.hex( user.color, 6 );
+		return e;
 	}
 }

@@ -29,6 +29,19 @@
 }
 
 #lobby.activity {
+	.version {
+		position: fixed;
+		bottom: 22px;
+		right: 14px;
+		font-family: 'Fira';
+		font-size: 8px;
+		writing-mode: vertical-lr;
+	  	text-orientation: mixed;
+	  	transform: rotate(180deg);
+		user-select: none;
+		user-drag: none;
+		color: var(--f-low);
+	}
 	input[name="username"] {
 		.fixed-center();
 		//animation: flipInX 1s;
@@ -61,25 +74,25 @@
 	}
 
 	.menu {
-		//display: inline-block;
-		//float: left;
 		position: fixed;
 		bottom: 0;
 		left: 0;
-		font-family: 'FrucadeSmall';
-		font-size: 8px;
+		padding: 1px;
+		font-size: 12px;
 		z-index: 100;
-		opacity: 0.7;
 		user-select: none;
 		pointer-events: none;
 		> .user, > .users > .user {
 			display: inline-block;
 			float: left;
-			padding: 1px 2px 0px 2px;
-			margin: 0 1px;
-			background: rgba(0,0,0,1);
-			color: #a0a0a0;
-			.fade_in(1s);
+			padding: 2px 3px 2px 3px;
+			margin: 0 1px 1px 1px;
+			background: var(--b-med);
+			//color: var(--f-med);
+			color: #000;
+			border-radius: 3px;
+			opacity: 0.95;
+			.fade_in(0.5s);
 		}
 		> .users {
 			float: left;

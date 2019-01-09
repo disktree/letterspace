@@ -1,6 +1,7 @@
 
 import Om.console;
 import om.Json;
+import om.System;
 import om.Time;
 
 //using om.ArrayTools;
@@ -8,8 +9,10 @@ import om.Time;
 #if js
 import haxe.Timer.delay;
 import om.Promise;
-#if nodejs
-#else
+#if owl_server
+import Sys.print;
+import Sys.println;
+#elseif owl_client
 import om.Browser;
 import om.Browser.document;
 import om.Browser.navigator;

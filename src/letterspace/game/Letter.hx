@@ -7,16 +7,7 @@ import h2d.col.Bounds;
 import h2d.filter.*;
 import h3d.Vector;
 
-//@:build(letterspace.macro.Build.tiles())
 class Letter extends Object {
-
-	/*
-	public static var TILESET : Map<String,Array<String>> = [
-		'clone' => letterspace.macro.Build.getTilesetCharacters('clone'),
-		'fff' => letterspace.macro.Build.getTilesetCharacters('fff'),
-		'helvetica' => letterspace.macro.Build.getTilesetCharacters('helvetica')
-	];
-	*/
 
 	public var index(default,null) : Int;
 	public var char(default,null) : String;
@@ -32,6 +23,9 @@ class Letter extends Object {
 	public var lastUser(default,null) : User;
 
 	var bmp : Bitmap;
+	var colorDefault : Int;
+
+	var shadow : DropShadow;
 
 	public function new( index : Int, char : String, tile : Tile, color : Int ) {
 
@@ -46,12 +40,25 @@ class Letter extends Object {
 		height = Std.int( size.height );
 
 		this.color = color;
+		this.colorDefault = color;
 		//bmp.alpha = 0.9;
 		//alpha = 0.4;
 
-		outline = new Outline( 2, 0xff0000, 0.3, true );
+		outline = new Outline( 1, 0x000000, 0.1, true );
+		//outline.autoBounds = false;
 		outline.enable = false;
+		//outline.smooth = false;
+		//this.filter = outline;
 		bmp.filter = outline;
+		//this.filter = outline;
+
+		//shadow = new DropShadow( 4, 0.785, 0x000000, 0.3, 10, 2.0, 1, true );
+		//shadow.enable = false;
+		//this.filter = shadow;
+
+		//var group = new h2d.filter.Group([outline,shadow]);
+		//group.enable = false;
+		//bmp.filter = group;
 	}
 
 	inline function get_color() return bmp.color.toColor();
@@ -80,12 +87,18 @@ class Letter extends Object {
 
 	public function startDrag( user : User ) : Letter {
 		this.user = user;
-		//setScale( 1.1 );
+		//bmp.setScale( 1.2 );
 		//color = 0xffffffff;
 		//bmp.alpha = 1;
-		//this.color = user.color;
-		outline.color = user.color;
-		outline.enable = true;
+		//trace(user.color);
+		var v = Vector.fromColor( user.color );
+		v.a = 1;
+		bmp.color = v;
+
+		//color = user.color;
+		//outline.color = user.color;
+		//outline.enable = true;
+		//shadow.enable = true;
 		bringToFront();
 
 		/*
@@ -104,10 +117,11 @@ class Letter extends Object {
 	public function stopDrag() : Letter {
 		lastUser = user;
 		user = null;
-		//setScale( 1 );
-		//color = 0xffe0e0e0;
+		//bmp.setScale( 1 );
+		color = colorDefault;
 		//bmp.alpha = 0.9;
 		outline.enable = false;
+		//shadow.enable = false;
 		//bmp.adjustColor( {hue:0} );
 		return this;
 	}

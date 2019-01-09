@@ -22,46 +22,29 @@ class GameActivity extends Activity {
 	var mesh : Mesh;
 	var level : Level;
 	var user : User;
+	var users : Map<String,User>;
+	var canvas : CanvasElement;
 	var space : Space;
 	var menu : Menu;
 
-	public function new( mesh : Mesh, user : User ) {
+	public function new( mesh : Mesh, level : Level, user : User ) {
 
 		super();
 		this.mesh = mesh;
+		this.level = level;
 		this.user = user;
 
-		var canvas = document.createCanvasElement();
+		users = [];
+
+		canvas = document.createCanvasElement();
 		canvas.id = 'webgl';
+		canvas.style.display = 'none';
 		element.appendChild( canvas );
+
+		menu = new Menu( element, user );
 	}
 
 	override function onStart() {
-
-		/*
-		for( c in hxd.Res.load( 'letter/helvetica2' ) ) {
-			trace( c+'' );
-		}
-		*/
-
-		var chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!§$%&/()=?<>+*~,;.:-_#'".split("");
-		chars.push('"');
-		//var chars = Lambda.array( Tileset.CHARACTERS );
-		var theme = Level.THEME.get('apollo');
-		var level = new Level( 4000, 3000, "helvetica_rounded", chars, theme );
-
-		/*
-		//var charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split("");
-		var charset = "A=?".split("");
-		trace( charset );
-		//var chars = charset.join('');
-		var chars = new Array<String>();
-		for( i in 0...4 ) chars = chars.concat( charset );
-		var level = new Level( 4000, 3000, "helvetica2", chars, Level.THEME.get('apollo') );
-		*/
-
-		menu = new Menu( user.name );
-		element.appendChild( menu.element );
 
 		Space.create( function(space){
 
@@ -80,15 +63,20 @@ class GameActivity extends Activity {
 			}
 
 			mesh.onNodeJoin = function(n:Node){
-				trace('NODE JOINED '+n.info.user);
-				menu.addUser( n.info.user );
+				trace('NODE JOINED '+n.info.name);
+				var user = new User( n.info.name, n.info.color );
+				users.set( n.id, user );
+				menu.addUser( user );
+				updateWindowTitle();
 			}
 			mesh.onNodeLeave = function(n:Node){
-				trace('NODE LEFT '+n.info.user);
-				menu.removeUser( n.info.user );
+				trace('NODE LEFT '+n.info.name);
+				users.remove( n.id );
+				menu.removeUser( n.info.name );
+				updateWindowTitle();
 			}
 			mesh.onNodeData = function(n:Node,buf:ArrayBuffer){
-				trace('NODE DATA '+n.info.user);
+				//trace('NODE DATA '+n.info.user);
 				var v = new DataView( buf );
 				var t : SyncType = v.getUint8(0);
 				switch t {
@@ -120,7 +108,8 @@ class GameActivity extends Activity {
 					var y = v.getUint16(5);
 					switch t {
 					case start:
-						l.startDrag( n.info.user );
+						var user = users.get( n.id );
+						l.startDrag( user );
 					case stop: l.stopDrag();
 					case _:
 					}
@@ -132,29 +121,48 @@ class GameActivity extends Activity {
 				//trace(" I AM LONLEY ");
 				for( l in space.letters ) {
 					l.setPosition(
-						Math.random() * (space.width-l.width),
-						Math.random() * (space.height-l.height)
+						Std.int( Math.random() * (space.width-l.width) ),
+						Std.int( Math.random() * (space.height-l.height) )
 					);
 				}
 			} else {
 				for( n in mesh ) {
-					//menu.addUser( cast(n,letterspace.Node).user );
-					menu.addUser( n.info.user );
+					var user = new User( n.info.name, n.info.color );
+					users.set( n.id, user );
+					menu.addUser( user );
 				}
 				///request status from a node
 				var u = new Uint8Array( 1 );
 				u[0] = status_req;
 				mesh.first().send( u );
 			}
-		});
 
-		window.onbeforeunload = function(e) {
-			#if dev
-			return null;
-			#else
-			return 'Exit?';
-			#end
-		}
+			updateWindowTitle();
+
+			window.onbeforeunload = function(e) {
+				mesh.leave();
+				space.dispose();
+				return null;
+				/*
+				#if dev
+				return null;
+				#else
+				return 'Exit?';
+				#end
+				*/
+			}
+
+			App.server.onDisconnect = function(?reason){
+				//mesh.leave();
+				Activity.set( new ErrorActivity('DISCONNECTED: $reason') );
+			}
+
+			canvas.style.display = 'block';
+		});
+	}
+
+	function updateWindowTitle() {
+		document.title = 'LETTERSPACE ('+(mesh.numNodes+1)+')';
 	}
 
 	function sendLetterUpdate( t : SyncType, l : Letter  ) {
