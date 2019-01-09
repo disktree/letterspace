@@ -1,5 +1,8 @@
 package letterspace;
 
+import letterspace.net.Mesh;
+import letterspace.net.Node;
+
 /*
 #if owl_client
 
@@ -21,26 +24,10 @@ class Node extends owl.Node {
 }
 */
 
-#if owl_server
-
-import om.System;
-import Sys.print;
-import Sys.println;
-
-class Mesh extends owl.Mesh {}
-class Node extends owl.Node {}
-
-#end
-
 class Server extends owl.Server {
 
 	#if owl_client
 	/*
-	//TODO load json
-	public static var HOSTS(default,null) = [
-		{ host:'' }
-	];
-
 	override function createMesh( id : String ) : Mesh {
 		trace("createMesh");
 		return new letterspace.Mesh( this, id );
@@ -53,9 +40,17 @@ class Server extends owl.Server {
 	public static var isSystemService(default,null) = false;
 	public static var server(default,null) : Server;
 
-	override function createMesh( id : String ) : Mesh {
-		return new letterspace.Mesh( id );
+	/*
+	override public function addMesh<T:owl.Mesh>( mesh : T ) : Bool {
+		trace("addMesh "+mesh);
+		return super.addMesh( mesh );
 	}
+
+	override function createMesh( id : String ) : Mesh {
+		trace("CREATER MESH "+id);
+		return new Mesh( id );
+	}
+	*/
 
 	static function exit( ?msg : Dynamic, code = 0 ) {
 		if( msg != null ) println( msg );
@@ -64,7 +59,7 @@ class Server extends owl.Server {
 
 	static function main() {
 
-		if( !System.is( 'linux' ) ) exit( 'linux only', 1 );
+		//if( !System.is( 'linux' ) ) exit( 'linux only', 1 );
 
 		var host : String = null;
 		var port = 1377;
@@ -88,13 +83,14 @@ class Server extends owl.Server {
 		default:
 		}
 
-		println( 'Starting server $host:$port' );
+		println( 'START $host:$port' );
 
-		server = new letterspace.Server( host, port );
+		server = new Server( host, port, 1000 );
 		server.start().then( function(_) {
-			server.addMesh( new owl.Mesh('letterspace') );
+			server.addMesh( new Mesh('letterspace') );
+			//server.addMesh( server.createMesh('letterspace') );
         }).catchError( function(e){
-			exit(e);
+			exit( e );
 		});
 	}
 
