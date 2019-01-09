@@ -21,8 +21,6 @@ class App  {
 		//for( k=>v in Tileset.MAP ) trace(k);
 
 		/*
-		var host = '192.168.0.10';
-		var port = 1377;
 		var params = new js.html.URLSearchParams( window.location.search );
 		if( params.has( 'host' ) ) host = params.get( 'host' );
 		if( params.has( 'port' ) ) port = Std.parseInt( params.get( 'port' ) );

@@ -57,16 +57,8 @@ class Server extends owl.Server {
 		var url = URL.parse( req.url, true );
 		var path = url.path.substr(1);
 		var parts = path.split( '/' );
-		//trace(path,parts);
 		switch parts[0] {
 		case 'lobby':
-			/*
-			var data = [for(m in meshes) {
-				id : m.id,
-				nodes : [for(n in m) m.infos.get( n.id )],
-				//max : m.maxNodes
-			} ];
-			*/
 			var data = [for(n in mesh) mesh.infos.get( n.id )];
 			res.end( Json.stringify( data ) );
 
@@ -79,14 +71,6 @@ class Server extends owl.Server {
 				//Fs.exists( path, function );
 				var str = sys.FileSystem.exists( path ) ? sys.io.File.getContent( path ) : '[]';
 				res.end( str );
-				/*
-				var data =
-				if( sys.FileSystem.exists( file ) ) {
-					res.end( sys.io.File.getContent( file ) );
-				} else {
-					res.end();
-				}
-				*/
 			case 'set':
 				//trace("SET ... ");
 				var str = '';
@@ -144,7 +128,6 @@ class Server extends owl.Server {
 		server.start().then( function(_) {
 			mesh = new Mesh( 'letterspace', 100, true );
 			server.addMesh( mesh );
-			//server.addMesh( server.createMesh('letterspace') );
         }).catchError( function(e){
 			exit( e );
 		});

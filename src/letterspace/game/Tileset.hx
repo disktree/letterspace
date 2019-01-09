@@ -101,13 +101,4 @@ class Tileset {
 		"@" => "ampersat",
 		"€" => "euro",
 	];
-
-	#if !macro
-	/*
-	static var MAP : Map<String,Array<String>> = [
-		"helvetica" => ["a","A"]
-	];
-	*/
-	#end
-
 }

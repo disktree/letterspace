@@ -4,8 +4,6 @@ import om.Json;
 import om.System;
 import om.Time;
 
-//using om.ArrayTools;
-
 #if js
 import haxe.Timer.delay;
 import om.Promise;

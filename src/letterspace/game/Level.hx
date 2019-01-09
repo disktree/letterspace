@@ -82,20 +82,6 @@ class Level {
 				}
 			}
 		},
-		/*
-		"battlestation" => {
-			letter : { color: 0xffaffec7 },
-			background: { color : 0xff333333, grid : { color : 0xff555555, size : 20 } }
-		},
-		"noir" => {
-			letter : { color: 0xffcccccc },
-			background: { color : 0xff222222, grid : { color : 0xff444444, size : 10 } }
-		},
-		"soyuz" => {
-			letter : { color: 0xff999999 },
-			background: { color : 0xff222222, grid : { color : 0xff333333, size : 10 } }
-		}
-		*/
 	];
 
 	public final width : Int;
@@ -110,11 +96,5 @@ class Level {
 		this.font = font;
 		this.chars = chars;
 		this.theme = (theme != null) ? theme : THEME.get('apollo');
-		/*
-		this.theme = (theme != null) ? theme : {
-			letter : { scale : 1, color: 0xffa0a0a0 },
-			background: { color : 0xff000000, grid : { color : 0xff101010, size : 10 } }
-		};
-		*/
 	}
 }

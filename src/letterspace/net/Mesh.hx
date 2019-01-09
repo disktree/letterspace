@@ -44,28 +44,5 @@ class Mesh extends owl.Mesh {
 		super.addNode( node, info );
 	}
 
-	/*
-	public override function addNode( node : owl.Node, ?info : Dynamic ) : Bool {
-		//trace("ADD NODE "+Lambda.count(nodes));
-		var numNodes = Lambda.count( nodes );
-		info.color = USERCOLOR[numNodes];
-		for( n in nodes ) {
-			var _info = infos.get( n.id );
-			if( _info.name == info.name ) {
-				var i = 0;
-				while( true ) {
-					var nname = info.name + i;
-					if( _info.name != nname ) {
-						info.name = nname;
-						break;
-					}
-					i++;
-				}
-			}
-		}
-		return super.addNode( node, info );
-	}
-	*/
-
 	#end
 }
