@@ -1,41 +1,82 @@
 package letterspace.game;
 
-import h2d.Bitmap;
 import h2d.Graphics;
 import h2d.Interactive;
 import h2d.Object;
-import h2d.Scene;
 import h2d.Tile;
 import h2d.col.Point;
-import h2d.filter.*;
-import h3d.Engine;
+import h2d.filter.DropShadow;
 import hxd.Event;
 import hxd.Key;
 import hxd.Res;
-import om.Timer;
-import om.ease.*;
-import om.loop.GameLoop as Loop;
 
-class Space implements h3d.IDrawable {
+typedef TileKey = {
+	var c : String;
+	var f : String;
+}
+
+class Space extends hxd.App {
+
+	var onInit : Space->Void;
+
+	public static function create( level : Level ) : Promise<Space> {
+		return new Promise( (resolve,reject) -> {
+			new Space( level.width, level.height, space -> {
+
+				var theme = Theme.get( level.theme );
+
+				space.background.render( level.width, level.height, theme.background );
+
+				for( l in level.letters ) {
+					var font = (l.font == null) ? level.font : l.font;
+					//var key = { c : l.char, f : font };
+					//trace(key,space.tiles.exists( key ));
+					var tile : Tile;
+					if( space.tiles.exists( l.char ) ) {
+					//if( space.tiles.exists( key ) ) {
+						//trace("ALREADY HAVE "+l.char );
+						tile = space.tiles.get( l.char );
+					} else {
+						var c = Tilemap.get( l.char );
+						tile = Res.load( 'letter/$font/$c.png' ).toTile();
+						space.tiles.set( l.char, tile );
+						//space.tiles.set( key, tile );
+					}
+					var letter = new Letter( space.letterContainer, space.letters.length, l.char, tile, theme.letter.color );
+					letter.onDragStart = space.onDragLetterStart;
+					letter.onDragStop = space.onDragLetterStop;
+					space.letters.push( letter );
+				}
+
+				if( theme.letter.shadow != null ) {
+					var sh = theme.letter.shadow;
+					var f = new h2d.filter.DropShadow( sh.distance, sh.angle, sh.color, sh.alpha, sh.radius, sh.gain, 1, true );
+					space.letterContainer.filter = f;
+				}
+
+				space.scrollbarH.beginFill( theme.background.grid.color, 1.0 );
+				space.scrollbarH.drawRect( 0, 0, 100, 4 );
+				space.scrollbarH.endFill();
+
+				space.scrollbarV.beginFill( theme.background.grid.color, 1.0 );
+				space.scrollbarV.drawRect( 0, 0, 4, 100 );
+				space.scrollbarV.endFill();
+
+				resolve( space );
+			});
+		});
+	}
 
 	public dynamic function onDragStart( l : Letter ) {}
 	public dynamic function onDrag( l : Letter ) {}
 	public dynamic function onDragStop( l : Letter ) {}
 
-	public var width(default,null) : Int;
-	public var height(default,null) : Int;
-	public var letters(default,null) = new Array<Letter>();
+	public final width : Int;
+	public final height : Int;
+
 	public var time(default,null) : Float;
-	public var zoomAble = false; //TODO
-
-	final engine : Engine;
-
-	var scene : Scene;
-	var events : hxd.SceneEvents;
-	var loop : Loop;
-
-	var user : User;
-	var tiles : Map<String,Tile>;
+	public var dragged(default,null) = false;
+	public var letters(default,null) = new Array<Letter>();
 
 	var container : Object;
 	var background : Background;
@@ -45,90 +86,33 @@ class Space implements h3d.IDrawable {
 
 	var interactive : Interactive;
 
-	var viewportX = 0.0;
-	var viewportY = 0.0;
+	var tiles = new Map<String,Tile>();
 
-	var zoom = 1.0;
-	var zoomMin = 0.5;
-	var zoomMax = 1.5;
-
-	var pointer = new Point();
-	var pointerMove = new Point();
-
-	var dragged = false;
+	var viewport = new Point();
 	var dragOffset = new Point();
-	var dragThrowFactor = 0.3;
-	var dragThrowDuration = 0.5;
-	var dragThrowTween : Tween;
 
 	var draggedLetter : Letter;
 	var draggedLetterOffset = new Point();
-
 	var dragBorderSize = 30;
-	var dragBorderFactor = 0.1;
+	var dragBorderFactor = 0.3;
 
-	public static function create( onReady : Space->Void ) {
-		var engine = new Engine();
-		engine.onReady = function(){
-			onReady( new Space( engine ) );
-		}
-		engine.init();
+	var wheelScrollSpeed = 0.075;
+
+	function new( width : Int, height : Int, onInit : Space->Void ) {
+		super();
+		this.width = width;
+		this.height = height;
+		this.onInit = onInit;
 	}
 
-	function new( engine : Engine ) {
-		this.engine = engine;
-	}
+	override function init() {
 
-	public function init( level : Level, user : User ) {
+		container = new Object( s2d );
+		background = new Background( container );
 
-		this.width = level.width;
-		this.height = level.height;
-		this.user = user;
+		scrollbarH = new Graphics( s2d );
+		scrollbarV = new Graphics( s2d );
 
-		//var canvas : CanvasElement = cast document.getElementById( 'webgl' );
-		//canvas.style.filter = 'grayscale(100%)';
-
-		scene = new Scene();
-		container = new Object( scene );
-		background = new Background( container, width, height, level.theme.background );
-		letterContainer = new Object( container );
-		if( level.theme.letter.shadow != null ) {
-			var sh = level.theme.letter.shadow;
-			var f = new DropShadow( sh.distance, sh.angle, sh.color, sh.alpha, sh.radius, sh.gain, 1, true );
-			letterContainer.filter = f;
-		}
-
-		tiles = new Map();
-		for( c in level.chars ) {
-			if( !tiles.exists( c ) ) {
-				var k = Tileset.CHARACTERS.get( c );
-				var t = Res.load( 'letter/${level.font}/$k.png' ).toTile();
-				//t.scaleToSize( Std.int( t.width/4 ), Std.int( t.height/4 ) ); //TODO scale param
-				t.scaleToSize( Std.int( t.width*level.theme.letter.scale ), Std.int( t.height*level.theme.letter.scale ) ); //TODO scale param
-				tiles.set( c, t );
-			}
-		}
-		for( c in level.chars ) {
-			var l = new Letter( letters.length, c, tiles.get(c), level.theme.letter.color );
-			letters.push( l );
-			letterContainer.addChild( l );
-		}
-
-		scrollbarH = new Graphics( scene );
-		scrollbarH.beginFill( level.theme.background.grid.color, 1.0 );
-		//scrollbarH.drawRect( 0, 0, window.innerWidth*(window.innerWidth/width), 10 );
-		scrollbarH.drawRect( 0, 0, 100, 4 );
-		scrollbarH.endFill();
-
-		scrollbarV = new Graphics( scene );
-		scrollbarV.beginFill( level.theme.background.grid.color, 1.0 );
-		scrollbarV.drawRect( 0, 0, 4, 100 );
-		scrollbarV.endFill();
-
-		//TODO
-		//userPositionBars
-
-		/*
 		var centerDings = new Graphics( container );
 		centerDings.beginFill( 0x0000ff, 0.6 );
 		centerDings.drawRect( width/2-1, 0, 2, height );
@@ -136,156 +120,93 @@ class Space implements h3d.IDrawable {
 		centerDings.beginFill( 0xff0000, 0.6 );
 		centerDings.drawRect( 0, height/2-1, width, 2 );
 		centerDings.endFill();
-		*/
 
-		window.onresize = function(){
-			scene.checkResize();
-			@:privateAccess hxd.Window.getInstance().checkResize(); //HACK
-			/*
-			//updateViewportOffset();
-			//var tx = pointer.x - dragOffset.x;
-			//var ty = pointer.y - dragOffset.y;
-			var tx = container.x;
-			var ty = container.y;
-			var vx = ((tx /  (width*zoom/2 - scene.width/2)) + 1) * -1;
-			var vy = ((ty /  (height*zoom/2 - scene.height/2)) + 1) * -1;
-			//trace(vx,vy);
-			//setViewportPos( vx, vy );
-			setViewportX( vx );
-			setViewportY( vy );
-			*/
-			/*
-			zoomMin = Math.max( window.innerWidth / width, window.innerHeight / height );
-			if( zoom < zoomMin ) zoom = zoomMin;
-			container.scaleX = container.scaleY = zoom;
-			*/
-		}
+		letterContainer = new Object( container );
 
-		dragThrowTween = new Tween( container ).easing( Exponential.Out )
-			.onUpdate( () -> @:privateAccess container.posChanged = true );
-
-		interactive = new Interactive( width, height, scene );
+		interactive = new h2d.Interactive( width, height, background );
 		interactive.cursor = Default;
 		interactive.onPush = onMousePush;
 		interactive.onMove = onMouseMove;
 		interactive.onRelease = onMouseRelease;
-		interactive.onOut = onMouseOut;
-		//interactive.onOver = e -> trace(e);
-		//interactive.onFocusLost = e -> trace(e);
-		//interactive.onReleaseOutside = e -> trace(e);
 		interactive.onWheel = onMouseWheel;
-		interactive.onKeyDown = function(e){
-			switch e.keyCode {
-			case Key.LEFT: moveViewportX(-width/(width*1000)*10);
-			case Key.RIGHT: moveViewportX(width/(width*1000)*10);
-			case Key.UP: moveViewportY(-height/(height*1000)*10);
-			case Key.DOWN: moveViewportY(height/(height*1000)*10);
-			case Key.C: if( draggedLetter == null ) setViewportPos();
-			case Key.Z: setZoom(1);
+
+		var win = hxd.Window.getInstance();
+		win.addEventTarget( onEvent );
+		/*
+		win.addResizeEvent( function(){
+			trace("rr");
+		});
+		*/
+
+		window.onresize = function(){
+			s2d.checkResize();
+			@:privateAccess hxd.Window.getInstance().checkResize(); //HACK
+			if( width < s2d.width ) {
+				container.x = (s2d.width - width) / 2;
+			}
+			if( height < s2d.height ) {
+				container.y = (s2d.height - height) / 2;
 			}
 		}
 
-		events = new hxd.SceneEvents();
-		events.addScene( scene );
+		/*
+		if( width < s2d.width ) {
+			container.x = (s2d.width - width) / 2;
+		}
+		if( height < s2d.height ) {
+			container.y = (s2d.height - height) / 2;
+		}
+		*/
 
-		Key.initialize();
+		/*
+		var sw = window.innerWidth / width;
+		var sh = window.innerHeight / height;
+		trace(sw,sh);
+		if( sw > 1 || sh > 1 ) {
+			var s = Math.max( sw, sh );
+			trace(s);
+			container.scaleX = container.scaleY = s;
+		}
+		*/
 
+		setViewportPos();
+
+		onInit( this );
+	}
+
+	public function start() {
 		time = 0;
-		loop = new Loop( 60,
-			function(dt) {
-				if( !App.hidden ) events.checkEvents();
-				//Tween.step( dt );
-				update( dt );
-				scene.setElapsedTime(dt);
-			},
-			function(dt) {
-				var _delta = dt * 1000;
-				time += _delta;
-				//time = Time.now();
-				//trace(time,_delta);
-				Timer.step( time*1000 );
-				//Tween.step( _delta );
-				Tween.step( dt );
-				if( !App.hidden ) render( engine );
-			}
-		).start();
-
-		//setViewportPos(-1,-1);
-		//setViewportPos();
 	}
 
-	public inline function iterator()
-		return letters.iterator();
+	/*
+	public override inline function render( e : h3d.Engine ) {
+		if( !App.hidden ) super.render(e);
+		//super.render(e);
+	}
+	*/
 
-	public inline function render( e : Engine ) {
-		scene.render( e );
+	public function setViewportX( v : Float ) {
+		viewport.x = Math.min( Math.max( v, -1 ), 1 );
+		container.x = Std.int( (1+viewport.x) * ((-width/2 + s2d.width/2)) );
+		scrollbarH.x = Std.int( (viewport.x/2 + 0.5) * ((s2d.width-100)) );
 	}
 
-	public function dispose() {
-		loop.stop();
-		scene.dispose();
-		events.dispose();
+	public function setViewportY( v : Float ) {
+		viewport.y = Math.min( Math.max( v, -1 ), 1 );
+		container.y = Std.int( (1+viewport.y) * (-height/2 + s2d.height/2) );
+		scrollbarV.y = Std.int( (viewport.y/2 + 0.5) * (s2d.height-100) );
 	}
 
-	public function setViewportX( v = 0.0 ) {
-		viewportX = Math.min( Math.max( v, -1 ), 1 );
-		container.x = Std.int( (1+viewportX) * ((-width*zoom/2 + scene.width/2)) );
-		scrollbarH.x = Std.int( (viewportX/2 + 0.5) * ((scene.width-100)) );
-		//scrollbarH.x = (viewportX/2 + 0.5) * ((scene.width-(window.innerWidth*(window.innerWidth/width))));
-	}
-
-	public function setViewportY( v = 0.0 ) {
-		viewportY = Math.min( Math.max( v, -1 ), 1 );
-		container.y = Std.int( (1+viewportY) * (-height*zoom/2 + scene.height/2) );
-		scrollbarV.y = Std.int( (viewportY/2 + 0.5) * (scene.height-100) );
-	}
-
-	public inline function setViewportPos( vx = 0.0, vy = 0.0 ) {
-		setViewportX( vx );
-		setViewportY( vy );
+	public inline function setViewportPos( x = 0.0, y = 0.0 ) {
+		setViewportX( x );
+		setViewportY( y );
 	}
 
 	public inline function moveViewportX( v : Float )
-		setViewportX( viewportX + v );
+		setViewportX( viewport.x + v );
 
 	public inline function moveViewportY( v : Float )
-		setViewportY( viewportY + v );
-
-	public inline function moveViewportPos( vx : Float, vy : Float ) {
-		moveViewportX( vx );
-		moveViewportY( vy );
-	}
-
-	public function setZoom( v : Float ) {
-		//TODO
-	//	if( zoomAble ) {
-			v = Math.min( Math.max( v, zoomMin ), zoomMax );
-			zoom = v;
-			container.scaleX = container.scaleY = zoom;
-		//	setViewportPos( viewportX, viewportY );
-	//	}
-	}
-
-	public inline function zoomIn( amount : Float )
-		setZoom( zoom + amount );
-
-	public inline function zoomOut( amount : Float )
-		setZoom( zoom - amount );
-
-	public function getLetterAt( p : Point ) : Letter {
-		for( l in letters ) if( l.getBounds().contains( p ) ) return cast l;
-		return null;
-	}
-
-	public inline function getLetterAtPointer() : Letter
-		return getLetterAt( pointer );
-
-	public function bringToFront( l : Letter ) : Letter {
-		var parent = l.parent;
-		l.remove();
-		parent.addChild( l );
-		return l;
-	}
+		setViewportY( viewport.y + v );
 
 	public function searchWord( letter : Letter, kx = 0.2, ky = 0.2 ) : Array<Letter> {
 		//TODO
@@ -339,40 +260,50 @@ class Space implements h3d.IDrawable {
 		return word;
 	}
 
-	function update( dt : Float ) {
+	/*
+	public override function dispose() {
+		super.dispose();
+		var win = hxd.Window.getInstance();
+		win.removeEventTarget( onEvent );
+		//engine.end();
+		//engine.dispose();
+		//engine = null;
+	}
+	*/
 
-		pointerMove.set( scene.mouseX - pointer.x, scene.mouseY - pointer.y );
-		pointer.set( scene.mouseX, scene.mouseY );
+	override function update( dt : Float ) {
 
 		if( dragged ) {
-			interactive.cursor = Move;
-			//updateViewportOffset();
-			var tx = pointer.x - dragOffset.x;
-			var ty = pointer.y - dragOffset.y;
-			var vx = ((tx /  (width*zoom/2 - scene.width/2)) + 1) * -1;
-			var vy = ((ty /  (height*zoom/2 - scene.height/2)) + 1) * -1;
-			//trace(vx,vy);
-			//setViewportPos( vx, vy );
+			/*
+			if( s2d.width < width ) {
+				var tx = hxd.Math.clamp( s2d.mouseX - dragOffset.x, - width + s2d.width, 0 );
+				container.x = tx;
+			}
+			if( s2d.height < height ) {
+				var ty = hxd.Math.clamp( s2d.mouseY - dragOffset.y, - height + s2d.height, 0 );
+				container.y = ty;
+			}
+			*/
+			var tx = s2d.mouseX - dragOffset.x;
+			var vx = -(tx/((width-s2d.width)/2) + 1);
 			setViewportX( vx );
+
+			var ty = s2d.mouseY - dragOffset.y;
+			var vy = -(ty/((height-s2d.height)/2) + 1);
 			setViewportY( vy );
 
 		} else if( draggedLetter != null ) {
 
-			interactive.cursor = Move;
-
-			var tx = pointer.x/zoom - draggedLetterOffset.x;
-			var ty = pointer.y/zoom - draggedLetterOffset.y;
-			tx += Math.abs(container.x)/zoom;
-			ty += Math.abs(container.y)/zoom;
-
+			var tx = s2d.mouseX - draggedLetterOffset.x - container.x;
 			if( tx < 0 ) tx = 0 else {
 				var m = width - draggedLetter.width;
 				if( tx > m ) tx = m;
-			}
+			};
+			var ty = s2d.mouseY - draggedLetterOffset.y - container.y;
 			if( ty < 0 ) ty = 0 else {
 				var m = height - draggedLetter.height;
 				if( ty > m ) ty = m;
-			}
+			};
 
 			draggedLetter.setPosition( tx, ty );
 
@@ -384,16 +315,16 @@ class Space implements h3d.IDrawable {
 				if( container.x < 0 ) {
 					var d = dragBorderSize - sx;
 					var v = d * dragBorderFactor;
-					var p = v / scene.width;
+					var p = v / s2d.width;
 					moveViewportX( -p );
 				}
 			} else {
 				var sr = sx + draggedLetter.width;
-				if( sr > scene.width - dragBorderSize ) {
-					if( container.x + width > scene.width ) {
-						var d = dragBorderSize - (scene.width-sr);
+				if( sr > s2d.width - dragBorderSize ) {
+					if( container.x + width > s2d.width ) {
+						var d = dragBorderSize - (s2d.width-sr);
 						var v = d * dragBorderFactor;
-						var p = v/scene.width;
+						var p = v/s2d.width;
 						moveViewportX( p );
 					}
 				}
@@ -402,116 +333,93 @@ class Space implements h3d.IDrawable {
 				if( container.y < 0 ) {
 					var d = dragBorderSize - sy;
 					var v = d * dragBorderFactor;
-					var p = v/scene.height;
+					var p = v/s2d.height;
 					moveViewportY( -p );
 				}
 			} else {
 				var sb = sy + draggedLetter.height;
-				if( sb > scene.height - dragBorderSize ) {
-					if( container.y + height > scene.height ) {
-						var d = dragBorderSize - (scene.height-sb);
+				if( sb > s2d.height - dragBorderSize ) {
+					if( container.y + height > s2d.height ) {
+						var d = dragBorderSize - (s2d.height-sb);
 						var v = d * dragBorderFactor;
-						var p = v/scene.height;
+						var p = v/s2d.height;
 						moveViewportY( p );
 					}
 				}
 			}
-		} else {
-			interactive.cursor = Default;
 		}
 	}
-
-	/*
-	function updateViewportOffset() {
-		var tx = pointer.x - dragOffset.x;
-		var ty = pointer.y - dragOffset.y;
-		var vx = ((tx /  (width*zoom/2 - scene.width/2)) + 1) * -1;
-		var vy = ((ty /  (height*zoom/2 - scene.height/2)) + 1) * -1;
-		//trace(vx,vy);
-		//setViewportPos( vx, vy );
-		setViewportX( vx );
-		setViewportY( vy );
-	}
-	*/
 
 	inline function getScreenX( v : Float ) : Float
-		return v - Math.abs( container.x / zoom );
+		return v - Math.abs( container.x );
 
 	inline function getScreenY( v : Float ) : Float
-		return v - Math.abs( container.y / zoom );
+		return v - Math.abs( container.y );
+
+	function onEvent( e : Event ) {
+		switch e.kind {
+		case EKeyDown:
+			switch e.keyCode {
+			case Key.LEFT: moveViewportX(-width/(width*1000)*10);
+			case Key.RIGHT: moveViewportX(width/(width*1000)*10);
+			case Key.UP: moveViewportY(-height/(height*1000)*10);
+			case Key.DOWN: moveViewportY(height/(height*1000)*10);
+			case Key.C: if( draggedLetter == null ) setViewportPos();
+			case Key.PGUP: setViewportY(-1);
+			case Key.PGDOWN: setViewportY(1);
+			case Key.HOME: setViewportPos();
+			case Key.END: //TODO exit
+			default:
+			}
+		default:
+		}
+	}
 
 	function onMousePush( e : Event ) {
-		//pointerMove.set(0,0);
-		//pointer.set( e.relX, e.relY );
-		function startViewportDrag() {
-			dragThrowTween.stop();
-			//dragOffset = new Point( e.relX - container.x, e.relY - container.y );
-			dragOffset.set( Std.int( e.relX - container.x ), Std.int( e.relY - container.y ) );
-			dragged = true;
-		}
-		if( Key.isDown( Key.SPACE ) ) startViewportDrag() else {
-			var l = getLetterAtPointer();
-			if( l == null ) startViewportDrag() else {
-				if( l.user == null ) {
-					draggedLetterOffset.set(
-						e.relX/zoom - l.x + Math.abs(container.x/zoom),
-						e.relY/zoom - l.y + Math.abs(container.y/zoom) );
-					draggedLetter = bringToFront( l.startDrag( user ) );
-					onDragStart( draggedLetter );
-				}
-			}
-		}
+		dragged = true;
+		dragOffset.set( e.relX, e.relY );
+		interactive.cursor = Move;
+		/*
+		interactive.startDrag( function(e){
+			//trace(e);
+			//container.x = e.relX - dragOffsetX;
+			//container.y = e.relY - dragOffsetY;
+		} );
+		*/
 	}
 
 	function onMouseMove( e : Event ) {
-		/*
-		if( !dragged && draggedLetter == null ) {
-			var l = getLetterAtPointer();
-			if( l == null ) {
-
-			}
+		if( dragged ) {
+			//trace( e );
+			//container.x = e.relX - background.x - dragOffsetX;
+			//container.y = e.relY - background.y - dragOffsetY;
 		}
-		*/
-		//pointerMove.set( e.relX - pointer.x, e.relY - pointer.y );
-		//pointer.set( e.relX, e.relY );
 	}
 
 	function onMouseRelease( e : Event ) {
-		if( dragged ) {
-			dragged = false;
-			dragOffset.set( 0, 0 );
-
-			var tx = Std.int( Math.max( Math.min( container.x + pointerMove.x * dragThrowFactor * 10, 0 ), scene.width- width ) );
-			var ty = Std.int( Math.max( Math.min( container.y + pointerMove.y * dragThrowFactor * 10, 0 ), scene.height - height ) );
-			var ax = Math.abs( pointerMove.x );
-			var ay = Math.abs( pointerMove.y );
-			var duration = ((ax > ay) ? ax : ay) * dragThrowFactor * dragThrowDuration;// * 100;
-			dragThrowTween.stop().to( { x : tx, y : ty  }, duration ).start();
-
-		} else if( draggedLetter != null ) {
-			draggedLetter.stopDrag();
-			onDragStop( draggedLetter );
-			draggedLetter = null;
-		}
-	}
-
-	function onMouseOut( e : Event ) {
-		//trace("onMouseOut "+e);
+		dragged = false;
+		interactive.cursor = Default;
+		//interactive.stopDrag();
 	}
 
 	function onMouseWheel( e : Event ) {
-		if( dragged )
-			return;
 		if( Key.isDown( Key.CTRL ) ) {
-			if( zoomAble ) (e.wheelDelta < 0) ? zoomIn( 0.01 ) : zoomOut( 0.01 );
+			//TODO zoom
 		} else if( Key.isDown( Key.SHIFT ) ) {
-			var v = 0.0125;
-			if( e.wheelDelta < 0 ) v = -v;
-			moveViewportX(  v );
+			moveViewportX( (e.wheelDelta > 0) ? wheelScrollSpeed : -wheelScrollSpeed );
 		} else {
-			var v = 0.025;
-			if( e.wheelDelta < 0 ) v = -v;
-			moveViewportY(  v );
+			moveViewportY( (e.wheelDelta > 0) ? wheelScrollSpeed : -wheelScrollSpeed );
 		}
+	}
+
+	function onDragLetterStart( l : Letter ) {
+		draggedLetter = l;
+		draggedLetterOffset.set( s2d.mouseX - l.x - container.x, s2d.mouseY - l.y - container.y );
+		onDragStart( l );
+	}
+
+	function onDragLetterStop( l : Letter ) {
+		draggedLetter = null;
+		onDragStop( l );
 	}
 }

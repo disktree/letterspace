@@ -1,17 +1,29 @@
 package letterspace;
 
-import letterspace.net.Mesh;
-import letterspace.net.Node;
+//import letterspace.net.Mesh;
+//import letterspace.net.Node;
 import om.URL;
 
 class Server extends owl.Server {
 
 	#if owl_client
 
+	override function createMesh( id : String ) : Mesh {
+		return new letterspace.Mesh( this, id );
+	}
+
+	/*
+	override function createMesh<M:Mesh>( id : String ) : M {
+		trace("MMM");
+		return cast new Mesh( this, id );
+	}
+	*/
+
 	public inline function lobby() : Promise<Dynamic> {
 		return request( 'lobby' );
 	}
 
+	/*
 	public inline function getStatus() : Promise<Array<Array<Int>>> {
 		return request( 'status/get' );
 	}
@@ -19,6 +31,7 @@ class Server extends owl.Server {
 	public inline function setStatus( data : Dynamic ) {
 		return request( 'status/set', data );
 	}
+	*/
 
 	#elseif owl_server
 
@@ -35,7 +48,7 @@ class Server extends owl.Server {
 
 	public static var isSystemService(default,null) = false;
 
-	static var mesh : Mesh;
+	//static var mesh : Mesh;
 
 	override function createMesh( id : String ) {
 		return throw "forbidden";
@@ -59,7 +72,15 @@ class Server extends owl.Server {
 		var parts = path.split( '/' );
 		switch parts[0] {
 		case 'lobby':
-			var data = [for(n in mesh) mesh.infos.get( n.id )];
+			/*
+			var data = [for(m in meshes)
+				{
+					mesh: m.id,
+					nodes: [for(n in m.nodes) m.credentials.get( n.id )]
+				}
+			];
+			*/
+			var data = [for( m in meshes) cast(m,Mesh).level ];
 			res.end( Json.stringify( data ) );
 
 		case 'status':
@@ -122,15 +143,38 @@ class Server extends owl.Server {
 		default:
 		}
 
+		var levels = ['arena','freespace'];
+
 		log( 'START $host:$port' );
 
 		var server = new Server( host, port, 1000 );
 		server.start().then( function(_) {
-			mesh = new Mesh( 'letterspace', 100, true );
-			server.addMesh( mesh );
+			return Promise.all( levels.map( id -> return Mesh.load( id ) ) ).then( meshes -> {
+				for( m in meshes ) {
+					server.addMesh( m );
+				}
+			});
         }).catchError( function(e){
 			exit( e );
 		});
+
+		/*
+		log( 'START $host:$port' );
+
+		var server = new Server( host, port, 1000 );
+		server.start().then( function(_) {
+			//mesh = new Mesh( 'letterspace', 100, true );
+			//server.addMesh( mesh );
+
+			Mesh.load( 'freespace' ).then( function(m){
+				trace(m);
+			});
+
+        }).catchError( function(e){
+			exit( e );
+		});
+		*/
+
 	}
 
 	#end

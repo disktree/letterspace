@@ -10,10 +10,25 @@ class LobbyActivity extends Activity {
 
 		super();
 
+		var meta = document.createDivElement();
+		meta.classList.add( 'meta' );
+		element.appendChild( meta );
+
+		/*
+		var github = document.createDivElement();
+		github.classList.add( 'ic-github' );
+		meta.appendChild( github );
+		*/
+
 		var version = document.createDivElement();
 		version.classList.add( 'version' );
 		version.textContent = 'V'+App.VERSION;
-		element.appendChild( version );
+		meta.appendChild( version );
+
+		var question = document.createDivElement();
+		question.classList.add( 'ic-question' );
+		meta.appendChild( question );
+
 
 		//TODO see: https://github.com/isaacs/github/issues/99
 		//var issue = document.createAnchorElement();
@@ -34,16 +49,27 @@ class LobbyActivity extends Activity {
 		var fork = document.createDivElement();
 		fork.classList.add( 'ic-fork' );
 		element.appendChild( fork );
+
+		var cog = document.createDivElement();
+		cog.classList.add( 'ic-cog' );
+		element.appendChild( cog );
+		cog.onclick = function(){
+			Activity.push( new CreditsActivity() );
+		}
 		*/
 
 		input = document.createInputElement();
 		input.type = 'text';
 		input.name = 'username';
+		//input.pattern = '[a-zA-Z!@#$%^*_|]{0,3}';
 		input.placeholder = 'USERNAME';
 		input.title = 'USERNAME';
 		input.autocomplete = 'off';
-		input.maxLength = 20;
+		input.size = 16;
+		input.maxLength = 16;
 		element.appendChild( input );
+
+		//trace( input.pattern );
 	}
 
 	override function onStart() {
@@ -55,7 +81,8 @@ class LobbyActivity extends Activity {
 
 		/*
 		App.server.lobby().then( function(r){
-			trace(r.length+' users online');
+			//trace(r.length+' users online');
+			trace(r);
 		});
 		*/
 	}
@@ -64,14 +91,19 @@ class LobbyActivity extends Activity {
 		window.removeEventListener( 'keydown', handleKeyDown );
 	}
 
+	function joinMesh( mesh : String, user : String ) {
+		App.storage.set( 'user', user );
+		user = StringTools.htmlEscape( user );
+		Activity.set( new JoinActivity( mesh, user ) );
+	}
+
 	function handleKeyDown(e) {
 		switch e.keyCode {
 		case 13:
 			var username : String = input.value;
-			if( username.length >= 3 ) {
+			if( username.length >= 2 ) {
 				input.disabled = true;
-				App.storage.set( 'user', username );
-				Activity.set( new JoinActivity( 'letterspace', username ) );
+				joinMesh( 'freespace', username );
 			}
 		}
 	}

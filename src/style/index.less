@@ -26,6 +26,7 @@
 @import "enron/reset";
 @import "enron/interaction";
 @import "enron/animation/fade_in";
+@import "enron/effect/vignette";
 
 body {
 
@@ -38,6 +39,14 @@ body {
 	background: var(--background);
 	color: var(--f-med);
 	-webkit-tap-highlight-color: var(--f-med);
+
+	//background: linear-gradient(#101111,#0c0c0c);
+	/*
+	background-size: 10px 10px;
+    background-image:
+        linear-gradient(to right, #29bede 1px, transparent 1px),
+        linear-gradient(to bottom, #29bede 1px, transparent 1px);
+		*/
 }
 
 input {
@@ -55,3 +64,51 @@ input {
 
 input[type="text"] {
 }
+
+/*
+#vignette {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	//background: red;
+	pointer-events: none;
+	user-select: none;
+	.vignette(200px,100px,400px,rgba(0,0,0,0.1));
+}
+*/
+
+/*
+
+https://css-tricks.com/snippets/css/animated-grainy-texture/
+
+@keyframes grain {
+	0%, 100% { transform:translate(0, 0) }
+	10% { transform:translate(-5%, -10%) }
+	20% { transform:translate(-15%, 5%) }
+	30% { transform:translate(7%, -25%) }
+	40% { transform:translate(-5%, 25%) }
+	50% { transform:translate(-15%, 10%) }
+	60% { transform:translate(15%, 0%) }
+	70% { transform:translate(0%, 15%) }
+	80% { transform:translate(3%, 35%) }
+	90% { transform:translate(-10%, 10%) }
+}
+
+#grain::after {
+	position: fixed;
+	top: -100%;
+	left: -50%;
+	height: 300%;
+	width: 300%;
+	content: "";
+	opacity: 0.1;
+	filter: invert(100%);
+	//background-image: url("img/paper_1_@2X.png");
+	background-image: url("img/textured_paper_@2X.png");
+	animation: grain 8s steps(10) infinite;
+	pointer-events: none;
+	user-select: none;
+}
+*/

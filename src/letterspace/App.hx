@@ -2,7 +2,9 @@ package letterspace;
 
 import letterspace.Server;
 import letterspace.app.Activity;
-import letterspace.game.Tileset;
+import letterspace.app.BootActivity;
+import letterspace.app.ErrorActivity;
+import letterspace.game.Tilemap;
 
 class App  {
 
@@ -15,31 +17,38 @@ class App  {
 
 	static function main() {
 
-		console.info( 'LETTERSPACE' );
+		console.info( 'LETTERSPACE $VERSION' );
 
-		//for( k in Tileset.MAP.keys() ) trace(k);
-		//for( k=>v in Tileset.MAP ) trace(k);
+		window.onload = function(){
 
-		/*
-		var params = new js.html.URLSearchParams( window.location.search );
-		if( params.has( 'host' ) ) host = params.get( 'host' );
-		if( params.has( 'port' ) ) port = Std.parseInt( params.get( 'port' ) );
-		*/
+			//for( k in Tileset.MAP.keys() ) trace(k);
+			//for( k=>v in Tileset.MAP ) trace(k);
 
-		if( System.isMobile() ) {
-			Activity.boot( new letterspace.app.ErrorActivity( 'DESKTOP DEVICES ONLY' ) );
-		} else {
+			/*
+			var params = new js.html.URLSearchParams( window.location.search );
+			if( params.has( 'host' ) ) host = params.get( 'host' );
+			if( params.has( 'port' ) ) port = Std.parseInt( params.get( 'port' ) );
+			*/
+
+			var mainElement = document.querySelector( 'main' );
+
+			if( System.isMobile() ) {
+				Activity.init( new ErrorActivity( 'desktop devices only' ), mainElement );
+				return;
+			}
+			if( !navigator.onLine ) {
+				Activity.init( new ErrorActivity( 'internet connection required' ), mainElement );
+				return;
+			}
 
 			storage = new Storage( 'letterspace_' );
 			server = new Server();
 
-			hxd.Res.initEmbed( { compressSounds: true } );
-
-			Activity.boot( new letterspace.app.BootActivity() );
-
-			document.addEventListener( 'visibilitychange', function(e) {
-				App.hidden = document.hidden;
-			}, false );
+			Activity.init( new BootActivity(), mainElement ).then( function(_){
+				document.addEventListener( 'visibilitychange', function(e) {
+					App.hidden = document.hidden;
+				}, false );
+			});
 		}
 	}
 }

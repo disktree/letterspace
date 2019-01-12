@@ -73,7 +73,7 @@ class Build {
 
 			if( !FileSystem.exists( dstDir ) ) FileSystem.createDirectory( dstDir );
 
-			for( k=>v in letterspace.game.Tileset.CHARACTERS ) {
+			for( k=>v in letterspace.game.Tilemap.CHARACTERS ) {
 				var dstFile = '$dstDir/$v.png';
 				if( !force && FileSystem.exists( dstFile ) && srcModTime.getTime() < FileSystem.stat( dstFile ).mtime.getTime() ) {
 					//trace("NOT CHANGED "+k);

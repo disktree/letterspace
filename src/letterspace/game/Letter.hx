@@ -1,13 +1,18 @@
 package letterspace.game;
 
 import h2d.Bitmap;
+import h2d.Interactive;
 import h2d.Object;
 import h2d.Tile;
 import h2d.col.Bounds;
 import h2d.filter.*;
 import h3d.Vector;
+import hxd.Key;
 
 class Letter extends Object {
+
+	public dynamic function onDragStart( l : Letter ) {}
+	public dynamic function onDragStop( l : Letter ) {}
 
 	public var index(default,null) : Int;
 	public var char(default,null) : String;
@@ -19,17 +24,18 @@ class Letter extends Object {
 	public var color(get,set) : Int;
 	public var outline(default,null) : Outline;
 
-	public var user(default,null) : User;
-	public var lastUser(default,null) : User;
+	public var user(default,null) : Node;
+	public var lastUser(default,null) : Node;
 
 	var bmp : Bitmap;
 	var colorDefault : Int;
+	var interactive : Interactive;
 
 	var shadow : DropShadow;
 
-	public function new( index : Int, char : String, tile : Tile, color : Int ) {
+	public function new( parent, index : Int, char : String, tile : Tile, color : Int ) {
 
-		super();
+		super( parent );
 		this.index = index;
 		this.char = char;
 
@@ -45,6 +51,32 @@ class Letter extends Object {
 		outline = new Outline( 1, 0x000000, 0.1, true );
 		outline.enable = false;
 		bmp.filter = outline;
+
+		shadow = new h2d.filter.DropShadow( 4, 0.785, 0x000000, 0.3, 6, 2, 1, true );
+		shadow.enable = false;
+		filter = shadow;
+
+		/*
+		var scene = getScene();
+		var dragged = false;
+		*/
+
+		interactive = new Interactive( width, height, this );
+		interactive.onPush = function(e) {
+			if( !Key.isDown( Key.SPACE ) ) {
+				//outline.enable = true;
+				//bringToFront();
+				if( user == null ) {
+					interactive.cursor = Move;
+					onDragStart( this );
+				}
+			}
+		}
+		interactive.onRelease = function(e) {
+			//this.color = colorDefault;
+			interactive.cursor = Default;
+			onDragStop( this );
+		}
 	}
 
 	inline function get_color() return bmp.color.toColor();
@@ -60,20 +92,25 @@ class Letter extends Object {
 		return this;
 	}
 
-	public function startDrag( user : User ) : Letter {
+	public function startDrag( user : Node ) : Letter {
 		this.user = user;
+		//scale(1.05);
 		var v = Vector.fromColor( user.color );
 		v.a = 1;
 		bmp.color = v;
 		bringToFront();
+		//outline.enable = true;
+		//shadow.enable = true;
 		return this;
 	}
 
 	public function stopDrag() : Letter {
 		lastUser = user;
 		user = null;
+		//scale(1);
 		color = colorDefault;
-		outline.enable = false;
+		//outline.enable = false;
+		//shadow.enable = false;
 		return this;
 	}
 

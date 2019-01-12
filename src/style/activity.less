@@ -44,20 +44,32 @@
 		padding: 10px;
 		color: #fff;
 	}
-	.version {
+	.meta {
 		position: fixed;
 		bottom: 22px;
-		right: 14px;
+		right: 16px;
 		font-family: 'Fira';
 		font-size: 8px;
-		writing-mode: vertical-lr;
+		writing-mode: vertical-rl;
 	  	text-orientation: mixed;
-	  	transform: rotate(180deg);
+	  	//transform: rotate(180deg);
 		user-select: none;
 		user-drag: none;
 		color: var(--f-low);
+		* {
+			display: inline-block;
+			margin-top: 10px;
+		}
 	}
+}
 
+#join.activity {
+	.status {
+		.fixed-center();
+		text-transform: uppercase;
+		user-select: none;
+		white-space: nowrap;
+	}
 }
 
 #game.activity {
@@ -65,13 +77,6 @@
 	background: var(--background);
 
 	canvas#webgl {
-		/*
-		position: fixed;
-		top: 0;
-		right: 0;
-		left: 0;
-		bottom: 0;
-		*/
 		width: 100%;
 		height: 100%;
 		min-width: 100%;
@@ -88,20 +93,32 @@
 		z-index: 100;
 		user-select: none;
 		pointer-events: none;
-		> .user, > .users > .user {
-			display: inline-block;
-			float: left;
-			padding: 3px 3px 2px 3px;
-			margin: 0 1px 1px 1px;
-			background: var(--b-med);
-			//color: var(--f-med);
-			color: #000;
-			//border-radius: 3px;
-			opacity: 0.8;
-			.fade_in(0.5s);
-		}
 		> .users {
-			float: left;
+			//float: left;
+			> .user {
+				display: inline-block;
+				float: left;
+				padding: 3px 3px 2px 3px;
+				margin: 0 1px 1px 1px;
+				background: var(--b-low);
+				//color: var(--f-med);
+				color: #000;
+				//border-radius: 3px;
+				opacity: 0.7;
+				//.fade_in(0.5s);
+				//transition: color 0.2s, backgroundColor 0.2s;
+				//transition: opacity 0.9s;
+				//filter: grayscale(100%);
+				//position: relative;
+				//top: 100px;
+
+				&.dragged {
+					opacity: 0.95;
+					//transform: scale(1.5);
+					//filter: none;
+				}
+			}
 		}
+
 	}
 }
