@@ -143,19 +143,22 @@ class Server extends owl.Server {
 		default:
 		}
 
-		var levels = ['arena','freespace'];
+		Fs.readdir('level', function(e,files){
 
-		log( 'START $host:$port' );
+			var levels = files.filter( f -> return f.extension() == 'json' ).map( f -> return f.withoutExtension() );
 
-		var server = new Server( host, port, 1000 );
-		server.start().then( function(_) {
-			return Promise.all( levels.map( id -> return Mesh.load( id ) ) ).then( meshes -> {
-				for( m in meshes ) {
-					server.addMesh( m );
-				}
+			log( 'START $host:$port' );
+
+			var server = new Server( host, port, 1000 );
+			server.start().then( function(_) {
+				return Promise.all( levels.map( id -> return Mesh.load( id ) ) ).then( meshes -> {
+					for( m in meshes ) {
+						server.addMesh( m );
+					}
+				});
+			}).catchError( function(e){
+				exit( e );
 			});
-        }).catchError( function(e){
-			exit( e );
 		});
 
 		/*

@@ -46,19 +46,29 @@
 	}
 	.meta {
 		position: fixed;
-		bottom: 22px;
-		right: 16px;
+		bottom: 16px;
+		right: 20px;
 		font-family: 'Fira';
-		font-size: 8px;
+		font-size: 12px;
 		writing-mode: vertical-rl;
 	  	text-orientation: mixed;
 	  	//transform: rotate(180deg);
 		user-select: none;
 		user-drag: none;
-		color: var(--f-low);
+		//color: var(--f-low);
 		* {
 			display: inline-block;
-			margin-top: 10px;
+			margin-bottom: 14px;
+		}
+		[class^="ic-"], [class*=" ic-"] {
+			font-size: 12px;
+		}
+		a {
+			&:hover {
+				transform: scale(1.2);
+				transition: transform .2s;
+				color: var(--f-high);
+			}
 		}
 	}
 }

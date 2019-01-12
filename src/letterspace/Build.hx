@@ -1,4 +1,4 @@
-package letterspace.macro;
+package letterspace;
 
 #if macro
 

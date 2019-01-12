@@ -28,7 +28,8 @@ class Space extends hxd.App {
 				space.background.render( level.width, level.height, theme.background );
 
 				for( l in level.letters ) {
-					var font = (l.font == null) ? level.font : l.font;
+					var font = (l.font != null) ? l.font : level.letter.font;
+					var scale = (l.scale != null) ? l.scale : level.letter.scale;
 					//var key = { c : l.char, f : font };
 					//trace(key,space.tiles.exists( key ));
 					var tile : Tile;
@@ -39,8 +40,9 @@ class Space extends hxd.App {
 					} else {
 						var c = Tilemap.get( l.char );
 						tile = Res.load( 'letter/$font/$c.png' ).toTile();
+						tile.scaleToSize( Std.int( tile.width*scale ), Std.int( tile.height*scale ) );
 						space.tiles.set( l.char, tile );
-						//space.tiles.set( key, tile );
+						//space.tiles.set( key, tile ); 
 					}
 					var letter = new Letter( space.letterContainer, space.letters.length, l.char, tile, theme.letter.color );
 					letter.onDragStart = space.onDragLetterStart;
@@ -51,7 +53,7 @@ class Space extends hxd.App {
 				if( theme.letter.shadow != null ) {
 					var sh = theme.letter.shadow;
 					var f = new h2d.filter.DropShadow( sh.distance, sh.angle, sh.color, sh.alpha, sh.radius, sh.gain, 1, true );
-					space.letterContainer.filter = f;
+					//space.letterContainer.filter = f;
 				}
 
 				space.scrollbarH.beginFill( theme.background.grid.color, 1.0 );
@@ -113,13 +115,15 @@ class Space extends hxd.App {
 		scrollbarH = new Graphics( s2d );
 		scrollbarV = new Graphics( s2d );
 
+		#if dev
 		var centerDings = new Graphics( container );
-		centerDings.beginFill( 0x0000ff, 0.6 );
+		centerDings.beginFill( 0x0000ff, 0.3 );
 		centerDings.drawRect( width/2-1, 0, 2, height );
 		centerDings.endFill();
-		centerDings.beginFill( 0xff0000, 0.6 );
+		centerDings.beginFill( 0x0000ff, 0.3 );
 		centerDings.drawRect( 0, height/2-1, width, 2 );
 		centerDings.endFill();
+		#end
 
 		letterContainer = new Object( container );
 
@@ -169,7 +173,7 @@ class Space extends hxd.App {
 		}
 		*/
 
-		setViewportPos();
+		//setViewportPos();
 
 		onInit( this );
 	}

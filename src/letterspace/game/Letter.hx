@@ -39,7 +39,9 @@ class Letter extends Object {
 		this.index = index;
 		this.char = char;
 
+
 		bmp = new Bitmap( tile, this );
+		bmp.smooth = true;
 
 		size = bmp.getSize();
 		width = Std.int( size.width );

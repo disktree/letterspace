@@ -24,6 +24,7 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
+@ic-mouse: "\e900";
 @ic-cog: "\f013";
 @ic-volume-off: "\f026";
 @ic-volume-up: "\f028";
@@ -44,7 +45,11 @@
 @ic-user-secret: "\f21b";
 @ic-user-plus: "\f234";
 
-
+.ic-mouse {
+  &:before {
+    content: @ic-mouse;
+  }
+}
 .ic-cog {
   &:before {
     content: @ic-cog;

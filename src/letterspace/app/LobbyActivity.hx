@@ -14,21 +14,32 @@ class LobbyActivity extends Activity {
 		meta.classList.add( 'meta' );
 		element.appendChild( meta );
 
+		var fork = document.createAnchorElement();
+		fork.title = 'FORK';
+		fork.href = 'https://github.com/disktree/letterspace';
+		fork.classList.add( 'ic-fork' );
+		meta.appendChild( fork );
+
+		var flask = document.createDivElement();
+		flask.title = 'EXPERIMENTAL';
+		flask.classList.add( 'ic-flask' );
+		meta.appendChild( flask );
+
 		/*
 		var github = document.createDivElement();
 		github.classList.add( 'ic-github' );
 		meta.appendChild( github );
-		*/
-
-		var version = document.createDivElement();
-		version.classList.add( 'version' );
-		version.textContent = 'V'+App.VERSION;
-		meta.appendChild( version );
 
 		var question = document.createDivElement();
 		question.classList.add( 'ic-question' );
 		meta.appendChild( question );
+		*/
 
+		var version = document.createDivElement();
+		version.classList.add( 'version' );
+		version.textContent = 'v'+App.VERSION;
+		version.title = 'v'+App.VERSION;
+		meta.appendChild( version );
 
 		//TODO see: https://github.com/isaacs/github/issues/99
 		//var issue = document.createAnchorElement();

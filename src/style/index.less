@@ -38,7 +38,6 @@ body {
 
 	background: var(--background);
 	color: var(--f-med);
-	-webkit-tap-highlight-color: var(--f-med);
 
 	//background: linear-gradient(#101111,#0c0c0c);
 	/*
@@ -47,6 +46,18 @@ body {
         linear-gradient(to right, #29bede 1px, transparent 1px),
         linear-gradient(to bottom, #29bede 1px, transparent 1px);
 		*/
+}
+
+a {
+	background: var(--background);
+	color: var(--f-med);
+	outline: none;
+	&[href] {
+		&:hover {
+			transition: color .1s;
+			color: var(--f-high);
+		}
+	}
 }
 
 input {

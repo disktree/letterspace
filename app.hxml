@@ -2,6 +2,7 @@
 -main letterspace.App
 -cp src
 -lib heaps
+-lib heaps-tools
 -lib om.core
 -lib om.color
 -lib om.tween
@@ -11,4 +12,9 @@
 -D dev
 -dce full
 -debug
---macro letterspace.macro.Build.exportLetterTiles()
+--macro letterspace.Build.exportLetterTiles()
+#-lib om.closure
+#-D closure_enabled
+#-D closure_overwrite
+#-D closure_warning_level=VERBOSE
+#-D closure_verbose
