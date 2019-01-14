@@ -1,37 +1,18 @@
 package letterspace;
 
-//import letterspace.net.Mesh;
-//import letterspace.net.Node;
 import om.URL;
 
 class Server extends owl.Server {
 
 	#if owl_client
 
-	override function createMesh( id : String ) : Mesh {
-		return new letterspace.Mesh( this, id );
-	}
-
-	/*
-	override function createMesh<M:Mesh>( id : String ) : M {
-		trace("MMM");
-		return cast new Mesh( this, id );
-	}
-	*/
-
 	public inline function lobby() : Promise<Dynamic> {
 		return request( 'lobby' );
 	}
 
-	/*
-	public inline function getStatus() : Promise<Array<Array<Int>>> {
-		return request( 'status/get' );
+	override function createMesh( id : String ) : Mesh {
+		return new letterspace.Mesh( this, id );
 	}
-
-	public inline function setStatus( data : Dynamic ) {
-		return request( 'status/set', data );
-	}
-	*/
 
 	#elseif owl_server
 
@@ -48,11 +29,8 @@ class Server extends owl.Server {
 
 	public static var isSystemService(default,null) = false;
 
-	//static var mesh : Mesh;
-
 	override function createMesh( id : String ) {
 		return throw "forbidden";
-		//return new letterspace.net.Mesh( id );
 	}
 
 	override function handleRequest( req : js.node.http.IncomingMessage, res : js.node.http.ServerResponse ) {
@@ -72,6 +50,7 @@ class Server extends owl.Server {
 		var parts = path.split( '/' );
 		switch parts[0] {
 		case 'lobby':
+			//TODO
 			/*
 			var data = [for(m in meshes)
 				{
@@ -84,16 +63,41 @@ class Server extends owl.Server {
 			res.end( Json.stringify( data ) );
 
 		case 'status':
+			var mesh = parts[1];
+			//trace('STATUS:'+mesh+':'+parts[2]);
+			if( meshes.exists( mesh ) ) {
+				var path = process.argv[1].directory()+'/status/$mesh.json';
+				switch parts[2] {
+				case 'get',null:
+					var str = sys.FileSystem.exists( path ) ? sys.io.File.getContent( path ) : '[]';
+					res.end( str );
+				case 'set':
+					var str = '';
+					req.on( 'data', c -> str += c );
+					req.on( 'end', () -> {
+						//TODO validate data
+						//trace(">>>>>>>>>>>>>>>> "+path);
+						//var data = Json.parse( str );
+						//trace(data);
+						//var dir = process.argv[1].directory();
+						sys.io.File.saveContent( path, str );
+						res.end();
+					});
+				default:
+				}
+			}
+			/*
 			switch parts[1] {
 			case 'get':
-				//trace("GET ...");
+				trace("GET ...");
 				res.setHeader( 'Content-Type', 'text/json' );
 				var path = process.argv[1].directory()+'/status.json';
+				trace(path);
 				//Fs.exists( path, function );
 				var str = sys.FileSystem.exists( path ) ? sys.io.File.getContent( path ) : '[]';
 				res.end( str );
 			case 'set':
-				//trace("SET ... ");
+				trace("SET ... ");
 				var str = '';
 				req.on( 'data', c -> str += c );
 				req.on( 'end', () -> {
@@ -104,6 +108,7 @@ class Server extends owl.Server {
 					res.end();
 				});
 			}
+			*/
 		}
 	}
 
@@ -118,8 +123,6 @@ class Server extends owl.Server {
 	}
 
 	static function main() {
-
-		//if( !System.is( 'linux' ) ) exit( 'linux only', 1 );
 
 		var host : String = null;
 		var port = 1377;
@@ -136,6 +139,8 @@ class Server extends owl.Server {
 		]);
 		argsHandler.parse( Sys.args() );
 
+		if( isSystemService && !System.is( 'linux' ) ) exit( 'linux only', 1 );
+
 		switch host {
 		case null,'auto':
 			host = om.Network.getLocalIP()[0];
@@ -143,7 +148,10 @@ class Server extends owl.Server {
 		default:
 		}
 
-		Fs.readdir('level', function(e,files){
+		if( !sys.FileSystem.exists( 'status' ) )
+			sys.FileSystem.createDirectory( 'status' );
+
+		Fs.readdir( 'level', function(e,files){
 
 			var levels = files.filter( f -> return f.extension() == 'json' ).map( f -> return f.withoutExtension() );
 
@@ -160,24 +168,6 @@ class Server extends owl.Server {
 				exit( e );
 			});
 		});
-
-		/*
-		log( 'START $host:$port' );
-
-		var server = new Server( host, port, 1000 );
-		server.start().then( function(_) {
-			//mesh = new Mesh( 'letterspace', 100, true );
-			//server.addMesh( mesh );
-
-			Mesh.load( 'freespace' ).then( function(m){
-				trace(m);
-			});
-
-        }).catchError( function(e){
-			exit( e );
-		});
-		*/
-
 	}
 
 	#end

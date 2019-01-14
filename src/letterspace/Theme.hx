@@ -2,7 +2,10 @@ package letterspace;
 
 typedef Letter = {
 	color : Int,
-	//scale : Float,
+	outline : {
+		color : Int,
+		thick : Int
+	},
 	?shadow: {
 		distance : Float,
 		angle : Float,
@@ -32,6 +35,10 @@ class Theme {
 		"antireal" => new Theme(
 			{
 				color : 0xffA7AFB2,
+				outline : {
+					color : 0x00ff00,
+					thick : 10
+				},
 				shadow : {
 					distance : 3,
 					angle : 0.785,
@@ -49,10 +56,28 @@ class Theme {
 				grid : {
 					color : 0x99252126,
 					size : 10,
-					//thick: 1
 				}
 			}
-		)
+		),
+		"red" => new Theme(
+			{
+				color : 0xFFAE263E,
+				outline : {
+					color : 0xE3E3EE,
+					thick : 1
+				}
+			},
+			{
+				color : 0xff1A1721,
+				gradient : {
+					color : 0x55000000
+				},
+				grid : {
+					color : 0x55582232,
+					size : 10
+				}
+			}
+		),
 	];
 
 	public static inline function get( name : String ) : Theme {

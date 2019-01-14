@@ -58,38 +58,103 @@ class Build {
 
 	static function exportLetterTiles( dpi = 144, force = false ) {
 
-		var tilesets = FileSystem.readDirectory( 'src/tiles' ).filter( f -> {
-			return if( f.startsWith('_') || !f.hasExtension('svg') ) false else true;
+		var srcDir = 'src/tiles';
+		var dstDir = 'res/letter';
+
+		var tilesets = FileSystem.readDirectory( srcDir ).filter( f -> {
+			return !f.startsWith('_') && f.hasExtension('svg') && !f.withoutExtension().endsWith('-shadow');
 		}).map( f -> return f.withoutExtension() );
+
+		function export( svg : String, png : String, id : String ) : Bool {
+
+			if( !force && FileSystem.exists( png ) && FileSystem.stat( svg ).mtime.getTime() < FileSystem.stat( png ).mtime.getTime() ) {
+				//trace("NOT CHANGED "+id);
+				return true;
+			}
+
+			var args = ['--without-gui',svg,'--export-png',png,'--export-id=$id','--export-dpi=$dpi'];
+			var inkscape = new sys.io.Process( 'inkscape', args );
+			var code = inkscape.exitCode();
+			inkscape.close();
+			return code == 0;
+		}
 
 		for( name in tilesets ) {
 
-			var srcFile = 'src/tiles/$name.svg';
-			var dstDir = 'res/letter/$name';
-			var srcModTime = FileSystem.stat( srcFile ).mtime;
+			var svg = '$srcDir/$name.svg';
+			//var svgModTime = FileSystem.stat( svg ).mtime;
+			var dir = '$dstDir/$name';
+			if( !FileSystem.exists( dir ) ) FileSystem.createDirectory( dir );
+
+			var svg_shadow = '$srcDir/$name-shadow.svg';
+			//var hasShadow = FileSystem.exists( svg_shadow );
+			var dir_shadow = '$dstDir/$name/shadow';
+			if( !FileSystem.exists( dir_shadow ) ) FileSystem.createDirectory( dir_shadow );
 
 			var characters = new Array<String>();
 			tilesetMap.set( name, characters );
 
-			if( !FileSystem.exists( dstDir ) ) FileSystem.createDirectory( dstDir );
-
 			for( k=>v in letterspace.game.Tilemap.CHARACTERS ) {
-				var dstFile = '$dstDir/$v.png';
-				if( !force && FileSystem.exists( dstFile ) && srcModTime.getTime() < FileSystem.stat( dstFile ).mtime.getTime() ) {
-					//trace("NOT CHANGED "+k);
-					characters.push(k);
-				} else {
-					var args = ['--without-gui',srcFile,'--export-png',dstFile,'--export-id=$v','--export-dpi=$dpi'];
-					var export = new sys.io.Process( 'inkscape', args );
-					var code = export.exitCode();
-					switch code {
-					case 0:
-						characters.push(k);
-					default:
-						Sys.println( export.stderr.readAll().toString().trim() );
-					}
-					export.close();
+				if( !export( svg, '$dir/$v.png', v ) )
+					throw 'failed to export $name:$k';
+				if( !export( svg_shadow, '$dir_shadow/$v.png', v ) )
+					throw 'failed to export shadow $name:$k';
+				characters.push( k );
+
+				/*
+				if( hasShadow ) {
+					if( !export( svg_shadow, '$dir_shadow/$v.png', v ) )
+						throw 'failed to export shadow $name:$k';
 				}
+				*/
+
+				/*
+				var png = '$dir/$v.png';
+				if( !force && FileSystem.exists( png ) && svgModTime.getTime() < FileSystem.stat( png ).mtime.getTime() ) {
+					//trace("NOT CHANGED "+k);
+					characters.push( k );
+					continue;
+				}
+				*/
+
+				/*
+				if( export( svg, '$dir/$v.png', v ) ) {
+
+					//characters.push( k );
+					//var srcFileShadow = 'src/tiles/$name-shadow.svg';
+
+					if( hasShadow ) {
+						var png_shadow = '$dir/shadow/$v.png';
+						export( svg_shadow, png_shadow, v, dpi )
+					}
+
+
+				} else {
+					throw 'failed to export $name:$k';
+					//Sys.println( 'failed to export $name:$k' );
+					//return;
+				}
+
+				if( hasShadow ) {
+					//var png_shadow = '$dir/shadow/$v.png';
+					//trace(svg_shadow, png_shadow);
+					//export( svg_shadow, png_shadow, v, dpi )
+				}
+				*/
+
+
+				/*
+				var args = ['--without-gui',srcFile,'--export-png',dstFile,'--export-id=$v','--export-dpi=$dpi'];
+				var export = new sys.io.Process( 'inkscape', args );
+				var code = export.exitCode();
+				switch code {
+				case 0:
+					characters.push(k);
+				default:
+					Sys.println( export.stderr.readAll().toString().trim() );
+				}
+				export.close();
+				*/
 			}
 		}
 	}

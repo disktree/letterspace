@@ -14,60 +14,32 @@ class LobbyActivity extends Activity {
 		meta.classList.add( 'meta' );
 		element.appendChild( meta );
 
+		/*
+		var flask = document.createDivElement();
+		flask.title = 'EXPERIMENTAL';
+		flask.classList.add( 'ic-flask' );
+		meta.appendChild( flask );
+		*/
+
+		var version = document.createDivElement();
+		version.classList.add( 'version' );
+		version.textContent = 'R'+App.REV+'/V'+App.VERSION;
+		#if dev
+		version.textContent += '-DEV';
+		#end
+		meta.appendChild( version );
+
 		var fork = document.createAnchorElement();
 		fork.title = 'FORK';
 		fork.href = 'https://github.com/disktree/letterspace';
 		fork.classList.add( 'ic-fork' );
 		meta.appendChild( fork );
 
-		var flask = document.createDivElement();
-		flask.title = 'EXPERIMENTAL';
-		flask.classList.add( 'ic-flask' );
-		meta.appendChild( flask );
-
-		/*
-		var github = document.createDivElement();
-		github.classList.add( 'ic-github' );
-		meta.appendChild( github );
-
-		var question = document.createDivElement();
-		question.classList.add( 'ic-question' );
-		meta.appendChild( question );
-		*/
-
-		var version = document.createDivElement();
-		version.classList.add( 'version' );
-		version.textContent = 'v'+App.VERSION;
-		version.title = 'v'+App.VERSION;
-		meta.appendChild( version );
-
 		//TODO see: https://github.com/isaacs/github/issues/99
 		//var issue = document.createAnchorElement();
 		//issue.href = 'https://github.com/disktree/letterspace/issues/new?title=foo&body=bar';
 		//issue.textContent = 'ISSUE';
 		//element.appendChild( issue );
-
-		/*
-		var experimental = document.createDivElement();
-		experimental.classList.add( 'experimental' );
-		experimental.textContent = 'This is an experimental application.';
-		element.appendChild( experimental );
-
-		var github = document.createDivElement();
-		github.classList.add( 'ic-github' );
-		element.appendChild( github );
-
-		var fork = document.createDivElement();
-		fork.classList.add( 'ic-fork' );
-		element.appendChild( fork );
-
-		var cog = document.createDivElement();
-		cog.classList.add( 'ic-cog' );
-		element.appendChild( cog );
-		cog.onclick = function(){
-			Activity.push( new CreditsActivity() );
-		}
-		*/
 
 		input = document.createInputElement();
 		input.type = 'text';
@@ -79,16 +51,17 @@ class LobbyActivity extends Activity {
 		input.size = 16;
 		input.maxLength = 16;
 		element.appendChild( input );
-
-		//trace( input.pattern );
 	}
 
 	override function onStart() {
 
 		input.value = App.storage.get( 'user' );
+		//if( input.value.length > 0 ) input.select() else input.focus();
 		input.focus();
 
 		window.addEventListener( 'keydown', handleKeyDown, false );
+		window.addEventListener( 'focus', handleWindowFocus, false );
+		//window.addEventListener( 'blur', handleWindowBlur, false );
 
 		/*
 		App.server.lobby().then( function(r){
@@ -100,6 +73,8 @@ class LobbyActivity extends Activity {
 
 	override function onStop() {
 		window.removeEventListener( 'keydown', handleKeyDown );
+		window.removeEventListener( 'focus', handleWindowFocus );
+		//window.removeEventListener( 'blur', handleWindowBlur );
 	}
 
 	function joinMesh( mesh : String, user : String ) {
@@ -108,13 +83,26 @@ class LobbyActivity extends Activity {
 		Activity.set( new JoinActivity( mesh, user ) );
 	}
 
+	function handleWindowFocus(e) {
+		//trace(e);
+		//e.preventDefault();
+		//e.stopPropagation();
+		delay( input.focus, 0 );
+	}
+
+	/*
+	function handleWindowBlur(e) {
+		//trace(e);
+	}
+	*/
+
 	function handleKeyDown(e) {
 		switch e.keyCode {
 		case 13:
-			var username : String = input.value;
-			if( username.length >= 2 ) {
+			var user : String = input.value;
+			if( user.length >= 2 ) {
 				input.disabled = true;
-				joinMesh( 'freespace', username );
+				joinMesh( 'freespace', user );
 			}
 		}
 	}

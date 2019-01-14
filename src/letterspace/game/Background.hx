@@ -86,39 +86,6 @@ class Background extends Object {
 			}
 		}
 
-		/*
-		var dx = 10;
-		var dy = 10;
-		var sx = theme.grid.size * dx;
-		var sy = theme.grid.size * dy;
-		var bmp = new BitmapData( sx, sy );
-		//bmp.fill( 0, 0, sx, sy, theme.color );
-		for( i in 0...dx+1 ) {
-			var p = i * theme.grid.size;
-			bmp.line( p, 0, p, sy, theme.grid.color );
-			if( i == 0 )
-				bmp.line( p+1, 0, p+1, sy, theme.grid.color );
-			else if( i == dx )
-				bmp.line( p-1, 0, p-1, sy, theme.grid.color );
-		}
-		for( i in 0...dy+1 ) {
-			var p = i * theme.grid.size;
-			bmp.line( 0, p, sx, p, theme.grid.color );
-			if( i == 0 )
-				bmp.line( 0, p+1, sy, p+1, theme.grid.color );
-			else if( i == dx )
-				bmp.line( 0, p-1, sy, p-1, theme.grid.color );
-		}
-		var tile = Tile.fromBitmap( bmp );
-		var grid = new Graphics( this );
-		for( ix in 0...Std.int( width / sx ) ) {
-			for( iy in 0...Std.int( height / sy ) ) {
-				grid.beginTileFill( ix*tile.width, iy*tile.height, 1, 1, tile );
-        		grid.drawRect( ix*tile.width, iy*tile.height, tile.width, tile.height );
-			}
-		}
-		*/
-
 		// ---
 
 		var sx = Std.int( Math.min( width/3, 512 ) );
@@ -138,26 +105,5 @@ class Background extends Object {
 		addGradientBitmap( sx, height, 1, width - sx );
 		addGradientBitmap( width, sy, 2, 0, height - sy );
 		addGradientBitmap( sx, height, 3 );
-
-		/*
-		var grid = new Graphics( this );
-		var bmp = new BitmapData( theme.grid.size, theme.grid.size );
-	//	bmp.fill( 0, 0, theme.grid.size, theme.grid.size, theme.color );
-		bmp.line( 0, 0, theme.grid.size, 0, theme.grid.color );
-		bmp.line( 0, 0, 0, theme.grid.size, theme.grid.color );
-
-		var tile = Tile.fromBitmap( bmp );
-		var nx = Std.int( width / theme.grid.size );
-		var ny = Std.int( height / theme.grid.size );
-		for( ix in 0...nx ) {
-			for( iy in 0...ny ) {
-				grid.beginTileFill( ix*tile.width, iy*tile.height, 1, 1, tile );
-        		grid.drawRect( ix*tile.width, iy*tile.height, tile.width, tile.height );
-			}
-		}
-		*/
-
-		//var interactive = new h2d.Interactive( width, height, this );
-		//interactive.onPush = e -> trace(e);
 	}
 }

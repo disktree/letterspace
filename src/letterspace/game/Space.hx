@@ -29,38 +29,49 @@ class Space extends hxd.App {
 
 				for( l in level.letters ) {
 					var font = (l.font != null) ? l.font : level.letter.font;
-					var scale = (l.scale != null) ? l.scale : level.letter.scale;
-					//var key = { c : l.char, f : font };
-					//trace(key,space.tiles.exists( key ));
-					var tile : Tile;
-					if( space.tiles.exists( l.char ) ) {
-					//if( space.tiles.exists( key ) ) {
-						//trace("ALREADY HAVE "+l.char );
-						tile = space.tiles.get( l.char );
+					var scale = (l.scale != null) ? l.scale : (level.letter.scale != null) ? level.letter.scale : 1;
+					var key = '${l.char}:$font:$scale';
+					var tile : Tile, tile_shadow : Tile;
+					if( space.tiles.exists( key ) ) {
+						//trace("ALREADY HAVE "+key );
+						var tiles = space.tiles.get( key );
+						tile = tiles[0];
+						tile_shadow = tiles[1];
 					} else {
+						//trace("NEW TILE "+key  );
 						var c = Tilemap.get( l.char );
 						tile = Res.load( 'letter/$font/$c.png' ).toTile();
-						tile.scaleToSize( Std.int( tile.width*scale ), Std.int( tile.height*scale ) );
-						space.tiles.set( l.char, tile );
-						//space.tiles.set( key, tile ); 
+						if( scale != 1 ) tile.scaleToSize( Std.int( tile.width*scale ), Std.int( tile.height*scale ) );
+						tile_shadow = Res.load( 'letter/$font/shadow/$c.png' ).toTile();
+						if( scale != 1 ) tile_shadow.scaleToSize( Std.int( tile_shadow.width*scale ), Std.int( tile_shadow.height*scale ) );
+						space.tiles.set( key, [tile,tile_shadow] );
 					}
-					var letter = new Letter( space.letterContainer, space.letters.length, l.char, tile, theme.letter.color );
-					letter.onDragStart = space.onDragLetterStart;
-					letter.onDragStop = space.onDragLetterStop;
-					space.letters.push( letter );
+					var num = (l.num != null) ? l.num : (level.letter.num != null) ? level.letter.num : 1;
+					for( i in 0...num ) {
+						var letter = new Letter( space.letterContainer, space.letters.length, l.char, theme.letter, tile, tile_shadow );
+						space.letters.push( letter );
+						if( l.pos != null ) letter.setPosition( l.pos[0], l.pos[1] ) else {
+							letter.setPosition(
+								Std.int( Math.random() * (space.width-letter.width) ),
+								Std.int( Math.random() * (space.height-letter.height) )
+							);
+						}
+					}
 				}
 
+				/*
 				if( theme.letter.shadow != null ) {
 					var sh = theme.letter.shadow;
-					var f = new h2d.filter.DropShadow( sh.distance, sh.angle, sh.color, sh.alpha, sh.radius, sh.gain, 1, true );
+					//var f = new h2d.filter.DropShadow( sh.distance, sh.angle, sh.color, sh.alpha, sh.radius, sh.gain, 1, true );
 					//space.letterContainer.filter = f;
 				}
+				*/
 
-				space.scrollbarH.beginFill( theme.background.grid.color, 1.0 );
+				space.scrollbarH.beginFill( theme.background.grid.color, 0.8 );
 				space.scrollbarH.drawRect( 0, 0, 100, 4 );
 				space.scrollbarH.endFill();
 
-				space.scrollbarV.beginFill( theme.background.grid.color, 1.0 );
+				space.scrollbarV.beginFill( theme.background.grid.color, 0.8 );
 				space.scrollbarV.drawRect( 0, 0, 4, 100 );
 				space.scrollbarV.endFill();
 
@@ -73,6 +84,8 @@ class Space extends hxd.App {
 	public dynamic function onDrag( l : Letter ) {}
 	public dynamic function onDragStop( l : Letter ) {}
 
+	public dynamic function onUpdate() {}
+
 	public final width : Int;
 	public final height : Int;
 
@@ -80,23 +93,25 @@ class Space extends hxd.App {
 	public var dragged(default,null) = false;
 	public var letters(default,null) = new Array<Letter>();
 
-	var container : Object;
-	var background : Background;
+	public var container(default,null) : Object;
+	public var background(default,null) : Background;
+
 	var letterContainer : Object;
 	var scrollbarH : Graphics;
 	var scrollbarV : Graphics;
 
 	var interactive : Interactive;
 
-	var tiles = new Map<String,Tile>();
+	var tiles = new Map<String,Array<Tile>>();
 
 	var viewport = new Point();
 	var dragOffset = new Point();
 
+	var pointedLetter : Letter;
 	var draggedLetter : Letter;
 	var draggedLetterOffset = new Point();
-	var dragBorderSize = 30;
-	var dragBorderFactor = 0.3;
+	var dragBorderSize = 2;
+	var dragBorderFactor = 0.1;
 
 	var wheelScrollSpeed = 0.075;
 
@@ -110,6 +125,7 @@ class Space extends hxd.App {
 	override function init() {
 
 		container = new Object( s2d );
+
 		background = new Background( container );
 
 		scrollbarH = new Graphics( s2d );
@@ -127,78 +143,64 @@ class Space extends hxd.App {
 
 		letterContainer = new Object( container );
 
-		interactive = new h2d.Interactive( width, height, background );
+		interactive = new h2d.Interactive( width, height, s2d );
 		interactive.cursor = Default;
 		interactive.onPush = onMousePush;
 		interactive.onMove = onMouseMove;
 		interactive.onRelease = onMouseRelease;
 		interactive.onWheel = onMouseWheel;
+		interactive.onFocusLost = onBlur;
+		//interactive.onOut = e -> trace(e);
+		//interactive.onFocusLost = e -> trace(e);
 
 		var win = hxd.Window.getInstance();
 		win.addEventTarget( onEvent );
 		/*
 		win.addResizeEvent( function(){
-			trace("rr");
+			s2d.checkResize();
+			@:privateAccess hxd.Window.getInstance().checkResize(); //HACK
 		});
 		*/
 
 		window.onresize = function(){
+
 			s2d.checkResize();
 			@:privateAccess hxd.Window.getInstance().checkResize(); //HACK
-			if( width < s2d.width ) {
-				container.x = (s2d.width - width) / 2;
-			}
-			if( height < s2d.height ) {
-				container.y = (s2d.height - height) / 2;
-			}
-		}
+			//@:privateAccess container.posChanged = true
 
-		/*
-		if( width < s2d.width ) {
-			container.x = (s2d.width - width) / 2;
+			scrollbarH.scaleX = Math.max( window.innerWidth / width, 0.2 );
+			scrollbarV.scaleY = Math.max( window.innerHeight / height, 0.2 );
+			setViewportPos( viewport.x, viewport.y );
 		}
-		if( height < s2d.height ) {
-			container.y = (s2d.height - height) / 2;
-		}
-		*/
-
-		/*
-		var sw = window.innerWidth / width;
-		var sh = window.innerHeight / height;
-		trace(sw,sh);
-		if( sw > 1 || sh > 1 ) {
-			var s = Math.max( sw, sh );
-			trace(s);
-			container.scaleX = container.scaleY = s;
-		}
-		*/
-
-		//setViewportPos();
 
 		onInit( this );
 	}
 
 	public function start() {
+		scrollbarH.scaleX = Math.max( window.innerWidth / width, 0.2 );
+		scrollbarV.scaleY = Math.max( window.innerHeight / height, 0.2 );
+		setViewportPos();
 		time = 0;
 	}
 
 	/*
 	public override inline function render( e : h3d.Engine ) {
 		if( !App.hidden ) super.render(e);
-		//super.render(e);
 	}
 	*/
 
 	public function setViewportX( v : Float ) {
 		viewport.x = Math.min( Math.max( v, -1 ), 1 );
-		container.x = Std.int( (1+viewport.x) * ((-width/2 + s2d.width/2)) );
-		scrollbarH.x = Std.int( (viewport.x/2 + 0.5) * ((s2d.width-100)) );
+		var w = window.innerWidth;
+		container.x = Std.int( (1+viewport.x) * ((w-width)/2) );
+		scrollbarH.x = Std.int( (viewport.x/2 + 0.5) * (w-(100*scrollbarH.scaleX)) );
 	}
 
 	public function setViewportY( v : Float ) {
 		viewport.y = Math.min( Math.max( v, -1 ), 1 );
-		container.y = Std.int( (1+viewport.y) * (-height/2 + s2d.height/2) );
-		scrollbarV.y = Std.int( (viewport.y/2 + 0.5) * (s2d.height-100) );
+		var h = window.innerHeight;
+		container.y = Std.int( (1+viewport.y) * ((h-height)/2) );
+		scrollbarV.y = Std.int( (viewport.y/2 + 0.5) * (h-(100*scrollbarV.scaleY)) );
 	}
 
 	public inline function setViewportPos( x = 0.0, y = 0.0 ) {
@@ -211,6 +213,23 @@ class Space extends hxd.App {
 
 	public inline function moveViewportY( v : Float )
 		setViewportY( viewport.y + v );
+
+	public inline function moveViewport( x : Float, y : Float ) {
+		moveViewportX( x );
+		moveViewportY( y );
+	}
+
+	public function getLetterAt( p : Point ) : Letter {
+		var i = letterContainer.numChildren;
+		while( i > 0 ) {
+			var l = @:privateAccess letterContainer.children[--i];
+			if( l.getBounds().contains( p ) ) return cast l;
+		}
+		return null;
+	}
+
+	public inline function getLetterAtPointer() : Letter
+		return getLetterAt( new Point( s2d.mouseX, s2d.mouseY ) );
 
 	public function searchWord( letter : Letter, kx = 0.2, ky = 0.2 ) : Array<Letter> {
 		//TODO
@@ -264,7 +283,6 @@ class Space extends hxd.App {
 		return word;
 	}
 
-	/*
 	public override function dispose() {
 		super.dispose();
 		var win = hxd.Window.getInstance();
@@ -273,27 +291,19 @@ class Space extends hxd.App {
 		//engine.dispose();
 		//engine = null;
 	}
-	*/
 
 	override function update( dt : Float ) {
 
+		time += dt;
+
 		if( dragged ) {
-			/*
-			if( s2d.width < width ) {
-				var tx = hxd.Math.clamp( s2d.mouseX - dragOffset.x, - width + s2d.width, 0 );
-				container.x = tx;
-			}
-			if( s2d.height < height ) {
-				var ty = hxd.Math.clamp( s2d.mouseY - dragOffset.y, - height + s2d.height, 0 );
-				container.y = ty;
-			}
-			*/
+
 			var tx = s2d.mouseX - dragOffset.x;
-			var vx = -(tx/((width-s2d.width)/2) + 1);
+			var vx = -(tx/((width-window.innerWidth)/2) + 1);
 			setViewportX( vx );
 
 			var ty = s2d.mouseY - dragOffset.y;
-			var vy = -(ty/((height-s2d.height)/2) + 1);
+			var vy = -(ty/((height-window.innerHeight)/2) + 1);
 			setViewportY( vy );
 
 		} else if( draggedLetter != null ) {
@@ -352,6 +362,8 @@ class Space extends hxd.App {
 				}
 			}
 		}
+
+		onUpdate();
 	}
 
 	inline function getScreenX( v : Float ) : Float
@@ -380,30 +392,45 @@ class Space extends hxd.App {
 	}
 
 	function onMousePush( e : Event ) {
-		dragged = true;
-		dragOffset.set( e.relX, e.relY );
-		interactive.cursor = Move;
-		/*
-		interactive.startDrag( function(e){
-			//trace(e);
-			//container.x = e.relX - dragOffsetX;
-			//container.y = e.relY - dragOffsetY;
-		} );
-		*/
+		var l = getLetterAtPointer();
+		//if( pointedLetter == null || Key.isDown( Key.SPACE ) ) {
+		if( l == null || Key.isDown( Key.SPACE ) ) {
+			dragged = true;
+			dragOffset.set( e.relX - container.x, e.relY - container.y );
+			interactive.cursor = Move;
+		} else {
+			draggedLetter = l;
+			pointedLetter = null;
+			draggedLetterOffset.set( s2d.mouseX - draggedLetter.x - container.x, s2d.mouseY - draggedLetter.y - container.y );
+			onDragStart( draggedLetter );
+		}
 	}
 
 	function onMouseMove( e : Event ) {
-		if( dragged ) {
-			//trace( e );
-			//container.x = e.relX - background.x - dragOffsetX;
-			//container.y = e.relY - background.y - dragOffsetY;
+		//pointer.set( e.relX, e.relY );
+		if( !dragged && draggedLetter == null ) {
+			if( pointedLetter != null ) {
+				//pointedLetter.color =
+				pointedLetter.outline.enable = false;
+			}
+			var l = getLetterAtPointer();
+			if( l != null ) {
+				pointedLetter = l;
+				pointedLetter.outline.enable = true;
+			}
 		}
 	}
 
 	function onMouseRelease( e : Event ) {
-		dragged = false;
-		interactive.cursor = Default;
-		//interactive.stopDrag();
+		if( dragged ) {
+			dragged = false;
+			dragOffset.set( 0, 0 );
+			interactive.cursor = Default;
+		} else if( draggedLetter != null ) {
+			draggedLetter.stopDrag();
+			onDragStop( draggedLetter );
+			draggedLetter = null;
+		}
 	}
 
 	function onMouseWheel( e : Event ) {
@@ -416,14 +443,10 @@ class Space extends hxd.App {
 		}
 	}
 
-	function onDragLetterStart( l : Letter ) {
-		draggedLetter = l;
-		draggedLetterOffset.set( s2d.mouseX - l.x - container.x, s2d.mouseY - l.y - container.y );
-		onDragStart( l );
-	}
-
-	function onDragLetterStop( l : Letter ) {
-		draggedLetter = null;
-		onDragStop( l );
+	function onBlur( e : Event ) {
+		if( pointedLetter != null ) {
+			pointedLetter.outline.enable = false;
+			pointedLetter = null;
+		}
 	}
 }

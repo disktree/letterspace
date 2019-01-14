@@ -1,0 +1,4321 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="6000"
+   height="2000"
+   viewBox="0 0 1587.4999 529.16669"
+   version="1.1"
+   id="svg8"
+   sodipodi:docname="helvetica-shadow.svg"
+   inkscape:version="0.92.2 2405546, 2018-03-11">
+  <defs
+     id="defs2">
+    <filter
+       inkscape:label="Film Grain"
+       inkscape:menu="Image Effects"
+       inkscape:menu-tooltip="Adds a small scale graininess"
+       style="color-interpolation-filters:sRGB"
+       id="filter1527">
+      <feTurbulence
+         type="fractalNoise"
+         numOctaves="3"
+         baseFrequency="1"
+         seed="0"
+         result="result0"
+         id="feTurbulence1517" />
+      <feColorMatrix
+         result="result4"
+         values="0"
+         type="saturate"
+         id="feColorMatrix1519" />
+      <feComposite
+         in="SourceGraphic"
+         in2="result4"
+         operator="arithmetic"
+         k1="1.25"
+         k2="0.5"
+         k3="0.5"
+         result="result2"
+         id="feComposite1521"
+         k4="0" />
+      <feBlend
+         result="result5"
+         mode="normal"
+         in="result2"
+         in2="SourceGraphic"
+         id="feBlend1523" />
+      <feComposite
+         in="result5"
+         in2="SourceGraphic"
+         operator="in"
+         result="result3"
+         id="feComposite1525" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter56507">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood56497" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite56499" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur56501" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset56503" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite56505" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter56519">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood56509" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite56511" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur56513" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset56515" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite56517" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter56531">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood56521" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite56523" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur56525" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset56527" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite56529" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter56543">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood56533" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite56535" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur56537" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset56539" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite56541" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter56555">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood56545" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite56547" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur56549" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset56551" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite56553" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter56567">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood56557" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite56559" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur56561" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset56563" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite56565" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter56579">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood56569" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite56571" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur56573" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset56575" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite56577" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter56591">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood56581" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite56583" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur56585" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset56587" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite56589" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter56603">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood56593" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite56595" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur56597" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset56599" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite56601" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter56615">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood56605" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite56607" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur56609" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset56611" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite56613" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter56627">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood56617" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite56619" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur56621" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset56623" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite56625" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter56639">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood56629" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite56631" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur56633" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset56635" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite56637" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter56651">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood56641" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite56643" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur56645" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset56647" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite56649" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter56663">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood56653" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite56655" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur56657" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset56659" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite56661" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter56675">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood56665" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite56667" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur56669" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset56671" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite56673" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter56687">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood56677" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite56679" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur56681" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset56683" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite56685" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter56699">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood56689" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite56691" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur56693" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset56695" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite56697" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter56711">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood56701" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite56703" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur56705" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset56707" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite56709" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter56723">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood56713" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite56715" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur56717" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset56719" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite56721" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter56735">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood56725" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite56727" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur56729" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset56731" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite56733" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter56747">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood56737" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite56739" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur56741" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset56743" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite56745" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter56759">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood56749" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite56751" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur56753" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset56755" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite56757" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter56771">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood56761" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite56763" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur56765" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset56767" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite56769" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter56783">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood56773" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite56775" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur56777" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset56779" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite56781" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter56795">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood56785" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite56787" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur56789" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset56791" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite56793" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter56807">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood56797" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite56799" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur56801" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset56803" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite56805" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter56819">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood56809" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite56811" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur56813" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset56815" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite56817" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter56831">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood56821" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite56823" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur56825" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset56827" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite56829" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter56843">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood56833" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite56835" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur56837" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset56839" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite56841" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter56855">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood56845" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite56847" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur56849" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset56851" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite56853" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter56867">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood56857" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite56859" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur56861" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset56863" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite56865" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter56879">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood56869" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite56871" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur56873" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset56875" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite56877" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter56891">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood56881" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite56883" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur56885" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset56887" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite56889" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter56903">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood56893" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite56895" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur56897" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset56899" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite56901" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter56915">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood56905" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite56907" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur56909" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset56911" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite56913" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter56927">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood56917" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite56919" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur56921" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset56923" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite56925" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter56939">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood56929" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite56931" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur56933" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset56935" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite56937" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter56951">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood56941" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite56943" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur56945" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset56947" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite56949" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter56963">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood56953" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite56955" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur56957" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset56959" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite56961" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter56975">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood56965" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite56967" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur56969" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset56971" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite56973" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter56987">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood56977" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite56979" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur56981" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset56983" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite56985" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter56999">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood56989" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite56991" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur56993" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset56995" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite56997" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter57011">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood57001" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite57003" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur57005" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset57007" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite57009" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter57023">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood57013" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite57015" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur57017" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset57019" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite57021" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter57035">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood57025" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite57027" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur57029" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset57031" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite57033" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter57047">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood57037" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite57039" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur57041" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset57043" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite57045" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter57059">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood57049" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite57051" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur57053" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset57055" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite57057" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter57071">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood57061" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite57063" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur57065" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset57067" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite57069" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter57083">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood57073" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite57075" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur57077" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset57079" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite57081" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter57095">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood57085" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite57087" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur57089" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset57091" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite57093" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter57107">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood57097" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite57099" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur57101" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset57103" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite57105" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter57119">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood57109" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite57111" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur57113" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset57115" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite57117" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter57131">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood57121" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite57123" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur57125" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset57127" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite57129" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter57143">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood57133" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite57135" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur57137" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset57139" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite57141" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter57155">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood57145" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite57147" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur57149" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset57151" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite57153" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter57167">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood57157" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite57159" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur57161" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset57163" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite57165" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter57179">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood57169" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite57171" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur57173" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset57175" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite57177" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter57191">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood57181" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite57183" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur57185" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset57187" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite57189" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter57203">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood57193" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite57195" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur57197" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset57199" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite57201" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter57215">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood57205" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite57207" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur57209" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset57211" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite57213" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter57227">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood57217" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite57219" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur57221" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset57223" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite57225" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter57239">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood57229" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite57231" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur57233" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset57235" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite57237" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter57251">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood57241" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite57243" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur57245" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset57247" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite57249" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter57263">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood57253" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite57255" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur57257" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset57259" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite57261" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter57275">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood57265" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite57267" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur57269" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset57271" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite57273" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter57287">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood57277" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite57279" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur57281" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset57283" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite57285" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter57299">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood57289" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite57291" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur57293" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset57295" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite57297" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter57311">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood57301" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite57303" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur57305" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset57307" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite57309" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter57323">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood57313" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite57315" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur57317" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset57319" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite57321" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter57335">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood57325" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite57327" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur57329" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset57331" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite57333" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter57347">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood57337" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite57339" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur57341" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset57343" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite57345" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter57359">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood57349" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite57351" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur57353" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset57355" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite57357" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter57371">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood57361" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite57363" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur57365" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset57367" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite57369" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter57383">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood57373" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite57375" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur57377" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset57379" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite57381" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter57395">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood57385" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite57387" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur57389" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset57391" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite57393" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter57407">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood57397" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite57399" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur57401" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset57403" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite57405" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter57419">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood57409" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite57411" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur57413" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset57415" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite57417" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter57431">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood57421" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite57423" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur57425" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset57427" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite57429" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter57443">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood57433" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite57435" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur57437" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset57439" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite57441" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter57455">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood57445" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite57447" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur57449" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset57451" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite57453" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter57467">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood57457" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite57459" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur57461" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset57463" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite57465" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter57479">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood57469" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite57471" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur57473" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset57475" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite57477" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter57491">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood57481" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite57483" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur57485" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset57487" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite57489" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter57503">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood57493" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite57495" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur57497" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset57499" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite57501" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter57515">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood57505" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite57507" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur57509" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset57511" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite57513" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter57527">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood57517" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite57519" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur57521" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset57523" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite57525" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter57539">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood57529" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite57531" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur57533" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset57535" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite57537" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter57551">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood57541" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite57543" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur57545" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset57547" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite57549" />
+    </filter>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter57563">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood57553" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite57555" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.7"
+         result="blur"
+         id="feGaussianBlur57557" />
+      <feOffset
+         dx="0"
+         dy="0"
+         result="offset"
+         id="feOffset57559" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite2"
+         id="feComposite57561" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#c8c8c8"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="1828.7525"
+     inkscape:cy="958.59171"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     units="px"
+     inkscape:window-width="3840"
+     inkscape:window-height="2127"
+     inkscape:window-x="0"
+     inkscape:window-y="33"
+     inkscape:window-maximized="0"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     objecttolerance="10000"
+     inkscape:snap-path-clip="true"
+     inkscape:snap-path-mask="true"
+     guidetolerance="10000"
+     inkscape:pagecheckerboard="false"
+     showborder="true"
+     borderlayer="false"
+     inkscape:snap-perpendicular="false"
+     inkscape:snap-tangential="false"
+     inkscape:snap-text-baseline="true">
+    <inkscape:grid
+       type="xygrid"
+       id="grid816"
+       dotted="false"
+       empspacing="20"
+       spacingx="2.6458334"
+       spacingy="2.6458334" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="fff"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,232.16669)">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter56507)"
+       x="68.791664"
+       y="-142.20836"
+       id="B"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/B.png"
+       inkscape:label="B"><tspan
+         sodipodi:role="line"
+         id="tspan812-4"
+         x="68.791664"
+         y="-142.20836"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">B</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter56519)"
+       x="119.0625"
+       y="-142.20836"
+       id="C"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/C.png"
+       inkscape:label="C"><tspan
+         sodipodi:role="line"
+         id="tspan812-4-6"
+         x="119.0625"
+         y="-142.20836"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">C</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter56531)"
+       x="174.625"
+       y="-142.20836"
+       id="D"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/D.png"
+       inkscape:label="D"><tspan
+         sodipodi:role="line"
+         id="tspan812-4-6-2"
+         x="174.625"
+         y="-142.20836"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">D</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter56543)"
+       x="227.54167"
+       y="-144.8542"
+       id="E"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/E.png"
+       inkscape:label="E"><tspan
+         sodipodi:role="line"
+         id="tspan812-4-6-2-8"
+         x="227.54167"
+         y="-144.8542"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">E</tspan></text>
+    <text
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       id="F"
+       y="-142.20836"
+       x="280.45834"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter56555)"
+       xml:space="preserve"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/F.png"
+       inkscape:label="F"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px"
+         y="-142.20836"
+         x="280.45834"
+         id="tspan902"
+         sodipodi:role="line">F</tspan></text>
+    <text
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       id="G"
+       y="-142.20836"
+       x="333.375"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter56567)"
+       xml:space="preserve"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/G.png"
+       inkscape:label="G"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px"
+         y="-142.20836"
+         x="333.375"
+         id="tspan902-5"
+         sodipodi:role="line">G</tspan></text>
+    <text
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       id="H"
+       y="-142.20836"
+       x="387.34998"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter56579)"
+       xml:space="preserve"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/H.png"
+       inkscape:label="H"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px"
+         y="-142.20836"
+         x="387.34998"
+         id="tspan902-5-7"
+         sodipodi:role="line">H</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter56591)"
+       x="447.14584"
+       y="-144.8542"
+       id="I"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/I.png"
+       inkscape:label="I"><tspan
+         sodipodi:role="line"
+         id="tspan812-2"
+         x="447.14584"
+         y="-144.8542"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">I</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter56603)"
+       x="494.77084"
+       y="-144.8542"
+       id="J"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/J.png"
+       inkscape:label="J"><tspan
+         sodipodi:role="line"
+         id="tspan812-4-0"
+         x="494.77084"
+         y="-144.8542"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">J</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter56615)"
+       x="545.04169"
+       y="-142.20836"
+       id="K"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/K.png"
+       inkscape:label="K"><tspan
+         sodipodi:role="line"
+         id="tspan812-4-6-7"
+         x="545.04169"
+         y="-142.20836"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">K</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter56627)"
+       x="600.60419"
+       y="-144.8542"
+       id="L"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/L.png"
+       inkscape:label="L"><tspan
+         sodipodi:role="line"
+         id="tspan812-4-6-2-6"
+         x="600.60419"
+         y="-144.8542"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">L</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter56639)"
+       x="648.22919"
+       y="-142.20836"
+       id="M"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/M.png"
+       inkscape:label="M"><tspan
+         sodipodi:role="line"
+         id="tspan812-4-6-2-8-1"
+         x="648.22919"
+         y="-142.20836"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">M</tspan></text>
+    <text
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       id="N"
+       y="-142.20836"
+       x="703.79169"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter56651)"
+       xml:space="preserve"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/N.png"
+       inkscape:label="N"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px"
+         y="-142.20836"
+         x="703.79169"
+         id="tspan902-9"
+         sodipodi:role="line">N</tspan></text>
+    <text
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       id="O"
+       y="-142.20836"
+       x="756.70831"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter56663)"
+       xml:space="preserve"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/O.png"
+       inkscape:label="O"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px"
+         y="-142.20836"
+         x="756.70831"
+         id="tspan902-5-9"
+         sodipodi:role="line">O</tspan></text>
+    <text
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       id="P"
+       y="-142.20836"
+       x="812.79999"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter56675)"
+       xml:space="preserve"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/P.png"
+       inkscape:label="P"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px"
+         y="-142.20836"
+         x="812.79999"
+         id="tspan902-5-7-8"
+         sodipodi:role="line">P</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter56687)"
+       x="863.07086"
+       y="-141.15001"
+       id="Q"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/Q.png"
+       inkscape:label="Q"><tspan
+         sodipodi:role="line"
+         id="tspan812-2-3"
+         x="863.07086"
+         y="-141.15001"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">Q</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter56699)"
+       x="915.45831"
+       y="-142.20836"
+       id="R"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/R.png"
+       inkscape:label="R"><tspan
+         sodipodi:role="line"
+         id="tspan812-4-0-0"
+         x="915.45831"
+         y="-142.20836"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">R</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter56711)"
+       x="973.66669"
+       y="-142.20836"
+       id="S"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/S.png"
+       inkscape:label="S"><tspan
+         sodipodi:role="line"
+         id="tspan812-4-6-7-9"
+         x="973.66669"
+         y="-142.20836"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">S</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter56723)"
+       x="1023.9375"
+       y="-143.26672"
+       id="T"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/T.png"
+       inkscape:label="T"><tspan
+         sodipodi:role="line"
+         id="tspan812-4-6-2-6-1"
+         x="1023.9375"
+         y="-143.26672"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">T</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter56735)"
+       x="1076.8541"
+       y="-142.20836"
+       id="U"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/U.png"
+       inkscape:label="U"><tspan
+         sodipodi:role="line"
+         id="tspan812-4-6-2-8-1-7"
+         x="1076.8541"
+         y="-142.20836"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">U</tspan></text>
+    <text
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       id="V"
+       y="-143.79588"
+       x="1129.7709"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter56747)"
+       xml:space="preserve"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/V.png"
+       inkscape:label="V"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px"
+         y="-143.79588"
+         x="1129.7709"
+         id="tspan902-9-7"
+         sodipodi:role="line">V</tspan></text>
+    <text
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       id="W"
+       y="-142.20836"
+       x="1180.0416"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter56759)"
+       xml:space="preserve"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/W.png"
+       inkscape:label="W"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px"
+         y="-142.20836"
+         x="1180.0416"
+         id="tspan902-5-9-2"
+         sodipodi:role="line">W</tspan></text>
+    <text
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       id="X"
+       y="-144.8542"
+       x="1235.6041"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter56771)"
+       xml:space="preserve"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/X.png"
+       inkscape:label="X"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px"
+         y="-144.8542"
+         x="1235.6041"
+         id="tspan902-5-7-8-1"
+         sodipodi:role="line">X</tspan></text>
+    <text
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       id="Y"
+       y="-142.20836"
+       x="1285.875"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter56783)"
+       xml:space="preserve"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/Y.png"
+       inkscape:label="Y"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px"
+         y="-142.20836"
+         x="1285.875"
+         id="tspan902-5-7-8-1-8"
+         sodipodi:role="line">Y</tspan></text>
+    <text
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       id="Z"
+       y="-142.20836"
+       x="1341.4375"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter56795)"
+       xml:space="preserve"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/Z.png"
+       inkscape:label="Z"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px"
+         y="-142.20836"
+         x="1341.4375"
+         id="tspan902-5-7-8-1-4"
+         sodipodi:role="line">Z</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter56807)"
+       x="18.520834"
+       y="-91.937531"
+       id="1"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/1.png"
+       inkscape:label="1"><tspan
+         sodipodi:role="line"
+         id="tspan812-2-3-6"
+         x="18.520834"
+         y="-91.937531"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter56819)"
+       x="74.083336"
+       y="-91.937531"
+       id="2"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/2.png"
+       inkscape:label="2"><tspan
+         sodipodi:role="line"
+         id="tspan812-2-3-6-5"
+         x="74.083336"
+         y="-91.937531"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">2</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter56831)"
+       x="124.35416"
+       y="-91.937531"
+       id="3"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/3.png"
+       inkscape:label="3"><tspan
+         sodipodi:role="line"
+         id="tspan812-2-3-6-56"
+         x="124.35416"
+         y="-91.937531"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">3</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter56843)"
+       x="177.27083"
+       y="-91.937531"
+       id="4"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/4.png"
+       inkscape:label="4"><tspan
+         sodipodi:role="line"
+         id="tspan812-2-3-6-9"
+         x="177.27083"
+         y="-91.937531"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">4</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter56855)"
+       x="229.65831"
+       y="-91.408363"
+       id="5"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/5.png"
+       inkscape:label="5"><tspan
+         sodipodi:role="line"
+         id="tspan812-2-3-6-2"
+         x="229.65831"
+         y="-91.408363"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">5</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter56867)"
+       x="283.10416"
+       y="-91.937531"
+       id="6"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/6.png"
+       inkscape:label="6"><tspan
+         sodipodi:role="line"
+         id="tspan812-2-3-6-93"
+         x="283.10416"
+         y="-91.937531"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">6</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter56879)"
+       x="338.66666"
+       y="-91.937531"
+       id="7"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/7.png"
+       inkscape:label="7"><tspan
+         sodipodi:role="line"
+         id="tspan812-2-3-6-0"
+         x="338.66666"
+         y="-91.937531"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">7</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter56891)"
+       x="386.29166"
+       y="-91.937531"
+       id="8"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/8.png"
+       inkscape:label="8"><tspan
+         sodipodi:role="line"
+         id="tspan812-2-3-6-6"
+         x="386.29166"
+         y="-91.937531"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">8</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter56903)"
+       x="439.20834"
+       y="-91.937531"
+       id="9"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/9.png"
+       inkscape:label="9"><tspan
+         sodipodi:role="line"
+         id="tspan812-2-3-6-7"
+         x="439.20834"
+         y="-91.937531"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">9</tspan></text>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot1254"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:40px;line-height:25px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter56915)"
+       transform="matrix(0.26458333,0,0,0.26458333,10.958052,372.85081)"><flowRegion
+         id="flowRegion1256"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold'"><rect
+           id="rect1258"
+           width="665"
+           height="465"
+           x="-745"
+           y="135"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold'" /></flowRegion><flowPara
+         id="flowPara1260" /></flowRoot>    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter56927)"
+       x="494.77084"
+       y="13.895805"
+       id="hash"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/#.png"
+       inkscape:label="#"><tspan
+         sodipodi:role="line"
+         id="tspan812-2-3-6-8"
+         x="494.77084"
+         y="13.895805"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">#</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter56939)"
+       x="23.8125"
+       y="-39.020863"
+       id="callsign"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/!.png"
+       inkscape:label="!"><tspan
+         sodipodi:role="line"
+         id="tspan812-2-3-6-8-0"
+         x="23.8125"
+         y="-39.020863"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">!</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter56951)"
+       x="71.4375"
+       y="-36.375027"
+       id="quote"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/&quot;.png"
+       inkscape:label="&quot;"><tspan
+         sodipodi:role="line"
+         id="tspan812-2-3-6-8-0-1"
+         x="71.4375"
+         y="-36.375027"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">&quot;</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter56963)"
+       x="178.85835"
+       y="-36.375027"
+       id="dollar"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/$.png"
+       inkscape:label="dollar"><tspan
+         sodipodi:role="line"
+         id="tspan812-2-3-6-8-0-1-0"
+         x="178.85835"
+         y="-36.375027"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">$</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter56975)"
+       x="224.89583"
+       y="-39.020863"
+       id="percent"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/%.png"
+       inkscape:label="percent"><tspan
+         sodipodi:role="line"
+         id="tspan812-2-3-6-8-0-1-0-0"
+         x="224.89583"
+         y="-39.020863"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">%</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter56987)"
+       x="283.10416"
+       y="-39.020863"
+       id="ampersand"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/&amp;.png"
+       inkscape:label="ampersand"><tspan
+         sodipodi:role="line"
+         id="tspan812-2-3-6-8-0-1-0-0-4"
+         x="283.10416"
+         y="-39.020863"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">&amp;</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter56999)"
+       x="336.02084"
+       y="-39.020863"
+       id="forwardslash"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/#.png"
+       inkscape:label="forwardslash"><tspan
+         sodipodi:role="line"
+         id="tspan812-2-3-6-8-0-1-0-0-4-4"
+         x="336.02084"
+         y="-39.020863"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">/</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter57011)"
+       x="388.9375"
+       y="-39.020863"
+       id="parenthesis_open"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/(.png"
+       inkscape:label="("><tspan
+         sodipodi:role="line"
+         id="tspan812-2-3-6-8-0-1-0-0-4-4-4"
+         x="388.9375"
+         y="-39.020863"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">(</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter57023)"
+       x="447.1459"
+       y="-41.137527"
+       id="parenthesis_close"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/).png"
+       inkscape:label=")"><tspan
+         sodipodi:role="line"
+         id="tspan812-2-3-6-8-0-1-0-0-4-4-4-9"
+         x="447.1459"
+         y="-41.137527"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter57035)"
+       x="494.77084"
+       y="-41.666695"
+       id="equal"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/=.png"
+       inkscape:label="equal"><tspan
+         sodipodi:role="line"
+         id="tspan812-2-3-6-8-0-1-0-0-4-4-4-9-4"
+         x="494.77084"
+         y="-41.666695"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">=</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter57047)"
+       x="547.6875"
+       y="-39.020863"
+       id="questionmark"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/?.png"
+       inkscape:label="?"><tspan
+         sodipodi:role="line"
+         id="tspan812-2-3-6-8-0-1-0-0-4-4-4-9-4-8"
+         x="547.6875"
+         y="-39.020863"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">?</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter57059)"
+       x="280.45834"
+       y="13.895805"
+       id="plus"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/+.png"
+       inkscape:label="+"><tspan
+         sodipodi:role="line"
+         id="tspan812-2-3-6-8-6"
+         x="280.45834"
+         y="13.895805"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">+</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter57071)"
+       x="654.57916"
+       y="3.3124716"
+       id="underscore"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/#.png"
+       inkscape:label="_"><tspan
+         sodipodi:role="line"
+         id="tspan812-2-3-6-8-9"
+         x="654.57916"
+         y="3.3124716"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">_</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter57083)"
+       x="336.02084"
+       y="13.895805"
+       id="tilde"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/~.png"
+       inkscape:label="~"><tspan
+         sodipodi:role="line"
+         id="tspan812-2-3-6-8-4"
+         x="336.02084"
+         y="13.895805"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">~</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter57095)"
+       x="232.83333"
+       y="13.895805"
+       id="colon"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/:.png"
+       inkscape:label=":"><tspan
+         sodipodi:role="line"
+         id="tspan812-2-3-6-8-4-1"
+         x="232.83333"
+         y="13.895805"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">:</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter57107)"
+       x="444.5"
+       y="5.9583049"
+       id="period"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/..png"
+       inkscape:label="."><tspan
+         sodipodi:role="line"
+         id="tspan812-2-3-6-8-4-1-6"
+         x="444.5"
+         y="5.9583049"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">.</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter57119)"
+       x="18.520834"
+       y="12.308304"
+       id="lesser"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/&lt;.png"
+       inkscape:label="&lt;"><tspan
+         sodipodi:role="line"
+         id="tspan812-2-3-6-8-4-1-7"
+         x="18.520834"
+         y="12.308304"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">&lt;</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter57131)"
+       x="74.083336"
+       y="12.308304"
+       id="greater"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/&gt;.png"
+       inkscape:label="&gt;"><tspan
+         sodipodi:role="line"
+         id="tspan812-2-3-6-8-4-1-7-2"
+         x="74.083336"
+         y="12.308304"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">&gt;</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:67.7333374px;line-height:6.61458302px;font-family:'FFF Forward';-inkscape-font-specification:'FFF Forward';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="61.721615"
+       y="613.36572"
+       id="text814-38-0-3-61-33-6-1-2-9"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/|.png"
+       inkscape:label="|"
+       sodipodi:insensitive="true"><tspan
+         sodipodi:role="line"
+         id="tspan812-2-3-6-8-4-1-7-2-2"
+         x="61.721615"
+         y="613.36572"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:67.7333374px;font-family:'FFF Forward';-inkscape-font-specification:'FFF Forward';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">|</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter57143)"
+       x="182.5625"
+       y="13.895805"
+       id="semicolon"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/;.png"
+       inkscape:transform-center-x="11.626225"
+       inkscape:transform-center-y="-2.9399649"
+       inkscape:label=";"><tspan
+         sodipodi:role="line"
+         id="tspan812-2-3-6-8-4-1-7-2-2-1"
+         x="182.5625"
+         y="13.895805"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">;</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter57155)"
+       x="129.64583"
+       y="5.9583049"
+       id="comma"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/,.png"
+       inkscape:transform-center-x="11.626225"
+       inkscape:transform-center-y="-2.9399649"
+       inkscape:label=","><tspan
+         sodipodi:role="line"
+         id="tspan812-2-3-6-8-4-1-7-2-2-1-4"
+         x="129.64583"
+         y="5.9583049"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">,</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter57167)"
+       x="547.6875"
+       y="16.541637"
+       id="hyphen"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/-.png"
+       inkscape:label="-"><tspan
+         sodipodi:role="line"
+         id="tspan812-2-3-6-8-09"
+         x="547.6875"
+         y="16.541637"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">-</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter57179)"
+       x="391.58334"
+       y="19.187471"
+       id="asterisk"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/*.png"
+       inkscape:label="*"><tspan
+         sodipodi:role="line"
+         id="tspan812-2-3-6-8-4-14"
+         x="391.58334"
+         y="19.187471"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">*</tspan></text>
+    <text
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/0.png"
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       id="0"
+       y="-91.937531"
+       x="492.125"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter57191)"
+       xml:space="preserve"
+       inkscape:label="0"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px"
+         y="-91.937531"
+         x="492.125"
+         id="tspan300"
+         sodipodi:role="line">0</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter57203)"
+       x="20.108334"
+       y="-198.30005"
+       id="a"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/A.png"
+       inkscape:label="a"><tspan
+         sodipodi:role="line"
+         id="tspan812-6"
+         x="20.108334"
+         y="-198.30005"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">a</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter57215)"
+       x="71.4375"
+       y="-195.12503"
+       id="b"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/A.png"
+       inkscape:label="b"><tspan
+         sodipodi:role="line"
+         id="tspan812-6-6"
+         x="71.4375"
+         y="-195.12503"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">b</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter57227)"
+       x="124.35417"
+       y="-195.12503"
+       id="c"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/A.png"
+       inkscape:label="c"><tspan
+         sodipodi:role="line"
+         id="tspan812-6-5"
+         x="124.35417"
+         y="-195.12503"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">c</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter57239)"
+       x="177.27084"
+       y="-192.47919"
+       id="d"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/A.png"
+       inkscape:label="d"><tspan
+         sodipodi:role="line"
+         id="tspan812-6-56"
+         x="177.27084"
+         y="-192.47919"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">d</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter57251)"
+       x="230.1875"
+       y="-195.12503"
+       id="e"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/A.png"
+       inkscape:label="e"><tspan
+         sodipodi:role="line"
+         id="tspan812-6-9"
+         x="230.1875"
+         y="-195.12503"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">e</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter57263)"
+       x="285.75"
+       y="-195.12503"
+       id="f"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/A.png"
+       inkscape:label="f"><tspan
+         sodipodi:role="line"
+         id="tspan812-6-2"
+         x="285.75"
+         y="-195.12503"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">f</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter57275)"
+       x="338.66669"
+       y="-197.77086"
+       id="g"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/A.png"
+       inkscape:label="g"><tspan
+         sodipodi:role="line"
+         id="tspan812-6-0"
+         x="338.66669"
+         y="-197.77086"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">g</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter57287)"
+       x="388.9375"
+       y="-195.12503"
+       id="h"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/A.png"
+       inkscape:label="h"><tspan
+         sodipodi:role="line"
+         id="tspan812-6-6-3"
+         x="388.9375"
+         y="-195.12503"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">h</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter57299)"
+       x="447.14584"
+       y="-195.12503"
+       id="i"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/A.png"
+       inkscape:label="i"><tspan
+         sodipodi:role="line"
+         id="tspan812-6-5-0"
+         x="447.14584"
+         y="-195.12503"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">i</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter57311)"
+       x="500.0625"
+       y="-195.12503"
+       id="j"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/A.png"
+       inkscape:label="j"><tspan
+         sodipodi:role="line"
+         id="tspan812-6-56-2"
+         x="500.0625"
+         y="-195.12503"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">j</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter57323)"
+       x="548.21667"
+       y="-195.12503"
+       id="k"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/A.png"
+       inkscape:label="k"><tspan
+         sodipodi:role="line"
+         id="tspan812-6-9-1"
+         x="548.21667"
+         y="-195.12503"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">k</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter57335)"
+       x="605.89581"
+       y="-195.12503"
+       id="l"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/A.png"
+       inkscape:label="l"><tspan
+         sodipodi:role="line"
+         id="tspan812-6-2-7"
+         x="605.89581"
+         y="-195.12503"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">l</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter57347)"
+       x="650.875"
+       y="-195.12503"
+       id="m"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/A.png"
+       inkscape:label="m"><tspan
+         sodipodi:role="line"
+         id="tspan812-6-0-2"
+         x="650.875"
+         y="-195.12503"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">m</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter57359)"
+       x="706.4375"
+       y="-195.12503"
+       id="n"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/A.png"
+       inkscape:label="n"><tspan
+         sodipodi:role="line"
+         id="tspan812-6-6-3-2"
+         x="706.4375"
+         y="-195.12503"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">n</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter57371)"
+       x="759.35419"
+       y="-195.12503"
+       id="o"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/A.png"
+       inkscape:label="o"><tspan
+         sodipodi:role="line"
+         id="tspan812-6-5-0-7"
+         x="759.35419"
+         y="-195.12503"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">o</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter57383)"
+       x="811.21252"
+       y="-197.2417"
+       id="p"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/A.png"
+       inkscape:label="p"><tspan
+         sodipodi:role="line"
+         id="tspan812-6-56-2-9"
+         x="811.21252"
+         y="-197.2417"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">p</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter57395)"
+       x="865.1875"
+       y="-197.77086"
+       id="q"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/A.png"
+       inkscape:label="q"><tspan
+         sodipodi:role="line"
+         id="tspan812-6-9-1-2"
+         x="865.1875"
+         y="-197.77086"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">q</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter57407)"
+       x="920.75"
+       y="-197.77086"
+       id="r"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/A.png"
+       inkscape:label="r"><tspan
+         sodipodi:role="line"
+         id="tspan812-6-2-7-9"
+         x="920.75"
+         y="-197.77086"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">r</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter57419)"
+       x="973.66669"
+       y="-197.2417"
+       id="s"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/A.png"
+       inkscape:label="s"><tspan
+         sodipodi:role="line"
+         id="tspan812-6-0-2-3"
+         x="973.66669"
+         y="-197.2417"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">s</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter57431)"
+       x="1029.2291"
+       y="-195.12503"
+       id="t"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/A.png"
+       inkscape:label="t"><tspan
+         sodipodi:role="line"
+         id="tspan812-6-6-3-2-1"
+         x="1029.2291"
+         y="-195.12503"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">t</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter57443)"
+       x="1076.8541"
+       y="-197.77086"
+       id="u"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/A.png"
+       inkscape:label="u"><tspan
+         sodipodi:role="line"
+         id="tspan812-6-5-0-7-9"
+         x="1076.8541"
+         y="-197.77086"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">u</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter57455)"
+       x="1132.4166"
+       y="-195.12503"
+       id="v"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/A.png"
+       inkscape:label="v"><tspan
+         sodipodi:role="line"
+         id="tspan812-6-56-2-9-1"
+         x="1132.4166"
+         y="-195.12503"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">v</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter57467)"
+       x="1180.0416"
+       y="-195.12503"
+       id="w"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/A.png"
+       inkscape:label="w"><tspan
+         sodipodi:role="line"
+         id="tspan812-6-9-1-2-4"
+         x="1180.0416"
+         y="-195.12503"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">w</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter57479)"
+       x="1236.6625"
+       y="-195.12503"
+       id="x"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/A.png"
+       inkscape:label="x"><tspan
+         sodipodi:role="line"
+         id="tspan812-6-2-7-9-8"
+         x="1236.6625"
+         y="-195.12503"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">x</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter57491)"
+       x="1291.1667"
+       y="-196.71254"
+       id="y"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/A.png"
+       inkscape:label="y"><tspan
+         sodipodi:role="line"
+         id="tspan812-6-2-7-9-8-5"
+         x="1291.1667"
+         y="-196.71254"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">y</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter57503)"
+       x="1344.0834"
+       y="-195.12503"
+       id="z"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/A.png"
+       inkscape:label="z"><tspan
+         sodipodi:role="line"
+         id="tspan812-6-2-7-9-8-5-3"
+         x="1344.0834"
+         y="-195.12503"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">z</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter57515)"
+       x="124.35416"
+       y="-41.666695"
+       id="micro"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/&quot;.png"
+       inkscape:label="micro"><tspan
+         sodipodi:role="line"
+         id="tspan812-2-3-6-8-0-1-1"
+         x="124.35416"
+         y="-41.666695"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">§</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter57527)"
+       x="604.83752"
+       y="19.187471"
+       id="singlequote"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/&quot;.png"
+       inkscape:label="'"><tspan
+         sodipodi:role="line"
+         id="tspan812-2-3-6-8-0-1-6"
+         x="604.83752"
+         y="19.187471"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">'</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter57539)"
+       x="18.520834"
+       y="69.458305"
+       id="ampersat"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/+.png"
+       inkscape:label="@"><tspan
+         sodipodi:role="line"
+         id="tspan812-2-3-6-8-6-2"
+         x="18.520834"
+         y="69.458305"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">@</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter57551)"
+       x="71.4375"
+       y="66.812469"
+       id="euro"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/+.png"
+       inkscape:label="€"><tspan
+         sodipodi:role="line"
+         id="tspan812-2-3-6-8-6-2-6"
+         x="71.4375"
+         y="66.812469"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">€</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;line-height:6.61458302px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';letter-spacing:0px;word-spacing:0px;fill:#fffff3;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter57563)"
+       x="18.520834"
+       y="-142.20836"
+       id="A"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:export-filename="/home/tong/dev/pro/letterspace/res/letter/fff/B.png"
+       inkscape:label="A"><tspan
+         sodipodi:role="line"
+         id="tspan812-4-67"
+         x="18.520834"
+         y="-142.20836"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:25.39999962px;font-family:'Helvetica Neue LT Std';-inkscape-font-specification:'Helvetica Neue LT Std Bold';fill:#fffff3;fill-opacity:1;stroke-width:0.26458332px">A</tspan></text>
+  </g>
+</svg>

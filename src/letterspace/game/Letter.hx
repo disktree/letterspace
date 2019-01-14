@@ -27,63 +27,53 @@ class Letter extends Object {
 	public var user(default,null) : Node;
 	public var lastUser(default,null) : Node;
 
-	var bmp : Bitmap;
+	var letter : Bitmap;
+	var shadow : Bitmap;
+
 	var colorDefault : Int;
-	var interactive : Interactive;
 
-	var shadow : DropShadow;
-
-	public function new( parent, index : Int, char : String, tile : Tile, color : Int ) {
+	public function new( parent, index : Int, char : String, theme : Theme.Letter, tile : Tile, tile_shadow : Tile ) {
 
 		super( parent );
 		this.index = index;
 		this.char = char;
 
+		shadow = new Bitmap( tile_shadow, this );
+		shadow.smooth = true;
+		shadow.alpha = 0.8;
 
-		bmp = new Bitmap( tile, this );
-		bmp.smooth = true;
+		//var letter_bg = new Bitmap( tile, this );
+		//letter_bg.smooth = true;
 
-		size = bmp.getSize();
+		letter = new Bitmap( tile, this );
+		letter.smooth = true;
+
+		//var bright = -5;
+		//letter.adjustColor({ lightness : bright / 100 });
+
+		size = letter.getSize();
 		width = Std.int( size.width );
 		height = Std.int( size.height );
 
-		this.color = color;
+		var shadow_size = shadow.getSize();
+		shadow.x -= (shadow_size.width - size.width) / 2;
+		shadow.y -= (shadow_size.height - size.height) / 2;
+
+		this.color = theme.color;
 		this.colorDefault = color;
 
-		outline = new Outline( 1, 0x000000, 0.1, true );
+		outline = new Outline( theme.outline.thick, theme.outline.color, 0.3, true );
 		outline.enable = false;
-		bmp.filter = outline;
+		filter = outline;
 
-		shadow = new h2d.filter.DropShadow( 4, 0.785, 0x000000, 0.3, 6, 2, 1, true );
-		shadow.enable = false;
-		filter = shadow;
-
-		/*
-		var scene = getScene();
-		var dragged = false;
-		*/
-
-		interactive = new Interactive( width, height, this );
-		interactive.onPush = function(e) {
-			if( !Key.isDown( Key.SPACE ) ) {
-				//outline.enable = true;
-				//bringToFront();
-				if( user == null ) {
-					interactive.cursor = Move;
-					onDragStart( this );
-				}
-			}
-		}
-		interactive.onRelease = function(e) {
-			//this.color = colorDefault;
-			interactive.cursor = Default;
-			onDragStop( this );
-		}
+		//shadow = new h2d.filter.DropShadow( 4, 0.785, 0x000000, 0.3, 6, 2, 1, true );
+		//shadow.enable = false;
+		//filter = shadow;
 	}
 
-	inline function get_color() return bmp.color.toColor();
+	inline function get_color() return letter.color.toColor();
 	inline function set_color(v) {
-		bmp.color = Vector.fromColor( v );
+		letter.color = Vector.fromColor( v );
 		return v;
 	}
 
@@ -99,10 +89,11 @@ class Letter extends Object {
 		//scale(1.05);
 		var v = Vector.fromColor( user.color );
 		v.a = 1;
-		bmp.color = v;
+		letter.color = v;
 		bringToFront();
-		//outline.enable = true;
+		outline.enable = false;
 		//shadow.enable = true;
+		shadow.alpha = 1;
 		return this;
 	}
 
@@ -111,8 +102,9 @@ class Letter extends Object {
 		user = null;
 		//scale(1);
 		color = colorDefault;
-		//outline.enable = false;
+		outline.enable = false;
 		//shadow.enable = false;
+		shadow.alpha = 0.8;
 		return this;
 	}
 

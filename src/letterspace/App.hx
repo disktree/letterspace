@@ -9,6 +9,7 @@ import letterspace.game.Tilemap;
 class App  {
 
 	public static inline var VERSION = '0.0.0';
+	public static inline var REV = '0';
 
 	//public static var isMobile(default,null) = om.System.isMobile();
 	public static var hidden(default,null) = false;
@@ -45,6 +46,11 @@ class App  {
 			server = new Server();
 
 			Activity.init( new BootActivity(), mainElement ).then( function(_){
+				/*
+				window.addEventListener( 'beforeunload', function(e){
+					trace(e);
+				}, false );
+				*/
 				document.addEventListener( 'visibilitychange', function(e) {
 					App.hidden = document.hidden;
 				}, false );

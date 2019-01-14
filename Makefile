@@ -17,9 +17,10 @@ install:
 	cp bin/package.json $(INSTALL_DIR)/lib/letterserver
 	cd $(INSTALL_DIR)/lib/letterserver && npm install
 	cp bin/letterserver.js* $(INSTALL_DIR)/lib/letterserver
+	cp -r bin/level $(INSTALL_DIR)/lib/letterserver
 	chmod +x $(INSTALL_DIR)/lib/letterserver/letterserver.js
 	cp bin/letterserver.service /etc/systemd/system/
-	systemctl daemon-reload
+	#systemctl daemon-reload
 
 uninstall:
 	rm -rf $(INSTALL_DIR)/lib/letterserver

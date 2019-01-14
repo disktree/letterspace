@@ -1,18 +1,12 @@
 package letterspace.app;
 
-/*
-private typedef ServerInfo = {
-	var host : String;
-	var port : Int;
-	@:optional var dev : Bool;
-}
-*/
-
 class BootActivity extends Activity {
 
+	//static inline var HOST = '195.201.41.121';
+	static inline var HOST = '192.168.0.10';
+	static inline var PORT = 1377;
+
 	var status : DivElement;
-	//var servers : Array<ServerInfo>;
-	//var serverIndex : Int;
 
 	public function new() {
 		super();
@@ -22,47 +16,49 @@ class BootActivity extends Activity {
 	}
 
 	override function onStart() {
-		/*
-		fetchJson( 'servers.json' ).then( function(servers:Array<ServerInfo>){
-			this.servers = servers;
-			trace( servers);
-		});
-		*/
-		var host = '192.168.0.10';
-		//var host = '195.201.41.121';
-		var port = 1377;
-		//var port = 8080;
-		connectServer( host, port );
+		delay( function(){
+			connectServer( HOST, PORT );
+		}, 100 );
 	}
 
 	function connectServer( host : String, port : Int ) {
-		status.textContent = 'connecting';
-		delay( function(){
-			App.server.onDisconnect = function(?reason){
-				console.warn(reason);
-				status.textContent = 'disconnect';
-				if( reason != null ) status.textContent += ' : '+reason;
-			}
-			App.server.connect( host, port ).then( function(s){
 
-				App.server.onDisconnect = null;//TODO
+		status.textContent = 'connecting $host:$port';
 
-				status.textContent = 'connected';
+		App.server.onDisconnect = function(?reason){
+			console.warn(reason);
+			status.textContent = 'disconnect';
+			if( reason != null ) status.textContent += ' : '+reason;
+		}
+		App.server.connect( host, port ).then( function(s){
 
-				hxd.Res.initEmbed( { compressSounds: true } );
+			App.server.onDisconnect = null;//TODO
 
+			status.textContent = 'connected';
+
+			hxd.Res.initEmbed( { compressSounds: true } );
+
+			delay( function(){
+				Activity.set( new LobbyActivity() );
+			}, 200 );
+
+		}).catchError( function(e){
+
+			console.error(e);
+
+			var sound = document.createAudioElement();
+			sound.src = 'snd/server_unavailable.mp3';
+			sound.play();
+
+			status.textContent = 'server unavailable';
+			status.onclick = function() {
+				status.onclick = null;
+				status.textContent = '...';
 				delay( function(){
-					//Activity.set( new LoginActivity( 'USER_'+Std.int(Math.random()*1000) ) );
-					Activity.set( new LobbyActivity() );
+					connectServer( HOST, PORT );
 				}, 200 );
-
-
-			}).catchError( function(e){
-				console.error(e);
-				status.textContent = 'server unavailable';
-				//delay( connectServer, 5000 );
-			});
-		}, 100 );
+			}
+		});
 	}
 
 }

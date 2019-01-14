@@ -3,7 +3,6 @@ package letterspace.app;
 import letterspace.game.Menu;
 import letterspace.game.Letter;
 import letterspace.game.Space;
-import letterspace.game.Tilemap;
 
 private enum abstract SyncType(Int) from Int to Int {
 	var status_request = 0;
@@ -18,35 +17,34 @@ class GameActivity extends Activity {
 	var mesh : Mesh;
 	var level : Level;
 	var user : Node;
-	//var users : Map<String,User>;
 	var space : Space;
 	var menu : Menu;
 
-	/*
-	var users : Map<String,User>;
-	//var status : Array<Array<Int>>;
-	*/
+	var wordHandler : Map<String,Class<letterspace.game.word.Handler>> = [
+		"LSD" => letterspace.game.word.LSD,
+		"RICK" => letterspace.game.word.Rickroll,
+	];
+	var activeWordHandler : Array<letterspace.game.word.Handler> = [];
 
-	public function new( mesh : Mesh, level : Level, user : letterspace.Node ) {
+	public function new( mesh : Mesh, level : Level, user : Node ) {
 
 		super();
 		this.mesh = mesh;
 		this.level = level;
 		this.user = user;
-		//this.status = status;
 
 		var canvas = document.createCanvasElement();
 		canvas.id = 'webgl';
-		//canvas.width = level.width;
-		//canvas.height = level.height;
 		element.appendChild( canvas );
 
 		menu = new Menu( element, user );
 	}
 
 	override function onCreate<T:Activity>() : Promise<T> {
+		//console.time( "space");
 		return Space.create( level ).then( function(space){
 			this.space = space;
+			//console.timeEnd( "space" );
 			return cast this;
 		});
 	}
@@ -98,14 +96,13 @@ class GameActivity extends Activity {
 				var y = v.getUint16(5);
 				switch t {
 				case drag_start:
-					//TODO
-					//var user = users.get( n.id );
-					//l.startDrag( user );
 					l.startDrag( n );
 					menu.setDragStart( n, l );
+					checkWordDestroy( l );
 				case drag_stop:
 					l.stopDrag();
 					menu.setDragStop( n );
+					checkWordCreate( l );
 				case _:
 				}
 				l.setPosition( x, y );
@@ -113,55 +110,114 @@ class GameActivity extends Activity {
 		}
 
 		space.onDragStart = function(l) {
+
 			l.startDrag( user );
 			menu.setDragStart( user, l );
 			sendLetterUpdate( drag_start, l );
+
+			checkWordDestroy( l );
 		}
 		space.onDrag = function(l) {
 			sendLetterUpdate( drag, l );
 		}
 		space.onDragStop = function(l) {
+
 			l.stopDrag();
 			menu.setDragStop( user );
 			sendLetterUpdate( drag_stop, l );
+
+			checkWordCreate( l );
 		}
 
 		if( mesh.numNodes == 0 ) {
+			mesh.loadStatus().then( function(r){
+				var i = 0;
+				for( l in space.letters ) {
+					var p = r[i];
+					l.setPosition( p[0], p[1] );
+					i++;
+				}
+			}).catchError( function(e){
+				trace(e);
+			});
+			/*
 			for( l in space.letters ) {
 				l.setPosition(
 					Std.int( Math.random() * (space.width-l.width) ),
 					Std.int( Math.random() * (space.height-l.height) )
 				);
 			}
+			*/
 		} else {
-
 			for( n in mesh ) {
-				//var user = new User( n.info.name, n.info.color );
-				//users.set( n.id, user );
 				menu.addUser( cast(n,Node) );
 			}
-
 			var u = new Uint8Array( 1 );
 			u[0] = status_request;
 			mesh.first().send( u );
-
 		}
 
 		updateWindowTitle();
 
-		space.start();
-
 		window.addEventListener( 'beforeunload', handleBeforeUnload, false );
 		window.addEventListener( 'keyup', handleKeyUp, false );
+
+		space.onUpdate = handleSpaceUpdate;
+		space.start();
 	}
 
 	override function onStop() {
+
 		window.removeEventListener( 'beforeunload', handleBeforeUnload );
 		window.removeEventListener( 'keyup', handleKeyUp );
-		//mesh.leave();
-		App.server.leave( mesh );
-	//	space.dispose();
+
+		for( h in activeWordHandler ) h.stop();
+		activeWordHandler = [];
+
+		if( mesh.numNodes == 0 ) {
+			saveStatus().then( function(_){
+				App.server.leave( mesh );
+				space.dispose();
+			}).catchError( function(e){
+				trace(e);
+				App.server.leave( mesh );
+				space.dispose();
+			});
+		} else {
+			App.server.leave( mesh );
+			space.dispose();
+		}
+
 		document.title = 'LETTERSPACE';
+	}
+
+	function checkWordCreate( l : Letter ) {
+		var word = space.searchWord( l );
+		if( word.length != 0 ) {
+			var wordStr = word.map( l -> return l.char ).join('');
+			if( wordHandler.exists( wordStr ) ) {
+				var h = Type.createInstance( wordHandler.get( wordStr ), [space,word] );
+				activeWordHandler.push( h );
+				h.start();
+			}
+		}
+	}
+
+	function checkWordDestroy( l : Letter ) {
+		var i = 0;
+		for( h in activeWordHandler ) {
+			if( h.hasLetter( l ) ) {
+				h.stop();
+				activeWordHandler.splice( i, 1 );
+			}
+			i++;
+		}
+	}
+
+	function handleSpaceUpdate() {
+		for( h in activeWordHandler ) {
+			h.update();
+		}
 	}
 
 	function handleKeyUp(e) {
@@ -182,35 +238,8 @@ class GameActivity extends Activity {
 
 	function handleBeforeUnload(e) {
 		//e.preventDefault();
-		if( mesh.numNodes == 0 ) {
-
-			//TODO send status to server for storage
-			/*
-			var status = new Array<Array<Int>>();
-			for( l in space.letters ) {
-				status.push( [Std.int(l.x),Std.int(l.y)] );
-			}
-			App.server.leave( mesh, status );
-			*/
-			App.server.leave( mesh );
-			/*
-			App.server.setStatus( status ).then( function(_){
-				mesh.leave();
-				space.dispose();
-			}).catchError( function(e){
-				console.error(e);
-				mesh.leave();
-				space.dispose();
-			});
-			e.returnValue = '';
-			//return 'EXIT?';
-			*/
-		} else {
-			//mesh.leave();
-			//space.dispose();
-			//e.returnValue = '';
-			//return null;
-		}
+		//e.returnValue = '';
+		Activity.set( new UnloadActivity() );
 	}
 
 	function updateWindowTitle() {
@@ -226,7 +255,6 @@ class GameActivity extends Activity {
 	*/
 
 	function sendLetterUpdate( t : SyncType, l : Letter  ) {
-		//trace(mesh.numNodes);
 		if( mesh.numNodes > 0 ) {
 			var v = new DataView( new ArrayBuffer( 7 ) );
 			v.setUint8( 0, t );
@@ -235,6 +263,11 @@ class GameActivity extends Activity {
 			v.setUint16( 5, Std.int( l.y ) );
 			mesh.send( v );
 		}
+	}
+
+	function saveStatus() : Promise<Nil> {
+		var status = space.letters.map( l -> return [ Std.int(l.x), Std.int(l.y) ] );
+		return mesh.saveStatus( status );
 	}
 
 }

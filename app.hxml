@@ -3,6 +3,7 @@
 -cp src
 -lib heaps
 -lib heaps-tools
+-lib om.api
 -lib om.core
 -lib om.color
 -lib om.tween

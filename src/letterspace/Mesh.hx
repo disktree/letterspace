@@ -4,6 +4,14 @@ class Mesh extends owl.Mesh {
 
 	#if owl_client
 
+	public inline function loadStatus() : Promise<Array<Array<Int>>> {
+		return server.request( 'status/$id' );
+	}
+
+	public inline function saveStatus( data : Dynamic ) : Promise<Nil> {
+		return cast server.request( 'status/$id/set', data );
+	}
+
 	override function createNode( id : String, creds : Dynamic ) : Node {
 		return new Node( id, creds );
 	}
@@ -44,60 +52,22 @@ class Mesh extends owl.Mesh {
 				}
 			}
 		}
+
+		/*
+		var lvl = Reflect.copy( level );
+		if( numNodes == 0 ) {
+			var path = process.argv[1].directory()+'/level/$id-status.json';
+			if( sys.FileSystem.exists( path ) ) {
+				lvl.status = Json.readFile( path );
+			}
+		}
+		*/
+
 		super.addNode( node, creds );
 		creds.color = USERCOLOR[numNodes];
+
 		return level;
 	}
-
-	/*
-	public override function addNode( node : owl.Node, ?info : Dynamic ) {
-		var numNodes = Lambda.count( nodes );
-		info.user = {
-			name: info.name,
-			color: USERCOLOR[numNodes]
-		};
-		info.level = level;
-		super.addNode( node, info );
-	}
-	*/
-
-	/*
-	public override function addNode( node : owl.Node, ?info : Dynamic ) {
-		var numNodes = Lambda.count( nodes );
-		info.color = USERCOLOR[numNodes];
-		info.level = {
-			width : 1000,
-			height : 1000,
-			font : "helvetica",
-			theme: "antireal",
-			letters : [
-				{ char: "A", font : "helvetica", scale: 1 }
-			]
-		};
-		if( numNodes == 0 ) {
-			var path = process.argv[1].directory()+'/status.json';
-			if( sys.FileSystem.exists( path ) ) {
-				var str = sys.io.File.getContent( path );
-				info.status = Json.parse( str );
-			}
-		}
-		for( n in nodes ) {
-			var _info = infos.get( n.id );
-			if( _info.name == info.name ) {
-				var i = 0;
-				while( true ) {
-					var nname = info.name + i;
-					if( _info.name != nname ) {
-						info.name = nname;
-						break;
-					}
-					i++;
-				}
-			}
-		}
-		super.addNode( node, info );
-	}
-	*/
 
 	public static function load( id : String, ?maxNodes : Int, ?permanent : Bool ) : Promise<Mesh> {
 		return Json.readFile( 'level/$id.json' ).then( function(level){
